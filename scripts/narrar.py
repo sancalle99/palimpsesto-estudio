@@ -3,8 +3,10 @@
 Uso (con el entorno de Kokoro que instala scripts/instalar_voces.sh):
     /tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/guion.md producciones/<ID>/recursos/audio
 Genera un WAV por sección (`seccion_N.wav`), `narracion.wav` (todo, con postproceso de la biblia
-visual) y `narracion.txt` (el texto exacto locutado, para subtítulos y auditoría).
+visual) y `narracion.txt` (el texto exacto locutado, para subtítulos y auditoría) y `tiempos.json`
+(inicio y fin de cada párrafo en segundos, para el montaje y los subtítulos).
 """
+import json
 import re
 import subprocess
 import sys
@@ -63,20 +65,25 @@ def main(guion_md, salida):
     salida = Path(salida)
     salida.mkdir(parents=True, exist_ok=True)
     pipe = KPipeline(lang_code="e")
-    todo, texto = [], []
+    todo, texto, tiempos, t = [], [], [], 0.0
     for i, (titulo, pars) in enumerate(secciones(Path(guion_md).read_text(encoding="utf-8")), 1):
         sec = []
         texto.append(f"## {titulo}")
         for p in pars:
             texto.append(p)
+            n = sum(len(x) for x in sec)
             for _, _, audio in pipe(locutable(p), voice=VOZ, speed=VELOCIDAD):
                 sec.append(np.asarray(audio))
+            fin = sum(len(x) for x in sec)
+            tiempos.append({"seccion": i, "texto": p, "ini": round(t + n / SR, 3), "fin": round(t + fin / SR, 3)})
             sec.append(np.zeros(int(SR * PAUSA_PARRAFO)))
         sec = np.concatenate(sec)
         sf.write(salida / f"seccion_{i}.wav", sec, SR)
         todo += [sec, np.zeros(int(SR * PAUSA_SECCION))]
+        t += (len(sec) + int(SR * PAUSA_SECCION)) / SR
         print(f"sección {i}: {len(sec) / SR:6.1f} s  {titulo}", flush=True)
     sf.write(salida / "narracion_cruda.wav", np.concatenate(todo), SR)
+    (salida / "tiempos.json").write_text(json.dumps(tiempos, ensure_ascii=False, indent=1), encoding="utf-8")
     (salida / "narracion.txt").write_text("\n".join(texto) + "\n", encoding="utf-8")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(salida / "narracion_cruda.wav"), "-af",
                     "highpass=f=70,acompressor=threshold=-18dB:ratio=2.5,loudnorm=I=-16:TP=-1.5",

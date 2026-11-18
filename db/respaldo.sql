@@ -22,6 +22,7 @@ CREATE TABLE aportes (
 );
 INSERT INTO "aportes" VALUES('DIR-PAL-2026-001-01',1,'PAL-2026-001','decision','Acepto el piloto','integrado','Piloto de ≈11 min sin ampliar la investigación; SOL-04 descartada. Ver guion.md (Aportes del Director) y escaleta.md','guionista','2026-11-18T01:39:11+00:00','2026-11-18T01:39:31+00:00');
 INSERT INTO "aportes" VALUES('DIR-PAL-2026-001-02',1,'PAL-2026-001','decision','Por ahora no activemos la facturación ya que tengo problemas con mi cuenta de de banco','integrado','Sin facturación: las 5 recreaciones IA se sustituyen por archivo CC BY y gráficos (storyboard v1.2); prompts en reserva; gasto de la etapa 12 = 0 USD','productor','2026-11-18T15:57:20+00:00','2026-11-18T15:57:29+00:00');
+INSERT INTO "aportes" VALUES('DIR-PAL-2026-001-03',1,'PAL-2026-001','decision','Monta el piloto solo con narración, la música después','integrado','Máster montado solo con la narración (sin música); la música se añadirá en una versión posterior','editor','2026-11-18T15:59:17+00:00','2026-11-18T16:03:45+00:00');
 CREATE TABLE artefactos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-A007
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -398,6 +399,7 @@ INSERT INTO "historial_tareas" VALUES(47,11,'entregado','cerrado','productor','c
 INSERT INTO "historial_tareas" VALUES(48,12,'pendiente','en_curso','productor',NULL,'2026-11-18T15:36:22+00:00');
 INSERT INTO "historial_tareas" VALUES(49,12,'en_curso','entregado','productor','Etapa 12 sin IA (DIR-PAL-2026-001-02): 11 imágenes de archivo CC BY 3.0 verificadas (R0001-R0011) y narración Kokoro de 9:17 (R0012). Gasto externo 0 USD. Música: la elige el editor en la etapa 13','2026-11-18T15:57:30+00:00');
 INSERT INTO "historial_tareas" VALUES(50,12,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T15:57:30+00:00');
+INSERT INTO "historial_tareas" VALUES(51,13,'pendiente','en_curso','editor',NULL,'2026-11-18T15:59:17+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -417,7 +419,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',12,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:57:30+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',13,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -473,7 +475,7 @@ INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista'
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:40:57+00:00','2026-11-18T01:41:57+00:00','2026-11-18T01:41:57+00:00',NULL);
 INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:43:43+00:00','2026-11-18T01:44:02+00:00','2026-11-18T01:44:02+00:00',NULL);
 INSERT INTO "tareas" VALUES(12,'PAL-2026-001',12,'Producción audiovisual','productor','presupuesto','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00','2026-11-18T15:57:30+00:00','2026-11-18T15:57:30+00:00',NULL);
-INSERT INTO "tareas" VALUES(13,'PAL-2026-001',13,'Edición','editor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(13,'PAL-2026-001',13,'Edición','editor','ninguna','en_curso','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00',NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(14,'PAL-2026-001',14,'Auditoría independiente','auditor','auditoria','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(15,'PAL-2026-001',15,'Correcciones','ceo','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(16,'PAL-2026-001',16,'Aprobación humana del video','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);

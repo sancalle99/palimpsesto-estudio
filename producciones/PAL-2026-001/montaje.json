@@ -1,0 +1,828 @@
+{
+ "produccion": "PAL-2026-001",
+ "storyboard": "v1.2",
+ "entrada": 1.5,
+ "cola": 3.5,
+ "capitulos": [
+  "Un libro de oraciones",
+  "La versión conocida",
+  "La grieta",
+  "La investigación",
+  "Lo demostrado frente a lo exagerado",
+  "Lo que sigue en duda"
+ ],
+ "planos": [
+  {
+   "id": "01",
+   "par": 0,
+   "tipo": "img",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.05,
+    0.08,
+    0.95,
+    0.48
+   ],
+   "mov": "der",
+   "zoom": 1.1,
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+  },
+  {
+   "id": "02",
+   "par": 0,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "14 de abril de 1229",
+     "titulo"
+    ],
+    [
+     "Colofón de Ioannes Myronas, sacerdote",
+     "normal"
+    ],
+    [
+     "● hecho documentado",
+     "grado"
+    ]
+   ]
+  },
+  {
+   "id": "03",
+   "par": 1,
+   "tipo": "img",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg",
+   "recorte": [
+    0.05,
+    0.08,
+    0.95,
+    0.48
+   ],
+   "transicion_a": {
+    "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg"
+   },
+   "peso": 1.2,
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+  },
+  {
+   "id": "04",
+   "par": 1,
+   "tipo": "diagrama",
+   "diagrama": "hoja",
+   "leyenda": "Hojas dobladas y giradas 90°: el texto nuevo cruza el antiguo",
+   "transicion_a": {
+    "diagrama": "hoja_cruzada"
+   }
+  },
+  {
+   "id": "05",
+   "par": 2,
+   "tipo": "img",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+   "mov": "arriba",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+  },
+  {
+   "id": "06",
+   "par": 2,
+   "tipo": "img",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+   "transicion_a": {
+    "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg"
+   },
+   "corte": 0.35,
+   "nota": "Debajo: Arquímedes, siglo X",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+  },
+  {
+   "id": "07",
+   "par": 3,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Cuando por fin pudimos leer lo que había debajo,",
+     "grande"
+    ],
+    [
+     "¿qué encontramos de verdad?",
+     "acento"
+    ]
+   ],
+   "peso": 1.3
+  },
+  {
+   "id": "08",
+   "par": 3,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "El libro que se negó a morir",
+     "titulo"
+    ],
+    [
+     "PALIMPSESTO",
+     "rotulo"
+    ]
+   ],
+   "peso": 0.8
+  },
+  {
+   "id": "09",
+   "par": 4,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "“Un monje destruyó la obra de un genio”",
+     "normal"
+    ],
+    [
+     "“Arquímedes casi inventó el cálculo”",
+     "normal"
+    ],
+    [
+     "“La ciencia perdió quinientos años”",
+     "normal"
+    ],
+    [
+     "✕ leyenda",
+     "grado"
+    ]
+   ],
+   "rotulo": "VERSIÓN POPULAR"
+  },
+  {
+   "id": "10",
+   "par": 5,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "“Lo borró con jugo de limón”",
+     "grande"
+    ],
+    [
+     "✕ leyenda · ninguna fuente académica lo propone",
+     "grado"
+    ]
+   ]
+  },
+  {
+   "id": "11",
+   "par": 6,
+   "tipo": "img",
+   "img": "recursos/archivo/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg",
+   "mov": "izq",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 110r-105v"
+  },
+  {
+   "id": "12",
+   "par": 6,
+   "tipo": "columnas",
+   "fichas": [
+    [
+     "El Método",
+     "Copia única"
+    ],
+    [
+     "Stomachion",
+     "Copia única"
+    ],
+    [
+     "Sobre los cuerpos flotantes",
+     "Única copia en griego"
+    ]
+   ],
+   "pie": "● hecho documentado",
+   "peso": 1.3
+  },
+  {
+   "id": "13",
+   "par": 7,
+   "tipo": "diagrama",
+   "diagrama": "capas",
+   "capas": [
+    [
+     "Libro de oraciones · 1229",
+     "x"
+    ],
+    [
+     "Arquímedes · copia del siglo X",
+     "x"
+    ],
+    [
+     "Comentario a las Categorías",
+     "x"
+    ],
+    [
+     "Hipérides",
+     "x"
+    ]
+   ]
+  },
+  {
+   "id": "14",
+   "par": 7,
+   "tipo": "img",
+   "img": "recursos/archivo/123r-118v_Arch61r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.45,
+    1.0,
+    1.0
+   ],
+   "mov": "abajo",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 123r-118v"
+  },
+  {
+   "id": "15",
+   "par": 8,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Constantinopla",
+     "titulo"
+    ],
+    [
+     "1906",
+     "acento"
+    ]
+   ],
+   "peso": 0.6
+  },
+  {
+   "id": "16",
+   "par": 8,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "J. L. Heiberg",
+     "titulo"
+    ],
+    [
+     "filólogo",
+     "pequeño"
+    ]
+   ],
+   "peso": 0.6
+  },
+  {
+   "id": "17",
+   "par": 8,
+   "tipo": "img",
+   "img": "recursos/archivo/0000-100r_Arch53v_Heiberg_visible_stitch.jpg",
+   "lupa": [
+    0.5,
+    0.5,
+    330,
+    2.2
+   ],
+   "fuente": "Fotografía de Heiberg, 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r"
+  },
+  {
+   "id": "18",
+   "par": 9,
+   "tipo": "img",
+   "img": "recursos/archivo/0000-100r_Arch53v_Heiberg_visible_stitch.jpg",
+   "fuente": "Fotografía de Heiberg, 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r",
+   "nota": "Transcripciones publicadas entre 1910 y 1915",
+   "mov": "der"
+  },
+  {
+   "id": "19",
+   "par": 9,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Partes del texto siguen ilegibles",
+     "grande"
+    ],
+    [
+     "Esas lagunas se llenarán casi un siglo después",
+     "normal"
+    ]
+   ]
+  },
+  {
+   "id": "20",
+   "par": 10,
+   "tipo": "columnas",
+   "titulo": "DOS VERSIONES",
+   "fichas": [
+    [
+     "Compra",
+     "Según la familia vendedora, Marie Louis Sirieix lo compró en Constantinopla en los años veinte"
+    ],
+    [
+     "Robo",
+     "El Patriarcado Ortodoxo sostuvo que había sido robado"
+    ]
+   ],
+   "pie": "Ninguna de las dos está demostrada"
+  },
+  {
+   "id": "21",
+   "par": 11,
+   "tipo": "img",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.0,
+    1.0,
+    0.55
+   ],
+   "nota": "Agua y moho",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+  },
+  {
+   "id": "22",
+   "par": 12,
+   "tipo": "img",
+   "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.0,
+    0.75,
+    0.5
+   ],
+   "zoom": 1.09,
+   "nota": "Evangelista falsificado, siglo XX",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+  },
+  {
+   "id": "23",
+   "par": 13,
+   "tipo": "img",
+   "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.0,
+    0.75,
+    0.5
+   ],
+   "nota": "Verde de ftalocianina → después de 1938",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+  },
+  {
+   "id": "24",
+   "par": 13,
+   "tipo": "img",
+   "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.0,
+    0.75,
+    0.5
+   ],
+   "transicion_a": {
+    "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
+    "recorte": null,
+    "fuente": "Fluorescencia de rayos X · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+   },
+   "corte": 0.4,
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+  },
+  {
+   "id": "25",
+   "par": 14,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "29 de octubre de 1998",
+     "titulo"
+    ],
+    [
+     "Christie's · Nueva York",
+     "normal"
+    ]
+   ]
+  },
+  {
+   "id": "26",
+   "par": 14,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Greek Orthodox Patriarchate of Jerusalem v. Christie's, Inc.",
+     "normal"
+    ],
+    [
+     "Tribunal federal (S.D.N.Y.) · jueza Kimba Wood",
+     "pequeño"
+    ],
+    [
+     "Fallo: laches, el demandante tardó demasiado en reclamar",
+     "pequeño"
+    ]
+   ],
+   "peso": 1.2
+  },
+  {
+   "id": "27",
+   "par": 14,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "El tribunal no decidió si el libro había sido robado.",
+     "grande"
+    ],
+    [
+     "Decidió que era tarde para pedirlo.",
+     "acento"
+    ]
+   ]
+  },
+  {
+   "id": "28",
+   "par": 15,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "2.000.000 USD",
+     "titulo"
+    ],
+    [
+     "2.202.500 USD con la comisión",
+     "normal"
+    ],
+    [
+     "Comprador anónimo",
+     "pequeño"
+    ]
+   ]
+  },
+  {
+   "id": "29",
+   "par": 16,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Walters Art Museum",
+     "titulo"
+    ],
+    [
+     "Baltimore",
+     "normal"
+    ]
+   ]
+  },
+  {
+   "id": "30",
+   "par": 16,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "William Noel",
+     "grande"
+    ],
+    [
+     "Proyecto de conservación e imagen · 1999–2008",
+     "pequeño"
+    ]
+   ]
+  },
+  {
+   "id": "31",
+   "par": 17,
+   "tipo": "img",
+   "img": "recursos/archivo/110r-105v_Arch27r_Sinar_true_pack8.jpg",
+   "mov": "izq",
+   "transicion_a": {
+    "img": "recursos/archivo/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg"
+   },
+   "nota": "Imagen multiespectral",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 110r-105v"
+  },
+  {
+   "id": "32",
+   "par": 18,
+   "tipo": "img",
+   "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.0,
+    0.0,
+    0.75,
+    0.5
+   ],
+   "transicion_a": {
+    "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
+    "recorte": null,
+    "fuente": "Fluorescencia de rayos X · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+   },
+   "corte": 0.3,
+   "nota": "Leer bajo la pintura",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+  },
+  {
+   "id": "33",
+   "par": 18,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "SLAC · Stanford",
+     "titulo"
+    ],
+    [
+     "Fluorescencia de rayos X",
+     "normal"
+    ]
+   ],
+   "peso": 0.7
+  },
+  {
+   "id": "34",
+   "par": 19,
+   "tipo": "mosaico",
+   "imgs": [
+    "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+    "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+    "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
+    "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/110r-105v_Arch27r_Sinar_true_pack8.jpg",
+    "recursos/archivo/123r-118v_Arch61r_Sinar_true_pack8.jpg",
+    "recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg"
+   ],
+   "cols": 5,
+   "titulo": "2008 · Creative Commons BY 3.0",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0"
+  },
+  {
+   "id": "35",
+   "par": 20,
+   "tipo": "diagrama",
+   "diagrama": "capas",
+   "capas": [
+    [
+     "Libro de oraciones · 1229",
+     "x"
+    ],
+    [
+     "Arquímedes",
+     "x"
+    ],
+    [
+     "Comentario a las Categorías",
+     "acento"
+    ],
+    [
+     "Hipérides",
+     "x"
+    ]
+   ]
+  },
+  {
+   "id": "36",
+   "par": 20,
+   "tipo": "img",
+   "img": "recursos/archivo/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg",
+   "mov": "arriba",
+   "nota": "Comentario a las Categorías · siglos II–III",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 077r-076v"
+  },
+  {
+   "id": "37",
+   "par": 21,
+   "tipo": "columnas",
+   "titulo": "AUTORÍA EN DEBATE",
+   "fichas": [
+    [
+     "Porfirio",
+     "con fragmentos de Boeto de Sidón"
+    ],
+    [
+     "Alejandro de Afrodisias",
+     "otra propuesta"
+    ]
+   ],
+   "pie": "○ hipótesis · ambas"
+  },
+  {
+   "id": "38",
+   "par": 22,
+   "tipo": "mosaico",
+   "imgs": [
+    "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+    "recursos/archivo/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg"
+   ],
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0"
+  },
+  {
+   "id": "39",
+   "par": 23,
+   "tipo": "columnas",
+   "fichas": [
+    [
+     "Lo demostrado",
+     "con su grado de evidencia"
+    ],
+    [
+     "Lo exagerado",
+     "lo que no está en las fuentes"
+    ]
+   ]
+  },
+  {
+   "id": "40",
+   "par": 24,
+   "tipo": "diagrama",
+   "diagrama": "rebanadas",
+   "leyenda": "Descubrir: dividir la figura en infinitas rebanadas"
+  },
+  {
+   "id": "41",
+   "par": 24,
+   "tipo": "diagrama",
+   "diagrama": "exhaucion",
+   "leyenda": "Demostrar: el método de exhaución"
+  },
+  {
+   "id": "42",
+   "par": 25,
+   "tipo": "img",
+   "img": "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg",
+   "mov": "arriba",
+   "nota": "Folio de El Método",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057v-064r"
+  },
+  {
+   "id": "43",
+   "par": 25,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Reviel Netz · Ken Saito · Natalie Tchernetska",
+     "normal"
+    ],
+    [
+     "◐ interpretación académica",
+     "grado"
+    ],
+    [
+     "Un “infinito actual”: un infinito tratado como algo completo",
+     "pequeño"
+    ]
+   ]
+  },
+  {
+   "id": "44",
+   "par": 26,
+   "tipo": "columnas",
+   "fichas": [
+    [
+     "Revisada por pares",
+     "La lectura de la proposición 14"
+    ],
+    [
+     "Physics Today",
+     "Crítica al tono del libro divulgativo"
+    ]
+   ],
+   "pie": "◐ interpretación"
+  },
+  {
+   "id": "45",
+   "par": 27,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Stomachion",
+     "titulo"
+    ],
+    [
+     "Un rompecabezas de 14 piezas",
+     "normal"
+    ],
+    [
+     "¿De cuántas formas se forma un cuadrado?",
+     "pequeño"
+    ]
+   ],
+   "rotulo": "INTERPRETACIÓN DE NETZ"
+  },
+  {
+   "id": "46",
+   "par": 28,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "536 × 32 = 17.152",
+     "titulo"
+    ],
+    [
+     "Recuento de 2003",
+     "pequeño"
+    ]
+   ]
+  },
+  {
+   "id": "47",
+   "par": 29,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "Supone un cuadrado y que se permiten giros y reflejos",
+     "normal"
+    ],
+    [
+     "NO SABEMOS si así era el juego original",
+     "acento"
+    ]
+   ]
+  },
+  {
+   "id": "48",
+   "par": 30,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "● hecho",
+     "grado"
+    ],
+    [
+     "Usaba el infinito para descubrir",
+     "normal"
+    ],
+    [
+     "◐ interpretación",
+     "grado"
+    ],
+    [
+     "Según algunos historiadores, razonó con conjuntos infinitos",
+     "normal"
+    ],
+    [
+     "✕ leyenda",
+     "grado"
+    ],
+    [
+     "“Quinientos años de retraso”",
+     "normal"
+    ]
+   ]
+  },
+  {
+   "id": "49",
+   "par": 31,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "SIGUE EN DUDA",
+     "rotulo"
+    ],
+    [
+     "¿Compra o robo?",
+     "normal"
+    ],
+    [
+     "¿Quién escribió el comentario?",
+     "normal"
+    ],
+    [
+     "¿Qué forma tenía el Stomachion?",
+     "normal"
+    ]
+   ]
+  },
+  {
+   "id": "50",
+   "par": 32,
+   "tipo": "img",
+   "img": "recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg",
+   "mov": "izq",
+   "nota": "Hipérides: Contra Timandro · Contra Diondas",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 145r-144v"
+  },
+  {
+   "id": "51",
+   "par": 33,
+   "tipo": "mosaico",
+   "imgs": [
+    "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+    "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg",
+    "recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg"
+   ],
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0"
+  },
+  {
+   "id": "52",
+   "par": 34,
+   "tipo": "tarjeta",
+   "lineas": [
+    [
+     "PALIMPSESTO",
+     "rotulo"
+    ],
+    [
+     "Fuentes y grados de evidencia en la descripción",
+     "normal"
+    ],
+    [
+     "Imágenes: The Archimedes Palimpsest Project, Walters Art Museum · CC BY 3.0",
+     "pequeño"
+    ]
+   ]
+  }
+ ]
+}
