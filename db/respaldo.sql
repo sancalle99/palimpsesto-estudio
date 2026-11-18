@@ -36,6 +36,8 @@ INSERT INTO "artefactos" VALUES('PAL-2026-001-A002','PAL-2026-001',3,'ficha_deci
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A003','PAL-2026-001',4,'ficha_enfoques','producciones/PAL-2026-001/etapa04_enfoques.md',1,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','investigador','2026-11-18T00:23:56+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A004','PAL-2026-001',6,'ficha_enfoques','producciones/PAL-2026-001/etapa04_enfoques.md',2,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','ceo','2026-11-18T00:25:47+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A005','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/expediente.md',1,'fc73eb375791c3ce4c29a24bf2b46e38332ecb7cc588070773e1da7426d32be1','investigador','2026-11-18T00:26:45+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A006','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/auditoria/etapa_8_v1.md',1,'7aea8d0a12f04cfd72d506233317ea6ecb05090744d01771d2546579bf4b7223','auditor','2026-11-18T01:20:16+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A007','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/expediente.md',2,'8bc5d0c72ff391fb440c515d02be889e366f0b7ac18a490fa362b453fabb8d48','investigador','2026-11-18T01:20:16+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -225,6 +227,10 @@ INSERT INTO "historial_tareas" VALUES(25,7,'entregado','cerrado','investigador',
 INSERT INTO "historial_tareas" VALUES(26,8,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:26:45+00:00');
 INSERT INTO "historial_tareas" VALUES(27,8,'en_curso','entregado','investigador',NULL,'2026-11-18T00:26:45+00:00');
 INSERT INTO "historial_tareas" VALUES(28,8,'entregado','en_revision','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(29,8,'en_revision','correcciones','auditor','Sin bloqueantes; 5 mayores: atribución y grado de la cifra del Stomachion, cita de Netz sin fuente, Hipérides sostenido por Wikipedia, autoría del comentario (falta Porfirio), F7/F13/F16 sin extractos; 7 menores','2026-11-18T01:18:29+00:00');
+INSERT INTO "historial_tareas" VALUES(30,8,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:20:16+00:00');
+INSERT INTO "historial_tareas" VALUES(31,8,'en_curso','entregado','investigador','v2: corrige HAL-01 a HAL-12','2026-11-18T01:20:16+00:00');
+INSERT INTO "historial_tareas" VALUES(32,8,'entregado','en_revision','investigador',NULL,'2026-11-18T01:20:16+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -244,7 +250,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',8,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:26:45+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',8,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:20:16+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -283,7 +289,7 @@ INSERT INTO "tareas" VALUES(4,'PAL-2026-001',4,'Propuesta de tres perspectivas n
 INSERT INTO "tareas" VALUES(5,'PAL-2026-001',5,'Observaciones editoriales del Director','director','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
 INSERT INTO "tareas" VALUES(6,'PAL-2026-001',6,'Aprobación de la perspectiva','director','humana','cerrado','[]','["PAL-2026-001-A004"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
 INSERT INTO "tareas" VALUES(7,'PAL-2026-001',7,'Investigación profunda','investigador','ninguna','cerrado','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:48+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL);
-INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','en_revision','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL,NULL);
+INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','en_revision','[]','["PAL-2026-001-A005", "PAL-2026-001-A007"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:20:16+00:00','2026-11-18T01:20:16+00:00',NULL,NULL);
 INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
