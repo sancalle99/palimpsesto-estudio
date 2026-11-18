@@ -34,6 +34,8 @@ CREATE TABLE artefactos (
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A001','PAL-2026-001',1,'informe_oportunidades','producciones/PAL-2026-001/etapa01_oportunidades.md',1,'8879288cedf9cb6192edcf4785ede46f200dcd8e4d1b5f725fcb619808d6689c','investigador','2026-11-18T00:17:21+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A002','PAL-2026-001',3,'ficha_decision','producciones/PAL-2026-001/decisiones/etapa_3.md',1,'66a009810d3362e91014b346335a65f49abc452e75eb1c33e32ce2f9fc821054','ceo','2026-11-18T00:17:22+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A003','PAL-2026-001',4,'ficha_enfoques','producciones/PAL-2026-001/etapa04_enfoques.md',1,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','investigador','2026-11-18T00:23:56+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A004','PAL-2026-001',6,'ficha_enfoques','producciones/PAL-2026-001/etapa04_enfoques.md',2,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','ceo','2026-11-18T00:25:47+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A005','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/expediente.md',1,'fc73eb375791c3ce4c29a24bf2b46e38332ecb7cc588070773e1da7426d32be1','investigador','2026-11-18T00:26:45+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -86,6 +88,7 @@ CREATE TABLE decisiones (
 INSERT INTO "decisiones" VALUES('DEC-0001',1,NULL,'estrategia','Topes aprobados por el Director: 150 USD/mes (meses 1-2), 300 USD/mes desde mes 3, 50 USD por producción','ceo','Mensaje del Director del 18-nov-2026','2026-11-18T00:04:49+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0002',1,NULL,'estrategia','Sin dominio web por ahora; foco en YouTube y monetización','ceo','Mensaje del Director del 18-nov-2026','2026-11-18T00:04:49+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0003',1,'PAL-2026-001','aprobacion_etapa_3','Aprobada etapa 3: Selección del tema','director','Mensaje literal del Director (enviado dos veces): «APRUEBO PAL-2026-001 3 tema 1». Registro MANUAL por excepción: el hook de aprobación no estaba activo en esta sesión (iniciada antes de conectar el repositorio). Tema aprobado: #1 El Palimpsesto de Arquímedes.','2026-11-18T00:23:10+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0004',1,'PAL-2026-001','aprobacion_etapa_6','Aprobada etapa 6: Aprobación de la perspectiva','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 6 enfoque A con bloque B». Registro MANUAL: el hook de aprobación sigue inactivo en esta sesión. Enfoque aprobado: A (biografía del objeto) como columna vertebral + bloque B (separar lo demostrado de lo exagerado); mención de Hipérides (C) en el cierre según la recomendación del CEO.','2026-11-18T00:25:47+00:00');
 CREATE TABLE historial_tareas (
   id         INTEGER PRIMARY KEY,
   tarea_id   INTEGER NOT NULL REFERENCES tareas(id),
@@ -110,6 +113,19 @@ INSERT INTO "historial_tareas" VALUES(12,4,'pendiente','en_curso','investigador'
 INSERT INTO "historial_tareas" VALUES(13,4,'en_curso','entregado','investigador',NULL,'2026-11-18T00:23:56+00:00');
 INSERT INTO "historial_tareas" VALUES(14,4,'entregado','cerrado','investigador','cierre automático (sin puerta)','2026-11-18T00:23:56+00:00');
 INSERT INTO "historial_tareas" VALUES(15,5,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:23:56+00:00');
+INSERT INTO "historial_tareas" VALUES(16,5,'en_curso','entregado','ceo','El Director no aportó observaciones; pasó directamente a aprobar el enfoque','2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(17,5,'entregado','cerrado','ceo','cierre automático (sin puerta)','2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(18,6,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(19,6,'en_curso','entregado','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(20,6,'entregado','en_revision','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(21,6,'en_revision','aprobado','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 6 enfoque A con bloque B». Registro MANUAL: el hook de aprobación sigue inactivo en esta sesión. Enfoque aprobado: A (biografía del objeto) como columna vertebral + bloque B (separar lo demostrado de lo exagerado); mención de Hipérides (C) en el cierre según la recomendación del CEO.','2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(22,6,'aprobado','cerrado','director',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(23,7,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:25:48+00:00');
+INSERT INTO "historial_tareas" VALUES(24,7,'en_curso','entregado','investigador','Investigación en modo económico: 5 búsquedas + Crossref','2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(25,7,'entregado','cerrado','investigador','cierre automático (sin puerta)','2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(26,8,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(27,8,'en_curso','entregado','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(28,8,'entregado','en_revision','investigador',NULL,'2026-11-18T00:26:45+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -129,7 +145,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',5,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',8,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:26:45+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -165,10 +181,10 @@ INSERT INTO "tareas" VALUES(1,'PAL-2026-001',1,'Investigación de oportunidades'
 INSERT INTO "tareas" VALUES(2,'PAL-2026-001',2,'Presentación de temas al CEO','ceo','ninguna','cerrado','[]','["PAL-2026-001-A001"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00',NULL);
 INSERT INTO "tareas" VALUES(3,'PAL-2026-001',3,'Selección del tema','director','humana','cerrado','[]','["PAL-2026-001-A002"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:22+00:00','2026-11-18T00:23:10+00:00',NULL);
 INSERT INTO "tareas" VALUES(4,'PAL-2026-001',4,'Propuesta de tres perspectivas narrativas','investigador','ninguna','cerrado','[]','["PAL-2026-001-A003"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:10+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:23:56+00:00',NULL);
-INSERT INTO "tareas" VALUES(5,'PAL-2026-001',5,'Observaciones editoriales del Director','director','ninguna','en_curso','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00',NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(6,'PAL-2026-001',6,'Aprobación de la perspectiva','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(7,'PAL-2026-001',7,'Investigación profunda','investigador','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(5,'PAL-2026-001',5,'Observaciones editoriales del Director','director','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
+INSERT INTO "tareas" VALUES(6,'PAL-2026-001',6,'Aprobación de la perspectiva','director','humana','cerrado','[]','["PAL-2026-001-A004"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
+INSERT INTO "tareas" VALUES(7,'PAL-2026-001',7,'Investigación profunda','investigador','ninguna','cerrado','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:48+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL);
+INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','en_revision','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL,NULL);
 INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
