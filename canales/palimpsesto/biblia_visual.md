@@ -23,3 +23,6 @@ Transición "palimpsesto": un texto superior que se desvanece y deja ver un text
 
 ## Miniaturas
 Un solo elemento central, luz lateral, máximo 3–4 palabras en serif, acento cinabrio opcional. Sin flechas, círculos rojos ni caras de sorpresa. Lo que muestra la miniatura aparece en el vídeo.
+
+## Voz del narrador (DEC-0009)
+Kokoro-82M, voz `em_alex`, `speed=0.95`, `lang_code='e'`. Postproceso: `highpass=f=70, acompressor=threshold=-18dB:ratio=2.5, loudnorm=I=-16:TP=-1.5`, 44,1 kHz. Instalar con `scripts/instalar_voces.sh`.

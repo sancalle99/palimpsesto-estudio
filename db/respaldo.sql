@@ -187,6 +187,7 @@ INSERT INTO "decisiones" VALUES('DEC-0005',1,'PAL-2026-001','operativa','Auditor
 INSERT INTO "decisiones" VALUES('DEC-0006',1,NULL,'estrategia','Voces: gratuitas y locales (Piper / Kokoro), sin ElevenLabs por ahora','ceo','Pedido del Director: no pagar suscripción de voces','2026-11-18T00:45:02+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0007',1,NULL,'estrategia','Métrica de costo principal: consumo del plan Claude Pro por producción (tokens reales + reparto de la cuota)','ceo','Aclaración del Director','2026-11-18T00:45:02+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0008',1,NULL,'operativa','Canal verificado por teléfono; Studio configurado con subida privada por defecto','ceo','Confirmado por el Director','2026-11-18T00:45:02+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0009',1,NULL,'estrategia','Voz del narrador de Palimpsesto: Kokoro em_alex (voz 1), velocidad 0.95, licencia Apache-2.0','ceo','Elección del Director: «Prefiero la voz 1»','2026-11-18T00:47:15+00:00');
 CREATE TABLE historial_tareas (
   id         INTEGER PRIMARY KEY,
   tarea_id   INTEGER NOT NULL REFERENCES tareas(id),
