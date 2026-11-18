@@ -1,0 +1,7 @@
+{"produccion": "PAL-2026-001", "nota": "Editor · Shorts v1 (DEC-0014: hechos dentro de la etapa 10, ver DEC-0018). Cada tramo es narración íntegra del máster, sin texto nuevo.",
+ "shorts": [
+  {"id": "S1", "titulo": "Lo borraron para rezar", "seccion": 1, "pares": [0, 2], "arco": "pregunta: ¿de dónde salieron las páginas? → giro: raspó un libro más antiguo → revelación: debajo estaba Arquímedes"},
+  {"id": "S2", "titulo": "Un verde lo delató", "seccion": 3, "pares": [4, 5], "arco": "pregunta: ¿iluminaciones medievales? → giro: no lo eran → revelación: la ftalocianina las fecha después de 1938"},
+  {"id": "S3", "titulo": "¿Arquímedes y el infinito?", "seccion": 5, "pares": [1, 2], "arco": "pregunta: ¿cómo descubría Arquímedes? → giro: no lo consideraba demostración → revelación: una página recuperada sugiere conjuntos infinitos (I)"},
+  {"id": "S4", "titulo": "536 soluciones… ¿o no?", "seccion": 5, "pares": [4, 6], "arco": "pregunta: ¿de cuántas formas se arma el cuadrado? → giro: 536 / 17.152 → revelación: no sabemos si así era el juego"}
+ ]}

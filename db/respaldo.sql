@@ -35,34 +35,34 @@ CREATE TABLE artefactos (
   creado        TEXT NOT NULL
 );
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A001','PAL-2026-001',1,'informe_oportunidades','producciones/PAL-2026-001/01-oportunidades/informe_oportunidades.md',1,'8879288cedf9cb6192edcf4785ede46f200dcd8e4d1b5f725fcb619808d6689c','investigador','2026-11-18T00:17:21+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A002','PAL-2026-001',3,'ficha_decision','producciones/PAL-2026-001/03-seleccion-tema/ficha_decision.md',1,'66a009810d3362e91014b346335a65f49abc452e75eb1c33e32ce2f9fc821054','ceo','2026-11-18T00:17:22+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A003','PAL-2026-001',4,'ficha_enfoques','producciones/PAL-2026-001/04-enfoques/ficha_enfoques.md',1,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','investigador','2026-11-18T00:23:56+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A004','PAL-2026-001',6,'ficha_enfoques','producciones/PAL-2026-001/04-enfoques/ficha_enfoques.md',2,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','ceo','2026-11-18T00:25:47+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A005','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/08-expediente/expediente.md',1,'fc73eb375791c3ce4c29a24bf2b46e38332ecb7cc588070773e1da7426d32be1','investigador','2026-11-18T00:26:45+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A006','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/08-expediente/auditoria_v1.md',1,'7aea8d0a12f04cfd72d506233317ea6ecb05090744d01771d2546579bf4b7223','auditor','2026-11-18T01:20:16+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A007','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/08-expediente/expediente.md',2,'8bc5d0c72ff391fb440c515d02be889e366f0b7ac18a490fa362b453fabb8d48','investigador','2026-11-18T01:20:16+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A008','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/08-expediente/auditoria_v2.md',2,'1fa453150b61aacc94e03d79f976e8f2cf846d8407471d31cdedcd3e9f7bbcfe','auditor','2026-11-18T01:23:17+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A009','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/08-expediente/expediente.md',3,'f6421cf5ceb9324ec02a4508679fe238273087b99bbc11a6cb472ed1119f71f7','investigador','2026-11-18T01:23:17+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A010','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/08-expediente/auditoria_v3.md',3,'65143637f754aac932527bdfc107b5c3f7df15d906fac64e6952e560c44c68bc','auditor','2026-11-18T01:24:45+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A011','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/08-expediente/expediente.md',4,'d7849622d27e4e877a2d6a21565c3629ca692ae2c509290c189e7f072b66c274','investigador','2026-11-18T01:24:45+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A012','PAL-2026-001',9,'escaleta','producciones/PAL-2026-001/09-guion/escaleta.md',1,'64e1575526a52494d7fa0a86975332436fef33392fd22ba4889b524870074923','guionista','2026-11-18T01:33:57+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A013','PAL-2026-001',9,'guion','producciones/PAL-2026-001/09-guion/guion.md',1,'de85812d3b68cac02e03c4ad2e69cc2bf9bf2a63f056566c5fb48ee49d162621','guionista','2026-11-18T01:33:57+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A014','PAL-2026-001',9,'titulos','producciones/PAL-2026-001/09-guion/titulos.md',1,'a27421f6cd4681ce14781c84c2ac47200fe97f0d06a027e43c51eae84664207f','guionista','2026-11-18T01:33:57+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A015','PAL-2026-001',9,'solicitud_investigacion','producciones/PAL-2026-001/09-guion/solicitudes_investigacion.md',1,'7256b8423eb1c471760a41625dadb5bd024058223580c05e80407662e46b8c76','guionista','2026-11-18T01:33:58+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A016','PAL-2026-001',9,'guion','producciones/PAL-2026-001/09-guion/guion.md',2,'ddd6cd0f03482ce383dbaca5ecbf909b2404c11404b96f3f772c079b4a8930f7','guionista','2026-11-18T01:39:31+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A017','PAL-2026-001',9,'escaleta','producciones/PAL-2026-001/09-guion/escaleta.md',2,'522054d6f2f6e883939d4501d45c41798ddb71f50d71c291168b8f86c79a67df','guionista','2026-11-18T01:39:31+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A018','PAL-2026-001',9,'solicitud_investigacion','producciones/PAL-2026-001/09-guion/solicitudes_investigacion.md',2,'9068853b4df91ff858ab98344a643f276cb0ddc30c75fb2f82cb4cc1fc9978a1','guionista','2026-11-18T01:39:31+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A019','PAL-2026-001',10,'storyboard','producciones/PAL-2026-001/10-storyboard/storyboard.md',1,'102a7abd79521872c98538a5226adedfef10b3db522cffd4d6fcbcd94dc92b7a','productor','2026-11-18T01:41:57+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A020','PAL-2026-001',11,'prompts','producciones/PAL-2026-001/11-prompts/prompts_v1.md',1,'9c6696b4a5a288840ecae63079c1210997a2ab39d83b93d55a37395e19fb12e2','productor','2026-11-18T01:44:02+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A021','PAL-2026-001',12,'storyboard','producciones/PAL-2026-001/10-storyboard/storyboard.md',2,'860b2eb1701ec5fd412d731e44cf6ba68924bd9755c7fa4d2a2e9998d8e338de','productor','2026-11-18T15:41:44+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A022','PAL-2026-001',12,'storyboard','producciones/PAL-2026-001/10-storyboard/storyboard.md',3,'dff8c7f7454332ada3172ffc607131bc33b6ba1d4d30d2e428ff3111a654c36d','productor','2026-11-18T15:57:30+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A002','PAL-2026-001',3,'ficha_decision','producciones/PAL-2026-001/02-seleccion-tema/ficha_decision.md',1,'66a009810d3362e91014b346335a65f49abc452e75eb1c33e32ce2f9fc821054','ceo','2026-11-18T00:17:22+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A003','PAL-2026-001',4,'ficha_enfoques','producciones/PAL-2026-001/03-enfoques/ficha_enfoques.md',1,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','investigador','2026-11-18T00:23:56+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A004','PAL-2026-001',5,'ficha_enfoques','producciones/PAL-2026-001/03-enfoques/ficha_enfoques.md',2,'9cc1bec1aaf1eb9994870bd9a150134c22632319e98800a80a9ffff3f25317b1','ceo','2026-11-18T00:25:47+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A005','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/05-expediente/expediente.md',1,'fc73eb375791c3ce4c29a24bf2b46e38332ecb7cc588070773e1da7426d32be1','investigador','2026-11-18T00:26:45+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A006','PAL-2026-001',7,'auditoria','producciones/PAL-2026-001/05-expediente/auditoria_v1.md',1,'7aea8d0a12f04cfd72d506233317ea6ecb05090744d01771d2546579bf4b7223','auditor','2026-11-18T01:20:16+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A007','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/05-expediente/expediente.md',2,'8bc5d0c72ff391fb440c515d02be889e366f0b7ac18a490fa362b453fabb8d48','investigador','2026-11-18T01:20:16+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A008','PAL-2026-001',7,'auditoria','producciones/PAL-2026-001/05-expediente/auditoria_v2.md',2,'1fa453150b61aacc94e03d79f976e8f2cf846d8407471d31cdedcd3e9f7bbcfe','auditor','2026-11-18T01:23:17+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A009','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/05-expediente/expediente.md',3,'f6421cf5ceb9324ec02a4508679fe238273087b99bbc11a6cb472ed1119f71f7','investigador','2026-11-18T01:23:17+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A010','PAL-2026-001',7,'auditoria','producciones/PAL-2026-001/05-expediente/auditoria_v3.md',3,'65143637f754aac932527bdfc107b5c3f7df15d906fac64e6952e560c44c68bc','auditor','2026-11-18T01:24:45+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A011','PAL-2026-001',7,'expediente','producciones/PAL-2026-001/05-expediente/expediente.md',4,'d7849622d27e4e877a2d6a21565c3629ca692ae2c509290c189e7f072b66c274','investigador','2026-11-18T01:24:45+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A012','PAL-2026-001',9,'escaleta','producciones/PAL-2026-001/06-guion/escaleta.md',1,'64e1575526a52494d7fa0a86975332436fef33392fd22ba4889b524870074923','guionista','2026-11-18T01:33:57+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A013','PAL-2026-001',9,'guion','producciones/PAL-2026-001/06-guion/guion.md',1,'de85812d3b68cac02e03c4ad2e69cc2bf9bf2a63f056566c5fb48ee49d162621','guionista','2026-11-18T01:33:57+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A014','PAL-2026-001',9,'titulos','producciones/PAL-2026-001/06-guion/titulos.md',1,'a27421f6cd4681ce14781c84c2ac47200fe97f0d06a027e43c51eae84664207f','guionista','2026-11-18T01:33:57+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A015','PAL-2026-001',9,'solicitud_investigacion','producciones/PAL-2026-001/06-guion/solicitudes_investigacion.md',1,'7256b8423eb1c471760a41625dadb5bd024058223580c05e80407662e46b8c76','guionista','2026-11-18T01:33:58+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A016','PAL-2026-001',9,'guion','producciones/PAL-2026-001/06-guion/guion.md',2,'ddd6cd0f03482ce383dbaca5ecbf909b2404c11404b96f3f772c079b4a8930f7','guionista','2026-11-18T01:39:31+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A017','PAL-2026-001',9,'escaleta','producciones/PAL-2026-001/06-guion/escaleta.md',2,'522054d6f2f6e883939d4501d45c41798ddb71f50d71c291168b8f86c79a67df','guionista','2026-11-18T01:39:31+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A018','PAL-2026-001',9,'solicitud_investigacion','producciones/PAL-2026-001/06-guion/solicitudes_investigacion.md',2,'9068853b4df91ff858ab98344a643f276cb0ddc30c75fb2f82cb4cc1fc9978a1','guionista','2026-11-18T01:39:31+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A019','PAL-2026-001',10,'storyboard','producciones/PAL-2026-001/07-storyboard/storyboard.md',1,'102a7abd79521872c98538a5226adedfef10b3db522cffd4d6fcbcd94dc92b7a','productor','2026-11-18T01:41:57+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A020','PAL-2026-001',10,'prompts','producciones/PAL-2026-001/07-storyboard/prompts_v1.md',1,'9c6696b4a5a288840ecae63079c1210997a2ab39d83b93d55a37395e19fb12e2','productor','2026-11-18T01:44:02+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A021','PAL-2026-001',12,'storyboard','producciones/PAL-2026-001/07-storyboard/storyboard.md',2,'860b2eb1701ec5fd412d731e44cf6ba68924bd9755c7fa4d2a2e9998d8e338de','productor','2026-11-18T15:41:44+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A022','PAL-2026-001',12,'storyboard','producciones/PAL-2026-001/07-storyboard/storyboard.md',3,'dff8c7f7454332ada3172ffc607131bc33b6ba1d4d30d2e428ff3111a654c36d','productor','2026-11-18T15:57:30+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A023','PAL-2026-001',13,'master','producciones/PAL-2026-001/render/master.mp4',1,'1791a47254cc92e2676bf41847c920178e0dd5fe8cde6e34b3fb40bc44e294c0','editor','2026-11-18T16:13:32+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A024','PAL-2026-001',13,'subtitulos','producciones/PAL-2026-001/render/subtitulos.srt',1,'de924e267ff7d6304ac43ff3c5021b629c2680fcb7601ac2b3a5eb90b8136c00','editor','2026-11-18T16:13:32+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A025','PAL-2026-001',13,'miniatura','producciones/PAL-2026-001/render/miniaturas/miniatura_A.jpg',1,'f4014f572a608e9778406dbc8fdb9fd661d124589f2c1f18fa3228931a4d2cf0','editor','2026-11-18T16:13:32+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A026','PAL-2026-001',13,'miniatura','producciones/PAL-2026-001/render/miniaturas/miniatura_B.jpg',2,'2aa540acb1c608bb941b5f457661fd8303359d0be1baf83cc51448ff78e8ffbf','editor','2026-11-18T16:13:32+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A027','PAL-2026-001',13,'miniatura','producciones/PAL-2026-001/render/miniaturas/miniatura_C.jpg',3,'157801c07d2e5e43a43b73f4d1e81fb8aeef56c9bd3d59e0bc20ea119a820c64','editor','2026-11-18T16:13:32+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A028','PAL-2026-001',13,'metadatos','producciones/PAL-2026-001/13-edicion/metadatos.md',1,'fa8acda91380489dee7d099ef5133479d816e20fcff2301a4441b121cf5b94d5','editor','2026-11-18T16:13:32+00:00');
-INSERT INTO "artefactos" VALUES('PAL-2026-001-A029','PAL-2026-001',13,'plan_montaje','producciones/PAL-2026-001/13-edicion/montaje.json',1,'3514c88ba64b419bed5a011d27755f23bc70dfada4fc8df59b91f606b19f850a','editor','2026-11-18T16:13:32+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A028','PAL-2026-001',13,'metadatos','producciones/PAL-2026-001/09-edicion/metadatos.md',1,'fa8acda91380489dee7d099ef5133479d816e20fcff2301a4441b121cf5b94d5','editor','2026-11-18T16:13:32+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A029','PAL-2026-001',13,'plan_montaje','producciones/PAL-2026-001/09-edicion/montaje.json',1,'3514c88ba64b419bed5a011d27755f23bc70dfada4fc8df59b91f606b19f850a','editor','2026-11-18T16:13:32+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -281,7 +281,7 @@ INSERT INTO "costos" VALUES(176,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthro
 INSERT INTO "costos" VALUES(177,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,180,11,182980,0.0,NULL,0.0,'suscripcion','[]','msg_011Ch9YcXr5CfJAASGNeRwaz','1d0ff70bb3064515800bcae88dc75685f27c529ca680bd82c867bd1b3050658a',NULL,NULL,0,'2026-11-18T01:44:02+00:00');
 INSERT INTO "costos" VALUES(178,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,1417,201,182991,0.0,NULL,0.0,'suscripcion','[]','msg_011Ch9YcpoYYfSjRYhFRGPcV','6b8cb7752ea91c89e721810198ee35de96ea6c5cbcebdcbff00cd7a17438727c',NULL,NULL,0,'2026-11-18T01:44:02+00:00');
 INSERT INTO "costos" VALUES(179,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',1,471,1617,183192,0.0,NULL,0.0,'suscripcion','[]','msg_011Ch9YdrXkJetDpXpCZgeN5','c3c63216dd43be0cb1adb8c52159cb6b813db471d2ee916baea83716358cc7cc',NULL,NULL,0,'2026-11-18T01:44:02+00:00');
-INSERT INTO "costos" VALUES(180,1,'PAL-2026-001',NULL,'productor',12,'local','kokoro-82m-em_alex',0,0,0,0,9.183,'kchar',0.0,'real','[]','PAL-2026-001-narracion-v1.1','1ae185813428942132bc63c1797876b4a07e9c768def8fe03fc098496b939f01',NULL,NULL,0,'2026-11-18T15:45:21+00:00');
+INSERT INTO "costos" VALUES(180,1,'PAL-2026-001',NULL,'productor',8,'local','kokoro-82m-em_alex',0,0,0,0,9.183,'kchar',0.0,'real','[]','PAL-2026-001-narracion-v1.1','1ae185813428942132bc63c1797876b4a07e9c768def8fe03fc098496b939f01',NULL,NULL,0,'2026-11-18T15:45:21+00:00');
 INSERT INTO "costos" VALUES(181,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,361,129178,61440,0.0,NULL,0.0,'suscripcion','[]','msg_011ChAe6gyMwxsa1QmEF15wb','4c49e4013761e73ba4c362fb74adf5be5c887ce11137d039091d0d64e9d0e0ec',NULL,NULL,0,'2026-11-18T15:45:28+00:00');
 INSERT INTO "costos" VALUES(182,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,508,1224,190618,0.0,NULL,0.0,'suscripcion','[]','msg_011ChAe75esUwLcHmJDZoLec','70135ef0023cfe4c3792fc3845576d4cbeca87fa34b5ce32d3bc55e2ae1c2bc5',NULL,NULL,0,'2026-11-18T15:45:28+00:00');
 INSERT INTO "costos" VALUES(183,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,882,1203,191842,0.0,NULL,0.0,'suscripcion','[]','msg_011ChAe7ZvyrLzasy7FeFe2b','84add406bf0f5098c9c1e446a0e6766245bc7ea86bdbc626d9fe9f09eb64df21',NULL,NULL,0,'2026-11-18T15:45:28+00:00');
@@ -389,6 +389,8 @@ INSERT INTO "decisiones" VALUES('DEC-0013',1,'PAL-2026-001','operativa','Recurso
 INSERT INTO "decisiones" VALUES('DEC-0014',1,NULL,'estrategia','Flujo reducido de 21 a 13 etapas (tabla en docs/cambios_aprobados.md); PAL-2026-001 pasa a la etapa nueva 10','ceo','Mensaje literal del Director (18-nov-2026): «Apruebo las 13 etapas, el título y la subida autónoma». Especificación en docs/cambios_aprobados.md','2026-11-18T20:01:37+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0015',1,NULL,'estrategia','Título del vídeo: el Guionista propone, el Editor elige el definitivo con la miniatura, el Director lo aprueba en la puerta 11','ceo','Mensaje literal del Director (18-nov-2026): «Apruebo las 13 etapas, el título y la subida autónoma». Especificación en docs/cambios_aprobados.md','2026-11-18T20:01:37+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0016',1,NULL,'estrategia','Subida autónoma a YouTube en privado por el Editor; el Analista recomienda hora; el Editor publica o programa solo tras APRUEBO <ID> 12 registrado (cambia la regla 2)','ceo','Mensaje literal del Director (18-nov-2026): «Apruebo las 13 etapas, el título y la subida autónoma». Especificación en docs/cambios_aprobados.md','2026-11-18T20:01:37+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0017',1,'PAL-2026-001','migracion_13_etapas','PAL-2026-001 migrada del flujo de 21 etapas al de 13 (DEC-0014). Etapa actual: 10.','ceo','Aprobado por el Director: «Apruebo las 13 etapas, el título y la subida autónoma».','2026-11-18T20:06:57+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0018',1,'PAL-2026-001','operativa','PAL-2026-001 cerró la edición antes de la fusión con los Shorts y la subida privada (DEC-0014/0016): ambos se hacen dentro de la etapa 10, junto con las correcciones de la auditoría, antes de la Ficha 11.','ceo','La etapa 9 se migró cerrada; no se reabre para no perder su historial.','2026-11-18T20:09:57+00:00');
 CREATE TABLE historial_tareas (
   id         INTEGER PRIMARY KEY,
   tarea_id   INTEGER NOT NULL REFERENCES tareas(id),
@@ -401,9 +403,9 @@ CREATE TABLE historial_tareas (
 INSERT INTO "historial_tareas" VALUES(1,1,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:15:51+00:00');
 INSERT INTO "historial_tareas" VALUES(2,1,'en_curso','entregado','investigador',NULL,'2026-11-18T00:17:21+00:00');
 INSERT INTO "historial_tareas" VALUES(3,1,'entregado','cerrado','investigador','cierre automático (sin puerta)','2026-11-18T00:17:21+00:00');
-INSERT INTO "historial_tareas" VALUES(4,2,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:17:21+00:00');
-INSERT INTO "historial_tareas" VALUES(5,2,'en_curso','entregado','ceo','Top 3 presentados al Director','2026-11-18T00:17:21+00:00');
-INSERT INTO "historial_tareas" VALUES(6,2,'entregado','cerrado','ceo','cierre automático (sin puerta)','2026-11-18T00:17:21+00:00');
+INSERT INTO "historial_tareas" VALUES(4,1,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:17:21+00:00');
+INSERT INTO "historial_tareas" VALUES(5,1,'en_curso','entregado','ceo','Top 3 presentados al Director','2026-11-18T00:17:21+00:00');
+INSERT INTO "historial_tareas" VALUES(6,1,'entregado','cerrado','ceo','cierre automático (sin puerta)','2026-11-18T00:17:21+00:00');
 INSERT INTO "historial_tareas" VALUES(7,3,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:17:21+00:00');
 INSERT INTO "historial_tareas" VALUES(8,3,'en_curso','entregado','ceo',NULL,'2026-11-18T00:17:22+00:00');
 INSERT INTO "historial_tareas" VALUES(9,3,'entregado','en_revision','ceo',NULL,'2026-11-18T00:17:22+00:00');
@@ -415,42 +417,43 @@ INSERT INTO "historial_tareas" VALUES(14,4,'entregado','cerrado','investigador',
 INSERT INTO "historial_tareas" VALUES(15,5,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:23:56+00:00');
 INSERT INTO "historial_tareas" VALUES(16,5,'en_curso','entregado','ceo','El Director no aportó observaciones; pasó directamente a aprobar el enfoque','2026-11-18T00:25:47+00:00');
 INSERT INTO "historial_tareas" VALUES(17,5,'entregado','cerrado','ceo','cierre automático (sin puerta)','2026-11-18T00:25:47+00:00');
-INSERT INTO "historial_tareas" VALUES(18,6,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:25:47+00:00');
-INSERT INTO "historial_tareas" VALUES(19,6,'en_curso','entregado','ceo',NULL,'2026-11-18T00:25:47+00:00');
-INSERT INTO "historial_tareas" VALUES(20,6,'entregado','en_revision','ceo',NULL,'2026-11-18T00:25:47+00:00');
-INSERT INTO "historial_tareas" VALUES(21,6,'en_revision','aprobado','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 6 enfoque A con bloque B». Registro MANUAL: el hook de aprobación sigue inactivo en esta sesión. Enfoque aprobado: A (biografía del objeto) como columna vertebral + bloque B (separar lo demostrado de lo exagerado); mención de Hipérides (C) en el cierre según la recomendación del CEO.','2026-11-18T00:25:47+00:00');
-INSERT INTO "historial_tareas" VALUES(22,6,'aprobado','cerrado','director',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(18,5,'pendiente','en_curso','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(19,5,'en_curso','entregado','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(20,5,'entregado','en_revision','ceo',NULL,'2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(21,5,'en_revision','aprobado','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 6 enfoque A con bloque B». Registro MANUAL: el hook de aprobación sigue inactivo en esta sesión. Enfoque aprobado: A (biografía del objeto) como columna vertebral + bloque B (separar lo demostrado de lo exagerado); mención de Hipérides (C) en el cierre según la recomendación del CEO.','2026-11-18T00:25:47+00:00');
+INSERT INTO "historial_tareas" VALUES(22,5,'aprobado','cerrado','director',NULL,'2026-11-18T00:25:47+00:00');
 INSERT INTO "historial_tareas" VALUES(23,7,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:25:48+00:00');
 INSERT INTO "historial_tareas" VALUES(24,7,'en_curso','entregado','investigador','Investigación en modo económico: 5 búsquedas + Crossref','2026-11-18T00:26:45+00:00');
 INSERT INTO "historial_tareas" VALUES(25,7,'entregado','cerrado','investigador','cierre automático (sin puerta)','2026-11-18T00:26:45+00:00');
-INSERT INTO "historial_tareas" VALUES(26,8,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:26:45+00:00');
-INSERT INTO "historial_tareas" VALUES(27,8,'en_curso','entregado','investigador',NULL,'2026-11-18T00:26:45+00:00');
-INSERT INTO "historial_tareas" VALUES(28,8,'entregado','en_revision','investigador',NULL,'2026-11-18T00:26:45+00:00');
-INSERT INTO "historial_tareas" VALUES(29,8,'en_revision','correcciones','auditor','Sin bloqueantes; 5 mayores: atribución y grado de la cifra del Stomachion, cita de Netz sin fuente, Hipérides sostenido por Wikipedia, autoría del comentario (falta Porfirio), F7/F13/F16 sin extractos; 7 menores','2026-11-18T01:18:29+00:00');
-INSERT INTO "historial_tareas" VALUES(30,8,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:20:16+00:00');
-INSERT INTO "historial_tareas" VALUES(31,8,'en_curso','entregado','investigador','v2: corrige HAL-01 a HAL-12','2026-11-18T01:20:16+00:00');
-INSERT INTO "historial_tareas" VALUES(32,8,'entregado','en_revision','investigador',NULL,'2026-11-18T01:20:16+00:00');
-INSERT INTO "historial_tareas" VALUES(33,8,'en_revision','correcciones','auditor','v2 resuelve HAL-01..12 salvo un error nuevo: HAL-13 (mayor) atribucion invertida del recuento del Stomachion; F19 (Chung-Graham) dice que Cutler calculo primero las 536 y no menciona a Diaconis/Holmes ni 2003. Menores HAL-14..16 (F21 sin verificar, F20 incompleta, F23 paginas/Sharples). F12a, F12b, F17, F18 verificadas.','2026-11-18T01:22:20+00:00');
-INSERT INTO "historial_tareas" VALUES(34,8,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:23:17+00:00');
-INSERT INTO "historial_tareas" VALUES(35,8,'en_curso','entregado','investigador','v3: corrige HAL-13 a HAL-16','2026-11-18T01:23:18+00:00');
-INSERT INTO "historial_tareas" VALUES(36,8,'entregado','en_revision','investigador',NULL,'2026-11-18T01:23:18+00:00');
-INSERT INTO "historial_tareas" VALUES(37,8,'en_revision','aprobado','auditor','v3: HAL-13 resuelto en AF-020b (discrepancia F19/F24 sin prioridad, reserva del cuadrado, F24 añadida); HAL-14/15/16 resueltos. Menores antes de etapa 9: HAL-17 entrada F19 de bibliografia aun con atribucion erronea; HAL-18 ''32 simetrias'' impreciso; HAL-19 reserva ''rectangulo'' sin fuente. F24 no verificada en linea (dominio bloqueado).','2026-11-18T01:24:23+00:00');
-INSERT INTO "historial_tareas" VALUES(38,8,'aprobado','cerrado','auditor',NULL,'2026-11-18T01:24:23+00:00');
+INSERT INTO "historial_tareas" VALUES(26,7,'pendiente','en_curso','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(27,7,'en_curso','entregado','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(28,7,'entregado','en_revision','investigador',NULL,'2026-11-18T00:26:45+00:00');
+INSERT INTO "historial_tareas" VALUES(29,7,'en_revision','correcciones','auditor','Sin bloqueantes; 5 mayores: atribución y grado de la cifra del Stomachion, cita de Netz sin fuente, Hipérides sostenido por Wikipedia, autoría del comentario (falta Porfirio), F7/F13/F16 sin extractos; 7 menores','2026-11-18T01:18:29+00:00');
+INSERT INTO "historial_tareas" VALUES(30,7,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:20:16+00:00');
+INSERT INTO "historial_tareas" VALUES(31,7,'en_curso','entregado','investigador','v2: corrige HAL-01 a HAL-12','2026-11-18T01:20:16+00:00');
+INSERT INTO "historial_tareas" VALUES(32,7,'entregado','en_revision','investigador',NULL,'2026-11-18T01:20:16+00:00');
+INSERT INTO "historial_tareas" VALUES(33,7,'en_revision','correcciones','auditor','v2 resuelve HAL-01..12 salvo un error nuevo: HAL-13 (mayor) atribucion invertida del recuento del Stomachion; F19 (Chung-Graham) dice que Cutler calculo primero las 536 y no menciona a Diaconis/Holmes ni 2003. Menores HAL-14..16 (F21 sin verificar, F20 incompleta, F23 paginas/Sharples). F12a, F12b, F17, F18 verificadas.','2026-11-18T01:22:20+00:00');
+INSERT INTO "historial_tareas" VALUES(34,7,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:23:17+00:00');
+INSERT INTO "historial_tareas" VALUES(35,7,'en_curso','entregado','investigador','v3: corrige HAL-13 a HAL-16','2026-11-18T01:23:18+00:00');
+INSERT INTO "historial_tareas" VALUES(36,7,'entregado','en_revision','investigador',NULL,'2026-11-18T01:23:18+00:00');
+INSERT INTO "historial_tareas" VALUES(37,7,'en_revision','aprobado','auditor','v3: HAL-13 resuelto en AF-020b (discrepancia F19/F24 sin prioridad, reserva del cuadrado, F24 añadida); HAL-14/15/16 resueltos. Menores antes de etapa 9: HAL-17 entrada F19 de bibliografia aun con atribucion erronea; HAL-18 ''32 simetrias'' impreciso; HAL-19 reserva ''rectangulo'' sin fuente. F24 no verificada en linea (dominio bloqueado).','2026-11-18T01:24:23+00:00');
+INSERT INTO "historial_tareas" VALUES(38,7,'aprobado','cerrado','auditor',NULL,'2026-11-18T01:24:23+00:00');
 INSERT INTO "historial_tareas" VALUES(39,9,'pendiente','en_curso','guionista',NULL,'2026-11-18T01:32:03+00:00');
 INSERT INTO "historial_tareas" VALUES(40,9,'en_curso','entregado','guionista','Guion v1.1 (≈11 min) con escaleta, títulos y solicitudes resueltas; aporte DIR-PAL-2026-001-01 integrado','2026-11-18T01:39:31+00:00');
 INSERT INTO "historial_tareas" VALUES(41,9,'entregado','cerrado','guionista','cierre automático (sin puerta)','2026-11-18T01:39:31+00:00');
 INSERT INTO "historial_tareas" VALUES(42,10,'pendiente','en_curso','productor',NULL,'2026-11-18T01:40:57+00:00');
 INSERT INTO "historial_tareas" VALUES(43,10,'en_curso','entregado','productor','Storyboard v1: 52 planos; 5 recreaciones IA de imagen fija (≈8 %), sin vídeo IA; estimación etapa 12 ≈1,34 USD','2026-11-18T01:41:57+00:00');
 INSERT INTO "historial_tareas" VALUES(44,10,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T01:41:57+00:00');
-INSERT INTO "historial_tareas" VALUES(45,11,'pendiente','en_curso','productor',NULL,'2026-11-18T01:43:43+00:00');
-INSERT INTO "historial_tareas" VALUES(46,11,'en_curso','entregado','productor','Prompts v1: P-01 a P-05 con bloque fijo de estilo y negativo común; sin rostros ni personas reales','2026-11-18T01:44:02+00:00');
-INSERT INTO "historial_tareas" VALUES(47,11,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T01:44:02+00:00');
+INSERT INTO "historial_tareas" VALUES(45,10,'pendiente','en_curso','productor',NULL,'2026-11-18T01:43:43+00:00');
+INSERT INTO "historial_tareas" VALUES(46,10,'en_curso','entregado','productor','Prompts v1: P-01 a P-05 con bloque fijo de estilo y negativo común; sin rostros ni personas reales','2026-11-18T01:44:02+00:00');
+INSERT INTO "historial_tareas" VALUES(47,10,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T01:44:02+00:00');
 INSERT INTO "historial_tareas" VALUES(48,12,'pendiente','en_curso','productor',NULL,'2026-11-18T15:36:22+00:00');
 INSERT INTO "historial_tareas" VALUES(49,12,'en_curso','entregado','productor','Etapa 12 sin IA (DIR-PAL-2026-001-02): 11 imágenes de archivo CC BY 3.0 verificadas (R0001-R0011) y narración Kokoro de 9:17 (R0012). Gasto externo 0 USD. Música: la elige el editor en la etapa 13','2026-11-18T15:57:30+00:00');
 INSERT INTO "historial_tareas" VALUES(50,12,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T15:57:30+00:00');
 INSERT INTO "historial_tareas" VALUES(51,13,'pendiente','en_curso','editor',NULL,'2026-11-18T15:59:17+00:00');
 INSERT INTO "historial_tareas" VALUES(52,13,'en_curso','entregado','editor','Máster 9:22 1080p25, -16,5 LUFS, solo narración (DIR-PAL-2026-001-03); 52 planos sin IA; subtítulos SRT, 3 miniaturas y metadatos. Subida a YouTube no realizada (sin credenciales); cuando se haga, solo privada','2026-11-18T16:13:40+00:00');
 INSERT INTO "historial_tareas" VALUES(53,13,'entregado','cerrado','editor','cierre automático (sin puerta)','2026-11-18T16:13:40+00:00');
+INSERT INTO "historial_tareas" VALUES(54,14,'pendiente','en_curso','auditor',NULL,'2026-11-18T20:10:59+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -470,7 +473,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',13,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T16:13:40+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',10,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:10:59+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -514,27 +517,19 @@ CREATE TABLE tareas (
   notas         TEXT,
   UNIQUE (produccion_id, etapa)
 );
-INSERT INTO "tareas" VALUES(1,'PAL-2026-001',1,'Investigación de oportunidades','investigador','ninguna','cerrado','[]','["PAL-2026-001-A001"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00',NULL);
-INSERT INTO "tareas" VALUES(2,'PAL-2026-001',2,'Presentación de temas al CEO','ceo','ninguna','cerrado','[]','["PAL-2026-001-A001"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00',NULL);
-INSERT INTO "tareas" VALUES(3,'PAL-2026-001',3,'Selección del tema','director','humana','cerrado','[]','["PAL-2026-001-A002"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:22+00:00','2026-11-18T00:23:10+00:00',NULL);
-INSERT INTO "tareas" VALUES(4,'PAL-2026-001',4,'Propuesta de tres perspectivas narrativas','investigador','ninguna','cerrado','[]','["PAL-2026-001-A003"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:10+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:23:56+00:00',NULL);
-INSERT INTO "tareas" VALUES(5,'PAL-2026-001',5,'Observaciones editoriales del Director','director','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
-INSERT INTO "tareas" VALUES(6,'PAL-2026-001',6,'Aprobación de la perspectiva','director','humana','cerrado','[]','["PAL-2026-001-A004"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
-INSERT INTO "tareas" VALUES(7,'PAL-2026-001',7,'Investigación profunda','investigador','ninguna','cerrado','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:48+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL);
-INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','cerrado','[]','["PAL-2026-001-A005", "PAL-2026-001-A007", "PAL-2026-001-A009"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:23:17+00:00','2026-11-18T01:23:18+00:00','2026-11-18T01:24:23+00:00',NULL);
-INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:32:03+00:00','2026-11-18T01:39:31+00:00','2026-11-18T01:39:31+00:00',NULL);
-INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:40:57+00:00','2026-11-18T01:41:57+00:00','2026-11-18T01:41:57+00:00',NULL);
-INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:43:43+00:00','2026-11-18T01:44:02+00:00','2026-11-18T01:44:02+00:00',NULL);
-INSERT INTO "tareas" VALUES(12,'PAL-2026-001',12,'Producción audiovisual','productor','presupuesto','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00','2026-11-18T15:57:30+00:00','2026-11-18T15:57:30+00:00',NULL);
-INSERT INTO "tareas" VALUES(13,'PAL-2026-001',13,'Edición','editor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00','2026-11-18T16:13:40+00:00','2026-11-18T16:13:40+00:00',NULL);
-INSERT INTO "tareas" VALUES(14,'PAL-2026-001',14,'Auditoría independiente','auditor','auditoria','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(15,'PAL-2026-001',15,'Correcciones','ceo','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(16,'PAL-2026-001',16,'Aprobación humana del video','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(17,'PAL-2026-001',17,'Publicación','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(18,'PAL-2026-001',18,'Creación y distribución de Shorts','editor','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(19,'PAL-2026-001',19,'Análisis de métricas','analista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(20,'PAL-2026-001',20,'Informe financiero','cfo','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
-INSERT INTO "tareas" VALUES(21,'PAL-2026-001',21,'Retroalimentación al sistema','ceo','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(1,'PAL-2026-001',1,'Oportunidades y temas','investigador','ninguna','cerrado','[]','["PAL-2026-001-A001"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:21+00:00',NULL);
+INSERT INTO "tareas" VALUES(3,'PAL-2026-001',2,'Selección del tema','director','humana','cerrado','[]','["PAL-2026-001-A002"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:17:21+00:00','2026-11-18T00:17:22+00:00','2026-11-18T00:23:10+00:00',NULL);
+INSERT INTO "tareas" VALUES(4,'PAL-2026-001',3,'Tres enfoques narrativos','investigador','ninguna','cerrado','[]','["PAL-2026-001-A003"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:10+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:23:56+00:00',NULL);
+INSERT INTO "tareas" VALUES(5,'PAL-2026-001',4,'Aprobación del enfoque y observaciones','director','humana','cerrado','[]','["PAL-2026-001-A004"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
+INSERT INTO "tareas" VALUES(7,'PAL-2026-001',5,'Investigación y expediente','investigador','auditoria','cerrado','[]','["PAL-2026-001-A005", "PAL-2026-001-A007", "PAL-2026-001-A009"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:48+00:00','2026-11-18T01:23:18+00:00','2026-11-18T01:24:23+00:00',NULL);
+INSERT INTO "tareas" VALUES(9,'PAL-2026-001',6,'Guion y títulos','guionista','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:32:03+00:00','2026-11-18T01:39:31+00:00','2026-11-18T01:39:31+00:00',NULL);
+INSERT INTO "tareas" VALUES(10,'PAL-2026-001',7,'Storyboard y prompts','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:40:57+00:00','2026-11-18T01:44:02+00:00','2026-11-18T01:44:02+00:00',NULL);
+INSERT INTO "tareas" VALUES(12,'PAL-2026-001',8,'Producción audiovisual','productor','presupuesto','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00','2026-11-18T15:57:30+00:00','2026-11-18T15:57:30+00:00',NULL);
+INSERT INTO "tareas" VALUES(13,'PAL-2026-001',9,'Edición, Shorts y subida privada','editor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00','2026-11-18T16:13:40+00:00','2026-11-18T16:13:40+00:00',NULL);
+INSERT INTO "tareas" VALUES(14,'PAL-2026-001',10,'Auditoría y correcciones','auditor','auditoria','en_curso','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:10:59+00:00',NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(16,'PAL-2026-001',11,'Aprobación del vídeo, Shorts y título final','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(17,'PAL-2026-001',12,'Publicación a la hora recomendada','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(19,'PAL-2026-001',13,'Cierre: métricas, costos y lecciones','analista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 CREATE TABLE tarifas (
   id            INTEGER PRIMARY KEY,
   proveedor     TEXT NOT NULL,
