@@ -1,10 +1,12 @@
 # Metadatos de YouTube — PAL-2026-001 (etapa 9 · v2, con las correcciones de la auditoría de la etapa 10)
 
-**Subida:** solo **privada**; publica el Director (etapa 17). El título es provisional hasta la aprobación del vídeo (etapa 16).
+**Subida:** solo **privada**; se publica solo tras APRUEBO del Director en la etapa 12. El título es provisional hasta la aprobación del vídeo (etapa 11).
 
 | Campo | Valor |
 |---|---|
-| Título (T1, recomendado) | El libro que se negó a morir: el palimpsesto de Arquímedes |
+| Título definitivo (T1, elegido por el Editor) | El libro que se negó a morir: el palimpsesto de Arquímedes |
+| Miniatura elegida | **A** · "Debajo, Arquímedes". Complementa el título sin repetirlo: el título promete una supervivencia y la miniatura dice qué sobrevivió. Todo lo que muestra aparece en el vídeo |
+| Por qué T1 y no T3 | T1 es fiel al enfoque (qué sobrevivió y cómo lo sabemos). T3 se apoya en la frase "casi inventó el cálculo", que el propio vídeo califica de leyenda: sirve como prueba A/B de título, no como título principal |
 | Alternativa A/B (T3) | ¿Casi inventó Arquímedes el cálculo? Lo que de verdad reveló su libro perdido |
 | Miniaturas A/B/C | `render/miniaturas/miniatura_A.jpg` ("Debajo, Arquímedes") · `_B` ("El texto oculto") · `_C` ("Lo borraron para rezar") |
 | Categoría | Educación |
@@ -39,7 +41,7 @@ Lo que contamos, con su grado y su fuente (números de la lista de abajo)
 ● Comentario a las Categorías, siglos II–III [9]; ○ autoría: Porfirio (con Boeto de Sidón) o Alejandro de Afrodisias [9][10]
 ● Arquímedes usaba las rebanadas infinitas para descubrir y la exhaución para demostrar [1][11]
 ◐ Proposición 14: una proporción entre conjuntos infinitos, cerca del "infinito actual" (Netz, Saito y Tchernetska) [12]; crítica al tono de la divulgación [13]
-◐ El Stomachion como problema de combinatoria (Netz) [1][14]; ● recuento de 2003: 536 soluciones, 17.152 con simetrías [15][16]
+◐ El Stomachion como problema de combinatoria (Netz) [1][14]; ● recuento de 2003: 536 soluciones; 17.152 contando simetrías del cuadrado e intercambio de piezas iguales [15][16]
 ● Hipérides: Contra Timandro y Contra Diondas, identificados por Natalie Tchernetska [17][18]; ◐ fecha de Contra Diondas: 334 o 331 a. C. [19]
 ✕ "Lo borró con jugo de limón", "casi inventó el cálculo", "la ciencia perdió 500 años": ninguna fuente académica lo sostiene
 
@@ -70,4 +72,4 @@ Narración con voz sintética (Kokoro-82M), sin imitar a ninguna persona real.
 ¿Algo está mal contado? Déjalo en los comentarios con tu fuente: lo revisaremos.
 ```
 
-**Pendientes:** la música (DIR-PAL-2026-001-03), que si se añade irá con su licencia en la descripción.
+**Música:** ninguna (DIR-PAL-2026-001-03).

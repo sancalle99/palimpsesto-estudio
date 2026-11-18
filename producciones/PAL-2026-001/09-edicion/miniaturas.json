@@ -1,6 +1,34 @@
-{"produccion": "PAL-2026-001", "nota": "Editor · v2, regenerada con script (las v1 se hicieron a mano en otra sesión y no se versionaron). Textos de metadatos.md.",
+{
+ "produccion": "PAL-2026-001",
+ "nota": "Editor · v2, regenerada con script (las v1 se hicieron a mano en otra sesión y no se versionaron). Textos de metadatos.md.",
  "miniaturas": [
-  {"id": "A", "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg", "recorte": [0.05, 0.08, 0.82, 0.6], "texto": "Debajo, Arquímedes"},
-  {"id": "B", "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg", "texto": "El texto oculto"},
-  {"id": "C", "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg", "recorte": [0.05, 0.08, 0.82, 0.6], "texto": "Lo borraron para rezar"}
- ]}
+  {
+   "id": "A",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg",
+   "recorte": [
+    0.05,
+    0.08,
+    0.82,
+    0.6
+   ],
+   "texto": "Debajo, Arquímedes",
+   "velo": 245
+  },
+  {
+   "id": "B",
+   "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
+   "texto": "El texto oculto"
+  },
+  {
+   "id": "C",
+   "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+   "recorte": [
+    0.05,
+    0.08,
+    0.82,
+    0.6
+   ],
+   "texto": "Lo borraron para rezar"
+  }
+ ]
+}

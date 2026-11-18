@@ -1,6 +1,6 @@
 {
  "produccion": "PAL-2026-001",
- "nota": "Editor · Shorts v2 (correcciones de la auditoría v1: HAL-02 frase de entrada propia; HAL-09 composición vertical nativa; HAL-04 subtítulos). Texto tomado del guion aprobado, con una frase de entrada; mismas afirmaciones y grados (AF citadas en cada Short).",
+ "nota": "Editor · Shorts v2 (correcciones de la auditoría v1: HAL-02 frase de entrada propia; HAL-09 composición vertical nativa; HAL-04 subtítulos). Texto tomado del guion aprobado, con una frase de entrada; mismas afirmaciones y grados (AF citadas en cada Short). v2.1: ajustes menores de la auditoría v2 (HAL-03, HAL-04).",
  "shorts": [
   {
    "id": "S1",
@@ -49,12 +49,17 @@
     {
      "id": "1c",
      "par": 1,
-     "tipo": "diagrama",
-     "diagrama": "hoja",
-     "transicion_a": {
-      "diagrama": "hoja_cruzada"
-     },
-     "leyenda": "Hojas giradas 90°"
+     "tipo": "img",
+     "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+     "cubrir": true,
+     "centro": [
+      0.5,
+      0.5
+     ],
+     "mov": "der",
+     "zoom": 1.12,
+     "nota": "Líneas nuevas sobre las viejas",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
     },
     {
      "id": "1d",
@@ -83,7 +88,7 @@
       "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg"
      },
      "corte": 0.3,
-     "nota": "Debajo: Arquímedes, siglo X",
+     "nota": "Debajo, Arquímedes (siglo X)",
      "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
     }
    ]
@@ -134,7 +139,7 @@
       0.5
      ],
      "zoom": 1.12,
-     "nota": "Evangelista falsificado, siglo XX",
+     "nota": "Evangelista falso (siglo XX)",
      "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
     },
     {
@@ -173,8 +178,7 @@
       "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
       "recorte": null
      },
-     "nota": "Rayos X: el texto bajo la pintura",
-     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v · fluorescencia de rayos X"
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v · rayos X"
     }
    ]
   },

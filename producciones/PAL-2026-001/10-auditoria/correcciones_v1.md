@@ -19,3 +19,12 @@
 
 **Geometría del Stomachion:** reconstrucción moderna habitual sobre una retícula de 12 × 12, con coordenadas de J. Burkardt, `stomachion.plot` (FSU, 2006). La prueba comprueba que son 14 piezas y que las áreas suman 144.
 **No cambia:** la miniatura (la observación de contraste de la A queda para la elección en la etapa 11).
+
+## Menores de la auditoría v2 (aplicados sin nueva ronda)
+| Hallazgo | Qué cambió |
+|---|---|
+| v2-HAL-01 | Descripción: "17.152 contando simetrías del cuadrado e intercambio de piezas iguales" |
+| v2-HAL-02 | En la cabecera de `metadatos.md`, las etapas pasan a 11 y 12. "Música: ninguna (DIR-03)" |
+| v2-HAL-03 | Subtítulos: corte equilibrado que evita dejar artículos o preposiciones al final de línea. Máster ≤ 42 caracteres por línea; Shorts ≤ 22 (hasta 3 líneas); ninguno dura menos de 1 s |
+| v2-HAL-04 | S1: el diagrama de la hoja se sustituye por un folio a cuadro completo. Rótulos "Debajo, Arquímedes (siglo X)" y "Evangelista falso (siglo XX)". S2: se quita el rótulo "Rayos X" previo a la imagen |
+| v2-HAL-05 | Guion: se retira la marca de recreación y los tiempos de sección pasan a los del máster (9:24) |

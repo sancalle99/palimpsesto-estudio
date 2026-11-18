@@ -56,7 +56,7 @@ def main(plan_json, solo=None):
         narrar(s, audio)
         nombre = f"{pid}-{s['id']}"
         sub = {"formato": "vertical", "entrada": ENTRADA, "cola": COLA, "capitulos": [s["titulo"]], "planos": s["planos"]}
-        base, srt, _, durs = montaje.ensamblar(sub, pdir, audio, salida, nombre=f"{nombre}_base", max_c=40, max_linea=22)
+        base, srt, _, durs = montaje.ensamblar(sub, pdir, audio, salida, nombre=f"{nombre}_base", max_c=36, max_linea=22)
         dur = sum(durs)
         if not MIN_S <= dur <= MAX_S:
             raise SystemExit(f"{s['id']}: dura {dur:.1f} s; debe estar entre {MIN_S} y {MAX_S} s.")

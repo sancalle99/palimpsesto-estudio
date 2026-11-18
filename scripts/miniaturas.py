@@ -34,7 +34,7 @@ def main(plan_json):
         sombra = Image.new("L", (W, H))
         d = ImageDraw.Draw(sombra)
         for x in range(W):
-            d.line([(x, 0), (x, H)], fill=int(215 * max(0, 1 - x / (W * 0.62))))
+            d.line([(x, 0), (x, H)], fill=int(m.get("velo", 215) * max(0, 1 - x / (W * 0.62))))
         im = Image.composite(Image.new("RGB", (W, H), "#0B0B0D"), im, sombra)
         d = ImageDraw.Draw(im)
         f = ImageFont.truetype(SERIF, 112)

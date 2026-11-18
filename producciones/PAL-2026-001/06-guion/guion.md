@@ -1,11 +1,11 @@
 # Guion — PAL-2026-001 · El Palimpsesto de Arquímedes
 
 **Guionista · v1.2 · 18-nov-2026** (correcciones de la auditoría de la etapa 10: HAL-01, 05, 06, 10; marcas de recreación retiradas porque el vídeo no usa imágenes IA) · Piloto de ≈ 11 min aceptado por el Director (DIR-PAL-2026-001-01). SOL-01 y SOL-02 resueltas con la alternativa prevista; SOL-03 sin cambios; SOL-04 descartada.
-Narrador: voz del canal (Kokoro em_alex, DEC-0009). Cada párrafo termina con las afirmaciones del expediente que lo sostienen. Marcas para el editor: `[GRADO: …]`, `[RÓTULO: Recreación]`, `[DOCUMENTO: R-…]` (los recursos se asignan en la etapa 10; `R-?` = por asignar).
+Narrador: voz del canal (Kokoro em_alex, DEC-0009). Cada párrafo termina con las afirmaciones del expediente que lo sostienen. Marcas para el editor: `[GRADO: …]`, `[RÓTULO: …]`, `[DOCUMENTO: R-…]`. El vídeo no usa imágenes generadas por IA (DIR-02). Tiempos de sección según el máster montado (9:24).
 
 ---
 
-## 1. Cold open (0:00–0:45)
+## 1. Cold open (0:00–0:54)
 
 `[VISUAL: folio 158r-159v, oraciones sobre Arquímedes]`
 
@@ -25,7 +25,7 @@ Esta es la historia de un libro que se negó a morir. Y de una pregunta: cuando 
 
 ---
 
-## 2. La versión conocida (0:45–2:15)
+## 2. La versión conocida (0:54–1:55)
 
 Si buscas esta historia en internet, la encontrarás contada así: un monje destruyó la obra de un genio para escribir oraciones; Arquímedes casi inventó el cálculo; si su libro no se hubiera borrado, la ciencia habría avanzado quinientos años antes. `[GRADO: L]` `[RÓTULO: "Versión popular"]`
 > [AF-021]
@@ -41,7 +41,7 @@ Así que la pregunta no es si este libro es valioso. Lo es. La pregunta es otra:
 
 ---
 
-## 3. La grieta (2:15–4:30)
+## 3. La grieta (1:55–3:28)
 
 `[VISUAL: Constantinopla, archivo; lupa]`
 
@@ -65,7 +65,7 @@ Y entonces alguien hizo algo peor. Sobre algunas hojas se pintaron cuatro retrat
 
 ---
 
-## 4. La investigación (4:30–8:15)
+## 4. La investigación (3:28–5:42)
 
 `[VISUAL: sala de subastas, Nueva York]`
 
@@ -104,7 +104,7 @@ Esto importa porque cambia el retrato del sacerdote. Myronas no destruyó "el li
 
 ---
 
-## 5. La revelación: lo demostrado frente a lo exagerado (8:15–10:15)
+## 5. La revelación: lo demostrado frente a lo exagerado (5:42–8:06)
 
 `[RÓTULO: "Lo demostrado / lo exagerado"]`
 
@@ -136,7 +136,7 @@ Entonces, ¿casi inventó el cálculo? Lo que la evidencia permite decir es más
 
 ---
 
-## 6. El cierre (10:15–11:15)
+## 6. El cierre (8:06–9:24)
 
 Esto es lo que sigue en duda: no sabemos cómo salió el libro de Constantinopla, si por compra o por robo. No sabemos quién escribió el comentario a Aristóteles. Y no sabemos qué forma tenía el juego del *Stomachion*. `[GRADO: H para la existencia de cada duda]`
 > [AF-006, AF-016b, AF-020b]

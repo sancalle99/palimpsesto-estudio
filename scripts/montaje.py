@@ -288,7 +288,7 @@ def superposicion(p):
         f = fuente(SANS_B, int(30 * ESC))
         d.text((48, 52 if W > H else 470), p["rotulo"], font=f, fill=(158, 43, 37, 255), anchor="lm")
     if p.get("nota"):  # texto breve en la parte inferior central
-        f = fuente(SERIF, int(54 * ESC), 600)
+        f = fuente(SERIF, int(54 * min(ESC, 1.3)), 600)
         y = abajo - (95 if W > H else 150)
         for l in envolver(d, p["nota"], f, W - 140)[::-1]:
             wv = d.textlength(l, font=f)
@@ -435,16 +435,38 @@ def cues(texto, ini, fin, max_c=84, min_s=1.0):
     return out
 
 
+DEBILES = {"a", "al", "de", "del", "el", "la", "los", "las", "un", "una", "y", "o", "en", "con", "por", "para", "que",
+           "se", "su", "sus", "lo", "no", "es", "le", "les", "sobre", "entre", "sin", "como"}
+
+
 def partir(x, max_linea):
-    """Divide un subtítulo en dos líneas equilibradas (≤ `max_linea` si es posible), con preferencia por cortar
-    tras una coma o un punto y sin separar iniciales ("J. L. Heiberg")."""
+    """Divide un subtítulo en el menor número de líneas de como máximo `max_linea` caracteres (si es posible),
+    equilibradas, cortando con preferencia tras una coma o un punto, nunca tras un artículo o preposición si
+    se puede evitar, y sin separar iniciales ("J. L. Heiberg")."""
     if len(x) <= max_linea:
         return x
-    x = re.sub(r"(?<!\w)(\w\.) ", "\\1\u00a0", x)
-    w = x.split(" ")
-    mejor = min(range(1, len(w)), key=lambda i: max(len(" ".join(w[:i])), len(" ".join(w[i:])))
-                - (4 if w[i - 1][-1] in ",.;:?" else 0))
-    return (" ".join(w[:mejor]) + "\n" + " ".join(w[mejor:])).replace("\u00a0", " ")
+    w = re.sub(r"(?<!\w)(\w\.) ", "\\1\u00a0", x).split(" ")
+    from functools import lru_cache
+
+    @lru_cache(None)
+    def mejor(i, n):  # (coste, cortes) para colocar w[i:] en n líneas
+        if n == 1:
+            l = " ".join(w[i:])
+            return (len(l) + (1000 if len(l) > max_linea else 0), ())
+        res = (10 ** 6, ())
+        for j in range(i + 1, len(w) - n + 2):
+            l = " ".join(w[i:j])
+            c = len(l) + (1000 if len(l) > max_linea else 0)
+            c -= 4 if w[j - 1][-1] in ",.;:?" else 0
+            c += 6 if w[j - 1].lower() in DEBILES else 0
+            resto = mejor(j, n - 1)
+            res = min(res, (max(c, resto[0]), (j,) + resto[1]))
+        return res
+    n = max(2, math.ceil(len(x) / max_linea))
+    while n < 4 and mejor(0, n)[0] >= 1000 and n < len(w):
+        n += 1
+    cortes = (0,) + mejor(0, min(n, len(w)))[1] + (len(w),)
+    return "\n".join(" ".join(w[a:b]) for a, b in zip(cortes, cortes[1:])).replace("\u00a0", " ")
 
 
 def subtitulos(tiempos, lead, ruta, max_c=76, max_linea=42):
