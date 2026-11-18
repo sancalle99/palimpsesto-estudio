@@ -3,7 +3,8 @@
 Sistema de producción de **Palimpsesto** (canal de YouTube de documentales históricos), diseñado para varios canales.
 
 - Reglas del proyecto: `CLAUDE.md`
-- Agentes: `.claude/agents/` (ceo, investigador, guionista, productor, editor, auditor, analista, cfo)
+- Roles como skills (los asume la sesión principal): `.claude/skills/` (ceo, guionista, productor, editor, analista, cfo)
+- Subagentes independientes: `.claude/agents/` (investigador, auditor)
 - Identidad del canal: `canales/palimpsesto/`
 - Núcleo (flujo, Cuaderno del Director, finanzas): `estudio/core.py` · CLI: `python3 -m estudio --help`
 - Esquema de datos: `db/schema.sql` · Tarifas versionadas: `finanzas/tarifas.csv`

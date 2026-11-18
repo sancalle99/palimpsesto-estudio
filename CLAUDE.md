@@ -5,7 +5,9 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 
 ## Cómo se trabaja
 
-- La sesión principal actúa como **CEO / Orquestador** (`.claude/agents/ceo.md`) y delega en los subagentes.
+- La sesión principal actúa como **CEO / Orquestador** (skill `ceo`).
+- **Roles ligeros como skills** (`.claude/skills/`: `ceo`, `guionista`, `productor`, `editor`, `analista`, `cfo`): la sesión principal carga la skill del rol y trabaja en línea, sin subagente.
+- **Subagentes** (`.claude/agents/`): solo `investigador` (etapa 7 y apoyo) y `auditor` (etapas 8 y 14), donde la independencia o la profundidad lo exigen.
 - Los agentes se comunican **solo mediante artefactos**: archivos en `producciones/<ID>/` registrados con `python -m estudio artefacto ...`.
 - El estado del flujo vive en la base de datos y se consulta con `python -m estudio estado <ID>`.
 - Las 21 etapas, sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa.
