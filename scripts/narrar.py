@@ -1,7 +1,7 @@
 """Genera la narración de un guion con la voz del canal (Kokoro em_alex, DEC-0009). Local y gratis.
 
 Uso (con el entorno de Kokoro que instala scripts/instalar_voces.sh):
-    /tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/09-guion/guion.md producciones/<ID>/recursos/audio
+    /tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/06-guion/guion.md producciones/<ID>/recursos/audio
 Genera un WAV por sección (`seccion_N.wav`), `narracion.wav` (todo, con postproceso de la biblia
 visual) y `narracion.txt` (el texto exacto locutado, para subtítulos y auditoría) y `tiempos.json`
 (inicio y fin de cada párrafo en segundos, para el montaje y los subtítulos).

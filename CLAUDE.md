@@ -7,13 +7,12 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 
 - La sesión principal actúa como **CEO / Orquestador** (skill `ceo`).
 - **Roles ligeros como skills** (`.claude/skills/`: `ceo`, `guionista`, `productor`, `editor`, `analista`, `cfo`): la sesión principal carga la skill del rol y trabaja en línea, sin subagente.
-- **Subagentes** (`.claude/agents/`): solo `investigador` (etapa 7 y apoyo) y `auditor` (etapas 8 y 14), donde la independencia o la profundidad lo exigen.
-- Los agentes se comunican **solo mediante artefactos**: archivos en `producciones/<ID>/NN-etapa/` (p. ej. `09-guion/guion.md`; la carpeta la da `python3 -m estudio carpeta <ID> <N>`) registrados con `python -m estudio artefacto ...`. `producciones/<ID>/README.md` es el índice, generado desde la base; `recursos/` y `render/` quedan en la raíz de la producción.
+- **Subagentes** (`.claude/agents/`): solo `investigador` (etapa 5 y apoyo) y `auditor` (etapas 5 y 10), donde la independencia o la profundidad lo exigen.
+- Los agentes se comunican **solo mediante artefactos**: archivos en `producciones/<ID>/NN-etapa/` (p. ej. `06-guion/guion.md`; la carpeta la da `python3 -m estudio carpeta <ID> <N>`) registrados con `python -m estudio artefacto ...`. `producciones/<ID>/README.md` es el índice, generado desde la base; `recursos/` y `render/` quedan en la raíz de la producción.
 - Al traer trabajo de otra sesión (`git pull`/merge que cambia `db/respaldo.sql`): `python3 -m estudio restaurar` antes de seguir, o el hook de respaldo sobrescribiría lo traído con la base local.
 - El estado del flujo vive en la base de datos y se consulta con `python -m estudio estado <ID>`.
-- Las 21 etapas, sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa.
-
-> **⚠ Pendiente:** hay cambios aprobados por el Director sin aplicar (13 etapas, título, subida autónoma). Léelos en `docs/cambios_aprobados.md` y aplícalos antes de avanzar cualquier producción.
+- Las 13 etapas (DEC-0014), sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa. Producciones antiguas de 21 etapas: `python3 -m estudio migrar-13 <ID> --aplicar`.
+- **Título (DEC-0015):** el Guionista propone 5 en la etapa 6, el Editor elige el definitivo con la miniatura en la 9 y el Director lo aprueba en la 11.
 
 ## Flujo desde un solo chat: `/avanzar <ID>`
 
@@ -23,11 +22,11 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 
 ## Reglas inviolables
 
-1. **Puertas humanas (🔒 etapas 3, 6, 16, 17, 18):** ningún agente ejecuta `python -m estudio aprobar` ni `presupuesto-ampliar`. Se le presenta al Director una Ficha de decisión y se espera. El sistema lo bloquea técnicamente.
-2. **Nada se publica.** Las subidas a YouTube son siempre privadas. Solo el Director publica.
+1. **Puertas humanas (🔒 etapas 2, 4, 11, 12):** ningún agente ejecuta `python -m estudio aprobar` ni `presupuesto-ampliar`. Se le presenta al Director una Ficha de decisión y se espera. El sistema lo bloquea técnicamente.
+2. **El Editor sube siempre en privado.** Solo publica o programa un vídeo tras `APRUEBO <ID> 12` del Director, registrado por el hook. Nunca por iniciativa propia (DEC-0016).
 3. **Ningún gasto sin verificación previa** (`python -m estudio presupuesto-verificar <ID> <estimado>`) y **ningún gasto sin registro** (`python -m estudio costo ...`) con su `--id-externo` (ID de solicitud del proveedor).
 4. **Rigor:** toda afirmación factual tiene una fuente en el expediente y un grado de evidencia: **H** (hecho documentado), **I** (interpretación académica), **Hp** (hipótesis), **L** (leyenda / no verificado). No se inventan controversias, citas, fuentes ni datos.
-5. **Aportes del Director:** se registran literalmente (`python -m estudio nota`) y cada uno se resuelve (integrado o descartado con justificación) antes del guion (etapa 9) y de la aprobación final (etapa 16). **Nunca se atribuyen al Director opiniones o experiencias que no constan textualmente en un aporte.**
+5. **Aportes del Director:** se registran literalmente (`python -m estudio nota`) y cada uno se resuelve (integrado o descartado con justificación) antes del guion (etapa 6) y de la aprobación final (etapa 11). **Nunca se atribuyen al Director opiniones o experiencias que no constan textualmente en un aporte.**
 6. **Recreaciones con IA:** se rotulan "Recreación" en pantalla y nunca se presentan como fotografía o documento de archivo. Cada recurso se registra con su licencia y procedencia (`python -m estudio recurso`).
 7. **Secretos:** nunca se piden, se muestran ni se escriben claves, contraseñas o códigos. Viven en `.env` (fuera de git) o en el gestor de secretos del Director.
 8. **Independencia del Auditor:** el auditor recibe solo los entregables, no el razonamiento de quien los produjo.
@@ -35,7 +34,7 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 ## Modo económico (plan Claude Pro: cuidar el consumo)
 
 Decisión del Director del 18-nov-2026. Mientras el plan sea Pro:
-1. Las etapas ligeras (1, 2, 4, 5 y las consultas) las hace la sesión principal sin lanzar subagentes. Los subagentes se usan solo donde la independencia o la profundidad lo exigen: auditoría (8, 14) e investigación profunda (7).
+1. Las etapas ligeras (1, 3 y las consultas) las hace la sesión principal sin lanzar subagentes. Los subagentes se usan solo donde la independencia o la profundidad lo exigen: auditoría (5, 10) e investigación profunda (5).
 2. Búsquedas: como máximo unas 8 por etapa. Se usan primero las APIs académicas compactas (Crossref; OpenAlex cuando esté disponible) en lugar de leer páginas completas.
 3. El análisis de competencia (los 10 vídeos más vistos) se hace solo sobre el tema elegido, no sobre todos los candidatos.
 4. Entregables concisos: tablas en lugar de prosa; nada de repetir el contexto ya escrito en otros archivos.
@@ -72,8 +71,9 @@ python -m estudio siguiente PAL-2026-001    # qué etapa toca y qué acción (lo
 python -m estudio alertas                   # alertas de presupuesto
 python -m estudio informe-video PAL-2026-001
 python -m unittest discover -s tests -v     # pruebas
-/tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/09-guion/guion.md producciones/<ID>/recursos/audio   # narración + tiempos
-python3 scripts/montaje.py producciones/<ID>/13-edicion/montaje.json                                    # máster, SRT y capítulos
+/tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/06-guion/guion.md producciones/<ID>/recursos/audio   # narración + tiempos
+python3 scripts/montaje.py producciones/<ID>/09-edicion/montaje.json                                    # máster, SRT y capítulos
+python3 scripts/youtube_subir.py subir <ID> <máster> <metadatos.md>                                   # subida PRIVADA (etapa 9)
 ```
 
 **Recursos pesados** (`producciones/*/recursos/`, `render/`): no se versionan. En una sesión nueva se regeneran así: las imágenes, descargándolas de las URL registradas con `recurso`; la voz, con `scripts/instalar_voces.sh` y `narrar.py`; el vídeo, con `montaje.py`.

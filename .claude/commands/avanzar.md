@@ -26,7 +26,7 @@ Repite este ciclo **una etapa cada vez** hasta llegar a una parada:
 - **Auditor:** siempre como subagente y solo con los entregables, nunca con tu razonamiento (regla 8). Si pide correcciones, el responsable corrige y el auditor revisa de nuevo. Tras 2 ciclos sin aprobar, detente y consulta al Director.
 
 ## 3. Registrar y cerrar
-1. Guarda el entregable en la carpeta de la etapa: `python3 -m estudio carpeta <ID> <N>` (p. ej. `producciones/<ID>/09-guion/`).
+1. Guarda el entregable en la carpeta de la etapa: `python3 -m estudio carpeta <ID> <N>` (p. ej. `producciones/<ID>/06-guion/`).
 2. Registra el artefacto:
    `python3 -m estudio artefacto <ID> <tipo> <ruta> --actor <responsable> --etapa <N>`
 3. Entrega la etapa:
@@ -41,15 +41,16 @@ Repite este ciclo **una etapa cada vez** hasta llegar a una parada:
 6. Escribe al Director una sola línea: «✔ Etapa N cerrada · entregable · siguiente: N+1». Vuelve al paso 1.
 
 ## 4. Paradas (el Director decide)
-- **Puerta humana 🔒 (3, 6, 16, 17, 18):** en la etapa que espera al Director (aunque el ejecutor indique `director`), tú preparas la **Ficha de decisión**. Las etapas 3 y 6 llevan una ficha propia en `decisiones/`; las 16, 17 y 18 resumen el entregable que se aprueba. Regístrala y entrega la etapa, que pasa a «en revisión». Después regenera y publica el panel, haz commit y push, y muestra la Ficha en el chat. La Ficha es breve:
+- **Puerta humana 🔒 (2, 4, 11, 12):** en la etapa que espera al Director (el ejecutor indica `director`), tú preparas la **Ficha de decisión** en la carpeta de la etapa (`ficha_decision.md`), la registras y entregas la etapa, que pasa a «en revisión». Después regenera y publica el panel, haz commit y push, y muestra la Ficha en el chat. La Ficha es breve:
   - qué se decide, con opciones en tabla y la recomendación del CEO;
   - el consumo del plan hasta ahora;
   - los aportes del Director relacionados;
   - las frases exactas para responder: `APRUEBO <ID> <N> …`, `CORRECCIONES <ID> <N> <motivo>` o `RECHAZO <ID> <N> <motivo>`.
 
-  **Detente.** Nunca ejecutas `aprobar` ni simulas la respuesta del Director.
-- **Etapa 5 (observaciones del Director):** pídele sus observaciones (`/nota`) y detente. Si responde que no tiene ninguna, entrégala con esa nota literal.
-- **Etapa 17 (publicación):** el vídeo ya está subido como **privado**. La Ficha explica cómo publicarlo él mismo; tú nunca publicas.
+  **Detente.** Nunca ejecutas `aprobar` ni simulas la respuesta del Director. Particularidades:
+  - **Etapa 4:** la Ficha pide también sus observaciones editoriales (`/nota`); si no tiene, que lo diga al aprobar.
+  - **Etapa 11:** la Ficha muestra **primero el título definitivo y la miniatura** que eligió el Editor (con la alternativa del Guionista), luego el vídeo privado y los Shorts.
+  - **Etapa 12:** el Analista (skill `analista`) recomienda día y hora en `12-publicacion/hora_recomendada.md`; la Ficha la muestra y recuerda que, mientras la API de YouTube no esté auditada por Google, el Director publica subiendo una copia a mano. **Tras `APRUEBO <ID> 12`** (registrado por el hook), el Editor ejecuta `scripts/youtube_subir.py publicar|programar` y registra el resultado. Nunca antes.
 - **Presupuesto:** si la producción está congelada o `presupuesto-verificar` falla, detente y muestra una Ficha para `AMPLÍO PRESUPUESTO`.
 - **Cualquier error** de la CLI, ambigüedad o falta de datos: detente y explícalo en dos líneas.
 - **Límite de uso del plan cerca:** cierra la etapa en curso, haz commit y push, y detente.

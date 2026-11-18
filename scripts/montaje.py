@@ -1,7 +1,7 @@
 """Motor de montaje del canal (PIL + FFmpeg, sin servicios de pago).
 
 Uso:
-    python3 scripts/montaje.py producciones/<ID>/13-edicion/montaje.json
+    python3 scripts/montaje.py producciones/<ID>/09-edicion/montaje.json
 El plan JSON define los planos (tipo, recurso, texto) y a qué párrafo de la narración pertenece cada
 uno. Los tiempos salen de `recursos/audio/tiempos.json` (scripts/narrar.py). Produce en `render/`:
 `master.mp4` (1080p25, H.264 + AAC, -16 LUFS), `subtitulos.srt` y `capitulos.txt`.
@@ -335,7 +335,7 @@ def main(plan_json):
     plan_json = Path(plan_json).resolve()
     plan = json.loads(plan_json.read_text(encoding="utf-8"))
     pdir = plan_json.parent
-    if pdir.name[:2].isdigit() and pdir.name[2:3] == "-":  # producciones/<ID>/13-edicion/montaje.json
+    if pdir.name[:2].isdigit() and pdir.name[2:3] == "-":  # producciones/<ID>/09-edicion/montaje.json
         pdir = pdir.parent  # recursos/ y render/ viven en la raíz de la producción
     audio_dir = pdir / "recursos/audio"
     tiempos = json.loads((audio_dir / "tiempos.json").read_text(encoding="utf-8"))

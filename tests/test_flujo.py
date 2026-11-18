@@ -1,4 +1,4 @@
-"""Prueba de aceptación de la Fase 2: una producción "en seco" recorre las 21 etapas
+"""Prueba de aceptación: una producción "en seco" recorre las 13 etapas
 con artefactos simulados, y se verifican las reglas (puertas, aportes, presupuesto, doble conteo).
 Ejecutar:  python -m unittest discover -s tests -v
 """
@@ -30,38 +30,35 @@ class Base(unittest.TestCase):
 
 
 class TestFlujoCompleto(Base):
-    def test_recorre_21_etapas(self):
+    def test_recorre_13_etapas(self):
         c, pid = self.con, self.pid
+        self.assertEqual(core.N_ETAPAS, 13)
         humanas = {e.n for e in core.ETAPAS if e.puerta == "humana"}
+        self.assertEqual(humanas, {2, 4, 11, 12})
         for e in core.ETAPAS:
-            if e.n == 15:  # se cierra sola cuando la auditoría 14 aprueba sin correcciones
-                self.assertEqual(core.tarea(c, pid, 15)["estado"], "cerrado")
-                continue
             actor = "ceo" if e.responsable == "director" else e.responsable
             self.paso(e.n, actor)
-            if e.n == 5:
+            if e.n == 4:  # observaciones del Director, dentro de la puerta del enfoque
                 aid = core.registrar_aporte(c, "¿Y si el protagonista real es el escriba?", "pregunta", pid=pid)
-            if e.n == 8:
-                core.revisar(c, pid, 8, "aprobado", "auditor", "fuentes verificadas")
-            if e.n == 9:
-                pass
-            if e.n == 14:
-                core.revisar(c, pid, 14, "correcciones", "auditor", "fecha errónea en 03:12")
-                core.reabrir(c, pid, 14, "auditor")
-                core.entregar(c, pid, 14, "auditor", ["v2"])
-                core.revisar(c, pid, 14, "aprobado", "auditor", "corregido")
+            if e.n == 5:
+                core.revisar(c, pid, 5, "aprobado", "auditor", "fuentes verificadas")
+                # la etapa 6 (guion) exige aportes resueltos
+                core.resolver_aporte(c, aid, "integrado", "Integrado como tesis del acto 3 (guion §3).", "guionista")
+            if e.n == 10:  # auditoría y correcciones en la misma etapa
+                core.revisar(c, pid, 10, "correcciones", "auditor", "fecha errónea en 03:12")
+                core.reabrir(c, pid, 10, "auditor")
+                core.entregar(c, pid, 10, "auditor", ["v2"])
+                core.revisar(c, pid, 10, "aprobado", "auditor", "corregido")
             if e.n in humanas:
                 with self.assertRaises(ErrorEstudio):  # un agente no puede abrir una puerta humana
                     core.revisar(c, pid, e.n, "aprobado", "ceo", "intento de agente")
                 core.revisar(c, pid, e.n, "aprobado", "director", "ok", director=True)
-            # la etapa 9 exige aportes resueltos: se resuelve tras el aporte de la etapa 5
-            if e.n == 7:
-                core.resolver_aporte(c, aid, "integrado", "Integrado como tesis del acto 3 (guion §3).", "guionista")
         estados = {t["estado"] for t in core.estado_produccion(c, pid)[1]}
         self.assertEqual(estados, {"cerrado"})
         decisiones = c.execute("SELECT COUNT(*) FROM decisiones WHERE produccion_id=?", (pid,)).fetchone()[0]
         self.assertEqual(decisiones, len(humanas))
         self.assertEqual(core.produccion(c, pid)["ciclos_correccion"], 1)
+        self.assertEqual(core.siguiente(c, pid)["accion"], "completa")
 
 
 class TestReglas(Base):
@@ -71,15 +68,16 @@ class TestReglas(Base):
 
     def test_aportes_pendientes_bloquean_guion(self):
         core.registrar_aporte(self.con, "Objeción sin responder", "objecion", pid=self.pid)
-        for n in range(1, 9):
+        for n in range(1, 6):
             actor = "ceo" if core.ETAPA[n].responsable == "director" else core.ETAPA[n].responsable
             self.paso(n, actor)
             if core.ETAPA[n].puerta == "humana":
                 core.revisar(self.con, self.pid, n, "aprobado", "director", "", director=True)
             if core.ETAPA[n].puerta == "auditoria":
                 core.revisar(self.con, self.pid, n, "aprobado", "auditor", "ok")
+        self.assertEqual(core.siguiente(self.con, self.pid)["accion"], "resolver_aportes")
         with self.assertRaises(ErrorEstudio):
-            core.iniciar(self.con, self.pid, 9, "guionista")
+            core.iniciar(self.con, self.pid, 6, "guionista")
 
     def test_resolver_aporte_exige_justificacion(self):
         aid = core.registrar_aporte(self.con, "Idea", "idea", pid=self.pid)
@@ -172,13 +170,13 @@ if __name__ == "__main__":
 class TestHookDirector(Base):
     def test_aprobacion_por_chat(self):
         from estudio.hook_aprobacion import procesar
-        self.paso(1, "investigador"); self.paso(2, "ceo")
-        core.iniciar(self.con, self.pid, 3, "ceo"); core.entregar(self.con, self.pid, 3, "ceo", ["ficha"])
+        self.paso(1, "investigador")
+        core.iniciar(self.con, self.pid, 2, "ceo"); core.entregar(self.con, self.pid, 2, "ceo", ["ficha"])
         self.assertIsNone(procesar("Hola, ¿cómo va? apruebo luego", self.con))
-        self.assertIn("no es una puerta humana", procesar(f"APRUEBO {self.pid} 2", self.con))
-        r = procesar(f"APRUEBO {self.pid} 3 me gusta el tema del escriba", self.con)
+        self.assertIn("no es una puerta humana", procesar(f"APRUEBO {self.pid} 3", self.con))
+        r = procesar(f"APRUEBO {self.pid} 2 me gusta el tema del escriba", self.con)
         self.assertIn("registrada", r)
-        self.assertEqual(core.tarea(self.con, self.pid, 3)["estado"], "cerrado")
+        self.assertEqual(core.tarea(self.con, self.pid, 2)["estado"], "cerrado")
         d = self.con.execute("SELECT justificacion FROM decisiones WHERE produccion_id=?", (self.pid,)).fetchone()[0]
         self.assertIn("Mensaje literal del Director", d)
 
@@ -193,27 +191,29 @@ class TestAvanzarYPanel(Base):
         c, pid = self.con, self.pid
         r = core.siguiente(c, pid)
         self.assertEqual((r["etapa"], r["accion"]), (1, "iniciar"))
-        self.paso(1, "investigador"); self.paso(2, "ceo")
+        self.paso(1, "investigador")
         r = core.siguiente(c, pid)
-        self.assertEqual((r["etapa"], r["ejecutor"]), (3, "director"))
-        self.paso(3, "ceo")
+        self.assertEqual((r["etapa"], r["ejecutor"]), (2, "director"))
+        self.paso(2, "ceo")
         r = core.siguiente(c, pid)
         self.assertEqual(r["accion"], "detenerse")
-        core.revisar(c, pid, 3, "correcciones", "director", "otro tema", director=True)
+        core.revisar(c, pid, 2, "correcciones", "director", "otro tema", director=True)
         r = core.siguiente(c, pid)
         self.assertEqual((r["accion"], r["nota"]), ("reabrir", "otro tema"))
 
-    def test_siguiente_auditoria_y_etapa_5(self):
+    def test_siguiente_auditoria_y_ejecutores(self):
         c, pid = self.con, self.pid
-        for n in range(1, 5):
+        for n in range(1, 6):
             actor = "ceo" if core.ETAPA[n].responsable == "director" else core.ETAPA[n].responsable
             self.paso(n, actor)
-            if n == 3:
-                core.revisar(c, pid, 3, "aprobado", "director", "ok", director=True)
-        self.assertEqual(core.siguiente(c, pid)["accion"], "iniciar_y_detenerse")
-        self.assertEqual(core.ejecutor(7), "subagente:investigador")
-        self.assertEqual(core.ejecutor(2), "skill:ceo")
-        self.assertEqual(core.ejecutor(14), "subagente:auditor")
+            if core.ETAPA[n].puerta == "humana":
+                core.revisar(c, pid, n, "aprobado", "director", "ok", director=True)
+        self.assertEqual(core.siguiente(c, pid)["accion"], "auditar")
+        self.assertEqual(core.ejecutor(5), "subagente:investigador")
+        self.assertEqual(core.ejecutor(6), "skill:guionista")
+        self.assertEqual(core.ejecutor(9), "skill:editor")
+        self.assertEqual(core.ejecutor(10), "subagente:auditor")
+        self.assertEqual(core.ejecutor(12), "director")
 
     def test_panel_linea(self):
         from estudio import panel
@@ -222,7 +222,7 @@ class TestAvanzarYPanel(Base):
         aid = core.registrar_artefacto(c, pid, "informe", "producciones/x/a b.md", "investigador", 1)
         core.entregar(c, pid, 1, "investigador", [aid])
         l = panel.estado(c, "prueba")["producciones"][0]["linea"]
-        self.assertEqual(len(l), 21)
+        self.assertEqual(len(l), 13)
         self.assertEqual(l[0]["entregables"][0]["url"], panel.REPO_URL + "producciones/x/a%20b.md")
         self.assertEqual(l[0]["estado"], "cerrado")
 
@@ -230,14 +230,75 @@ class TestAvanzarYPanel(Base):
         c, pid = self.con, self.pid
         raiz = core.RAIZ / "producciones" / pid
         (raiz / "guion.md").write_text("x", encoding="utf-8")
-        for n in range(1, 9):
-            core.tarea(c, pid, n)  # existe
-        core.registrar_artefacto(c, pid, "guion", f"producciones/{pid}/guion.md", "guionista", 9)
+        core.registrar_artefacto(c, pid, "guion", f"producciones/{pid}/guion.md", "guionista", 6)
         plan = core.reorganizar(c, pid)
-        self.assertEqual(plan, [(f"producciones/{pid}/guion.md", f"producciones/{pid}/09-guion/guion.md")])
+        self.assertEqual(plan, [(f"producciones/{pid}/guion.md", f"producciones/{pid}/06-guion/guion.md")])
         self.assertTrue((raiz / "guion.md").exists())  # sin aplicar no mueve nada
         core.reorganizar(c, pid, aplicar=True)
-        self.assertTrue((raiz / "09-guion" / "guion.md").exists())
-        self.assertEqual(c.execute("SELECT ruta FROM artefactos").fetchone()[0], f"producciones/{pid}/09-guion/guion.md")
-        self.assertIn("[guion v1](09-guion/guion.md)", (raiz / "README.md").read_text(encoding="utf-8"))
-        self.assertEqual(core.carpeta_etapa(pid, 13).name, "13-edicion")
+        self.assertTrue((raiz / "06-guion" / "guion.md").exists())
+        self.assertEqual(c.execute("SELECT ruta FROM artefactos").fetchone()[0], f"producciones/{pid}/06-guion/guion.md")
+        self.assertIn("[guion v1](06-guion/guion.md)", (raiz / "README.md").read_text(encoding="utf-8"))
+        self.assertEqual(core.carpeta_etapa(pid, 9).name, "09-edicion")
+
+
+class TestMigracion13(Base):
+    """Una producción con el flujo antiguo de 21 etapas pasa al de 13 sin perder historial."""
+    def antigua(self):
+        c, pid = self.con, self.pid
+        c.execute("DELETE FROM tareas WHERE produccion_id=?", (pid,))
+        for n in range(1, 22):
+            puerta = "humana" if n in (3, 6, 16, 17, 18) else "auditoria" if n in (8, 14) else "ninguna"
+            c.execute("INSERT INTO tareas (produccion_id, etapa, nombre, responsable, puerta, creado)"
+                      " VALUES (?,?,?,?,?,?)", (pid, n, f"antigua {n}", "ceo", puerta, core.ahora()))
+        for n in range(1, 14):
+            for s in ("en_curso", "entregado", "cerrado"):
+                core._cambiar_estado(c, core.tarea(c, pid, n), s, "ceo")
+        t3 = core.tarea(c, pid, 3)["id"]
+        c.execute("INSERT INTO artefactos (id, produccion_id, tarea_id, tipo, ruta, version, autor, sha256, creado)"
+                  " SELECT 'A1', ?, ?, 'ficha', ?, 1, 'ceo', 'h', ? ", (pid, t3, f"producciones/{pid}/03-seleccion-tema/ficha.md", core.ahora()))
+        core.registrar_decision(c, pid=pid, tipo="aprobacion_etapa_3", decidio="director", descripcion="tema")
+        carpeta = core.RAIZ / "producciones" / pid / "03-seleccion-tema"
+        carpeta.mkdir(parents=True, exist_ok=True)
+        (carpeta / "ficha.md").write_text("x", encoding="utf-8")
+        c.commit()
+
+    def test_migrar(self):
+        c, pid = self.con, self.pid
+        self.antigua()
+        plan = core.migrar_13(c, pid)  # sin aplicar no cambia nada
+        self.assertEqual(c.execute("SELECT COUNT(*) FROM tareas WHERE produccion_id=?", (pid,)).fetchone()[0], 21)
+        self.assertTrue(any("→" in x for x in plan))
+        hist_antes = c.execute("SELECT COUNT(*) FROM historial_tareas").fetchone()[0]
+        core.migrar_13(c, pid, aplicar=True)
+        _, tareas = core.estado_produccion(c, pid)
+        self.assertEqual([t["estado"] for t in tareas], ["cerrado"] * 9 + ["pendiente"] * 4)
+        self.assertEqual([t["etapa"] for t in tareas], list(range(1, 14)))
+        self.assertEqual(c.execute("SELECT COUNT(*) FROM historial_tareas").fetchone()[0], hist_antes)
+        self.assertEqual(core.produccion(c, pid)["etapa_actual"], 10)
+        ruta = c.execute("SELECT ruta FROM artefactos WHERE id='A1'").fetchone()[0]
+        self.assertEqual(ruta, f"producciones/{pid}/02-seleccion-tema/ficha.md")
+        self.assertTrue((core.RAIZ / ruta).exists())
+        self.assertFalse((core.RAIZ / "producciones" / pid / "03-seleccion-tema").exists())
+        mig = core.migrada_13(c, pid)
+        d = c.execute("SELECT * FROM decisiones WHERE tipo='aprobacion_etapa_3'").fetchone()
+        self.assertEqual(core.etapa_de_decision(d["tipo"], d["creado"], mig), 2)
+        with self.assertRaises(ErrorEstudio):
+            core.migrar_13(c, pid, aplicar=True)
+        self.assertEqual(core.siguiente(c, pid)["etapa"], 10)
+
+
+class TestYoutube(Base):
+    def test_metadatos_y_privado(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("yt", core.RAIZ / "scripts" / "youtube_subir.py")
+        yt = importlib.util.module_from_spec(spec); spec.loader.exec_module(yt)
+        md = self.dir / "metadatos.md"
+        md.write_text("| Campo | Valor |\n|---|---|\n| Título (definitivo) | **Un título** |\n| Categoría | Educación |\n"
+                      "| Contenido alterado o sintético | **Sí**: recreaciones |\n| Etiquetas | a, b |\n\n"
+                      "## Descripción\n\n```\nTexto\n```\n", encoding="utf-8")
+        meta = yt.leer_metadatos(md)
+        self.assertEqual((meta["titulo"], meta["etiquetas"], meta["categoria"], meta["sintetico"]),
+                         ("Un título", ["a", "b"], "27", True))
+        self.assertEqual(yt.cuerpo_subida(meta)["status"]["privacyStatus"], "private")
+        with self.assertRaises(yt.ErrorSubida):  # sin APRUEBO <ID> 12 no se publica
+            yt.orden_del_director(self.con, self.pid)

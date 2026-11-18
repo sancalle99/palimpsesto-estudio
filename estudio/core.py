@@ -69,7 +69,7 @@ def respaldar(con) -> Path:
 
 
 # ---------------------------------------------------------------------------
-# Flujo de producción: 21 etapas
+# Flujo de producción: 13 etapas (DEC-0014; antes eran 21, ver MAPA_21_A_13)
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class Etapa:
@@ -80,37 +80,39 @@ class Etapa:
 
 
 ETAPAS: list[Etapa] = [
-    Etapa(1, "Investigación de oportunidades", "investigador"),
-    Etapa(2, "Presentación de temas al CEO", "ceo"),
-    Etapa(3, "Selección del tema", "director", "humana"),
-    Etapa(4, "Propuesta de tres perspectivas narrativas", "investigador"),
-    Etapa(5, "Observaciones editoriales del Director", "director"),
-    Etapa(6, "Aprobación de la perspectiva", "director", "humana"),
-    Etapa(7, "Investigación profunda", "investigador"),
-    Etapa(8, "Expediente de fuentes", "investigador", "auditoria"),
-    Etapa(9, "Escritura del guion", "guionista"),
-    Etapa(10, "Storyboard", "productor"),
-    Etapa(11, "Generación de prompts", "productor"),
-    Etapa(12, "Producción audiovisual", "productor", "presupuesto"),
-    Etapa(13, "Edición", "editor"),
-    Etapa(14, "Auditoría independiente", "auditor", "auditoria"),
-    Etapa(15, "Correcciones", "ceo"),
-    Etapa(16, "Aprobación humana del video", "director", "humana"),
-    Etapa(17, "Publicación", "director", "humana"),
-    Etapa(18, "Creación y distribución de Shorts", "editor", "humana"),
-    Etapa(19, "Análisis de métricas", "analista"),
-    Etapa(20, "Informe financiero", "cfo"),
-    Etapa(21, "Retroalimentación al sistema", "ceo"),
+    Etapa(1, "Oportunidades y temas", "investigador"),
+    Etapa(2, "Selección del tema", "director", "humana"),
+    Etapa(3, "Tres enfoques narrativos", "investigador"),
+    Etapa(4, "Aprobación del enfoque y observaciones", "director", "humana"),
+    Etapa(5, "Investigación y expediente", "investigador", "auditoria"),
+    Etapa(6, "Guion y títulos", "guionista"),
+    Etapa(7, "Storyboard y prompts", "productor"),
+    Etapa(8, "Producción audiovisual", "productor", "presupuesto"),
+    Etapa(9, "Edición, Shorts y subida privada", "editor"),
+    Etapa(10, "Auditoría y correcciones", "auditor", "auditoria"),
+    Etapa(11, "Aprobación del vídeo, Shorts y título final", "director", "humana"),
+    Etapa(12, "Publicación a la hora recomendada", "director", "humana"),
+    Etapa(13, "Cierre: métricas, costos y lecciones", "analista"),
 ]
 ETAPA = {e.n: e for e in ETAPAS}
-ETAPAS_QUE_EXIGEN_APORTES_RESUELTOS = {9, 16}
+N_ETAPAS = len(ETAPAS)
+ETAPAS_QUE_EXIGEN_APORTES_RESUELTOS = {6, 11}
+ETAPA_AUDITORIA_FINAL, ETAPA_APROBACION_FINAL = 10, 11
+
+# Migración desde el flujo antiguo de 21 etapas (DEC-0014). Los Shorts (antes 18) se hacen en la 9
+# y se aprueban en la 11; al migrar, la tarea antigua 18 se funde con la 11 (aún pendiente).
+MAPA_21_A_13 = {1: 1, 2: 1, 3: 2, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 7, 11: 7, 12: 8, 13: 9,
+                14: 10, 15: 10, 16: 11, 17: 12, 18: 11, 19: 13, 20: 13, 21: 13}
+CARPETAS_21 = {1: "01-oportunidades", 2: "02-temas", 3: "03-seleccion-tema", 4: "04-enfoques", 5: "05-observaciones",
+               6: "06-aprobacion-enfoque", 7: "07-investigacion", 8: "08-expediente", 9: "09-guion",
+               10: "10-storyboard", 11: "11-prompts", 12: "12-produccion", 13: "13-edicion", 14: "14-auditoria",
+               15: "15-correcciones", 16: "16-aprobacion-video", 17: "17-publicacion", 18: "18-shorts",
+               19: "19-metricas", 20: "20-informe-financiero", 21: "21-retroalimentacion"}
 
 # Carpeta de entregables de cada etapa: producciones/<ID>/NN-nombre/ (recursos/ y render/ quedan en la raíz).
-CARPETAS = {1: "01-oportunidades", 2: "02-temas", 3: "03-seleccion-tema", 4: "04-enfoques", 5: "05-observaciones",
-            6: "06-aprobacion-enfoque", 7: "07-investigacion", 8: "08-expediente", 9: "09-guion", 10: "10-storyboard",
-            11: "11-prompts", 12: "12-produccion", 13: "13-edicion", 14: "14-auditoria", 15: "15-correcciones",
-            16: "16-aprobacion-video", 17: "17-publicacion", 18: "18-shorts", 19: "19-metricas",
-            20: "20-informe-financiero", 21: "21-retroalimentacion"}
+CARPETAS = {1: "01-oportunidades", 2: "02-seleccion-tema", 3: "03-enfoques", 4: "04-aprobacion-enfoque",
+            5: "05-expediente", 6: "06-guion", 7: "07-storyboard", 8: "08-produccion", 9: "09-edicion",
+            10: "10-auditoria", 11: "11-aprobacion", 12: "12-publicacion", 13: "13-cierre"}
 
 
 def carpeta_etapa(pid, etapa, crear=True) -> Path:
@@ -279,22 +281,16 @@ def revisar(con, pid, etapa, resultado, actor, nota, director=False):
         raise ErrorEstudio(f"La etapa {etapa} la resuelve únicamente el agente auditor.")
     if resultado not in ("aprobado", "correcciones", "rechazado"):
         raise ErrorEstudio("Resultado debe ser aprobado | correcciones | rechazado.")
-    if etapa == 16 and resultado == "aprobado":
+    if etapa == ETAPA_APROBACION_FINAL and resultado == "aprobado":
         _exigir_aportes_resueltos(con, pid)
     _cambiar_estado(con, t, resultado, actor, nota)
     if resultado == "aprobado":
         _cambiar_estado(con, tarea(con, pid, etapa), "cerrado", actor)
-        if etapa == 14:
-            t15 = tarea(con, pid, 15)
-            if t15["estado"] == "pendiente":
-                for s in ("en_curso", "entregado", "cerrado"):
-                    _cambiar_estado(con, tarea(con, pid, 15), s, "sistema",
-                                    "sin correcciones pendientes" if s == "cerrado" else None)
         if e.puerta == "humana":
             registrar_decision(con, pid=pid, tipo=f"aprobacion_etapa_{etapa}",
                                descripcion=f"Aprobada etapa {etapa}: {e.nombre}",
                                decidio="director", justificacion=nota, commit=False)
-    elif etapa == 14:
+    elif etapa == ETAPA_AUDITORIA_FINAL:
         p = produccion(con, pid)
         ciclos = p["ciclos_correccion"] + 1
         con.execute("UPDATE producciones SET ciclos_correccion=? WHERE id=?", (ciclos, pid))
@@ -318,7 +314,7 @@ def estado_produccion(con, pid):
 
 
 # Etapas que corren en un subagente (independencia o volumen); el resto, en la sesión principal (modo económico).
-ETAPAS_EN_SUBAGENTE = {7, 9, 10, 11, 12, 13, 14, 18, 19, 20}
+ETAPAS_EN_SUBAGENTE = {5, 10}
 
 
 def ejecutor(etapa: int) -> str:
@@ -337,7 +333,7 @@ def siguiente(con, pid) -> dict:
     t = con.execute("SELECT * FROM tareas WHERE produccion_id=? AND estado!='cerrado' ORDER BY etapa LIMIT 1",
                     (pid,)).fetchone()
     if t is None:
-        return {"pid": pid, "accion": "completa", "detalle": "Las 21 etapas están cerradas."}
+        return {"pid": pid, "accion": "completa", "detalle": f"Las {N_ETAPAS} etapas están cerradas."}
     e = ETAPA[t["etapa"]]
     r = {"pid": pid, "etapa": e.n, "nombre": e.nombre, "responsable": e.responsable, "puerta": e.puerta,
          "estado": t["estado"], "ejecutor": ejecutor(e.n), "nota": None}
@@ -369,6 +365,105 @@ def siguiente(con, pid) -> dict:
     return r
 
 
+def migrada_13(con, pid):
+    """Fecha en que la producción pasó del flujo de 21 al de 13 etapas (None si nació con 13)."""
+    d = con.execute("SELECT creado FROM decisiones WHERE produccion_id=? AND tipo='migracion_13_etapas'",
+                    (pid,)).fetchone()
+    return d["creado"] if d else None
+
+
+def etapa_de_decision(tipo, creado, migracion):
+    """Etapa (flujo de 13) a la que pertenece una decisión 'aprobacion_etapa_N'; las anteriores a la
+    migración usan la numeración antigua de 21 etapas y se traducen con MAPA_21_A_13."""
+    if not tipo.startswith("aprobacion_etapa_"):
+        return None
+    n = int(tipo.rsplit("_", 1)[1])
+    return MAPA_21_A_13.get(n, n) if migracion and creado <= migracion else n
+
+
+def migrar_13(con, pid, aplicar=False) -> list:
+    """Pasa una producción del flujo de 21 etapas al de 13 (DEC-0014) sin perder historial:
+    las tareas antiguas que se funden ceden sus artefactos e historial a la nueva; la etapa queda
+    cerrada si todas sus partes lo estaban. Mueve las carpetas NN-etapa. Sin aplicar=True solo informa."""
+    import subprocess
+    produccion(con, pid)
+    tareas = con.execute("SELECT * FROM tareas WHERE produccion_id=? ORDER BY etapa", (pid,)).fetchall()
+    if len(tareas) == N_ETAPAS or migrada_13(con, pid):
+        raise ErrorEstudio(f"{pid} ya usa el flujo de {N_ETAPAS} etapas.")
+    if len(tareas) != 21:
+        raise ErrorEstudio(f"{pid} tiene {len(tareas)} etapas; se esperaban 21.")
+    grupos = {}
+    for t in tareas:
+        grupos.setdefault(MAPA_21_A_13[t["etapa"]], []).append(t)
+    plan, movs = [], []
+    for e in ETAPAS:
+        partes = grupos[e.n]
+        abiertas = [t for t in partes if t["estado"] != "cerrado"]
+        estado = abiertas[0]["estado"] if abiertas else "cerrado"
+        if abiertas and abiertas[0]["estado"] == "pendiente" and len(abiertas) < len(partes):
+            estado = "en_curso"  # parte hecha y parte pendiente: la etapa nueva está en curso
+        plan.append((e, partes, estado))
+    raiz = RAIZ / "producciones" / pid
+    for vieja, nombre in CARPETAS_21.items():
+        o = raiz / nombre
+        if o.is_dir():
+            for f in sorted(x for x in o.rglob("*") if x.is_file()):
+                d = raiz / CARPETAS[MAPA_21_A_13[vieja]] / f.relative_to(o)
+                if d != f:
+                    movs.append((f, d))
+    destinos = [d for _, d in movs]
+    if len(set(destinos)) != len(destinos) or any(d.exists() for d in destinos):
+        raise ErrorEstudio("Dos archivos irían al mismo destino o el destino ya existe; renombre antes de migrar.")
+    informe = [f"{e.n:>2} {e.nombre} ← antes {'+'.join(str(t['etapa']) for t in partes)}: {estado}"
+               for e, partes, estado in plan]
+    informe += [f"mover {f.relative_to(RAIZ)} → {d.relative_to(RAIZ)}" for f, d in movs]
+    if not aplicar:
+        return informe
+    con.execute("UPDATE tareas SET etapa=etapa+100 WHERE produccion_id=?", (pid,))
+    for e, partes, estado in plan:
+        base, resto = partes[0], partes[1:]
+        ents = []
+        for t in partes:
+            ents += [a for a in json.loads(t["entregables"]) if a not in ents]
+        fechas = lambda c, f: f([t[c] for t in partes if t[c]], default=None)
+        for t in resto:
+            con.execute("UPDATE historial_tareas SET tarea_id=? WHERE tarea_id=?", (base["id"], t["id"]))
+            con.execute("UPDATE artefactos SET tarea_id=? WHERE tarea_id=?", (base["id"], t["id"]))
+            con.execute("DELETE FROM tareas WHERE id=?", (t["id"],))
+        con.execute("UPDATE tareas SET etapa=?, nombre=?, responsable=?, puerta=?, estado=?, entregables=?,"
+                    " iniciado=?, entregado=?, cerrado=? WHERE id=?",
+                    (e.n, e.nombre, e.responsable, e.puerta, estado, json.dumps(ents), fechas("iniciado", min),
+                     fechas("entregado", max) if estado == "cerrado" else None,
+                     fechas("cerrado", max) if estado == "cerrado" else None, base["id"]))
+    for vieja, nueva in MAPA_21_A_13.items():
+        con.execute("UPDATE costos SET etapa=? WHERE produccion_id=? AND etapa=?", (nueva + 100, pid, vieja))
+    con.execute("UPDATE costos SET etapa=etapa-100 WHERE produccion_id=? AND etapa>100", (pid,))
+    actual = next((e.n for e, _, est in plan if est != "cerrado"), N_ETAPAS)
+    con.execute("UPDATE producciones SET etapa_actual=? WHERE id=?", (actual, pid))
+    for f, d in movs:
+        viejo, nuevo = str(f.relative_to(RAIZ)), str(d.relative_to(RAIZ))
+        d.parent.mkdir(parents=True, exist_ok=True)
+        if subprocess.run(["git", "ls-files", "--error-unmatch", viejo], cwd=RAIZ, capture_output=True).returncode == 0:
+            subprocess.run(["git", "mv", viejo, nuevo], cwd=RAIZ, check=True)
+        else:
+            f.rename(d)
+        con.execute("UPDATE artefactos SET ruta=? WHERE ruta=?", (nuevo, viejo))
+        con.execute("UPDATE recursos SET archivo=? WHERE archivo=?", (nuevo, viejo))
+    for nombre in CARPETAS_21.values():
+        o = raiz / nombre
+        if o.is_dir() and not any(o.rglob("*")):
+            for sub in sorted(o.rglob("*"), reverse=True):
+                sub.rmdir()
+            o.rmdir()
+    registrar_decision(con, pid=pid, tipo="migracion_13_etapas", decidio="ceo",
+                       descripcion=f"{pid} migrada del flujo de 21 etapas al de 13 (DEC-0014). Etapa actual: {actual}.",
+                       justificacion="Aprobado por el Director: «Apruebo las 13 etapas, el título y la subida autónoma».",
+                       commit=False)
+    con.commit()
+    escribir_indice(con, pid)
+    return informe
+
+
 # ---------------------------------------------------------------------------
 # Índice y orden de archivos por etapa
 # ---------------------------------------------------------------------------
@@ -381,9 +476,9 @@ def escribir_indice(con, pid) -> Path:
     for a in con.execute("SELECT a.*, t.etapa FROM artefactos a JOIN tareas t ON t.id=a.tarea_id"
                          " WHERE a.produccion_id=? ORDER BY a.creado", (pid,)):
         arts.setdefault(a["etapa"], {})[a["ruta"]] = a  # una fila por archivo: su última versión
-    decs = {}
+    decs, mig = {}, migrada_13(con, pid)
     for d in con.execute("SELECT * FROM decisiones WHERE produccion_id=? AND tipo LIKE 'aprobacion_etapa_%'", (pid,)):
-        decs.setdefault(int(d["tipo"].rsplit("_", 1)[1]), []).append(d["id"])
+        decs.setdefault(etapa_de_decision(d["tipo"], d["creado"], mig), []).append(d["id"])
     pref = f"producciones/{pid}/"
     lin = [f"# {pid} · {p['titulo']}", "",
            "_Índice generado desde la base de datos (`python3 -m estudio indice`). No editar a mano._", "",

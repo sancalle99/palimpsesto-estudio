@@ -15,6 +15,9 @@
 | DEC-007 | 18-nov-2026 | Sin dominio web por ahora: foco exclusivo en YouTube y su monetización | Director | ✅ Aprobada |
 | DEC-008 | 18-nov-2026 | Canal confirmado: Palimpsesto · @Palimpsestostudio · UCqGznx_OIKoZWTrORoe4xcw | Director | ✅ Verificado |
 | DEC-009 | 18-nov-2026 | Arquitectura aprobada; inicio de la Fase 2 | Director | ✅ Aprobada |
+| DEC-0014 | 18-nov-2026 | Flujo de **13 etapas** (antes 21); puertas 🔒 2, 4, 11 y 12; PAL-2026-001 migrada con `migrar-13` sin perder historial | Director | ✅ Aplicada |
+| DEC-0015 | 18-nov-2026 | Título: el Guionista propone 5 (etapa 6), el Editor elige con la miniatura (9) y el Director aprueba (11) | Director | ✅ Aplicada |
+| DEC-0016 | 18-nov-2026 | El Editor sube en privado (`scripts/youtube_subir.py`) y solo publica o programa tras `APRUEBO <ID> 12`; el Analista recomienda la hora. Credenciales de la API (YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN): en `.env` o gestor de secretos, Fase 7 | Director | ✅ Aplicada · ⏳ credenciales Fase 7 |
 
 ## Inventario de activos
 

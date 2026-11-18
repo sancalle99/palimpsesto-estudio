@@ -54,11 +54,11 @@ def main(argv=None):
     s.add_argument("--actor", required=True, choices=AGENTES); s.add_argument("--artefacto", action="append", default=[])
     s.add_argument("--nota")
 
-    s = sub.add_parser("auditar", help="resuelve etapas con puerta de auditoría (8, 14)")
+    s = sub.add_parser("auditar", help="resuelve etapas con puerta de auditoría (5, 10)")
     s.add_argument("pid"); s.add_argument("etapa", type=int)
     s.add_argument("resultado", choices=("aprobado", "correcciones", "rechazado")); s.add_argument("--nota", required=True)
 
-    s = sub.add_parser("aprobar", help="[DIRECTOR] resuelve puertas humanas (3, 6, 16, 17, 18)")
+    s = sub.add_parser("aprobar", help="[DIRECTOR] resuelve puertas humanas (2, 4, 11, 12)")
     s.add_argument("pid"); s.add_argument("etapa", type=int)
     s.add_argument("resultado", choices=("aprobado", "correcciones", "rechazado")); s.add_argument("--nota", default="")
 
@@ -113,6 +113,8 @@ def main(argv=None):
     s = sub.add_parser("indice", help="regenera producciones/<ID>/README.md"); s.add_argument("pid", nargs="?")
     s = sub.add_parser("reorganizar", help="mueve entregables a sus carpetas de etapa (sin --aplicar solo muestra el plan)")
     s.add_argument("pid"); s.add_argument("--mapa", help="JSON {ruta_vieja: ruta_nueva}"); s.add_argument("--aplicar", action="store_true")
+    s = sub.add_parser("migrar-13", help="pasa una producción del flujo de 21 al de 13 etapas (sin --aplicar solo muestra el plan)")
+    s.add_argument("pid"); s.add_argument("--aplicar", action="store_true")
     s = sub.add_parser("restaurar", help="reconstruye la base desde db/respaldo.sql (guarda copia de la actual)")
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
@@ -146,7 +148,7 @@ def _ejecutar(con, a):
         sql = "SELECT p.*, c.slug FROM producciones p JOIN canales c ON c.id=p.canal_id"
         filas = con.execute(sql + (" WHERE c.slug=?" if a.canal else ""), ((a.canal,) if a.canal else ())).fetchall()
         for p in filas:
-            print(f"{p['id']}  [{p['estado']}] etapa {p['etapa_actual']:>2}/21  {core.gasto_produccion(con, p['id']):6.2f}/"
+            print(f"{p['id']}  [{p['estado']}] etapa {p['etapa_actual']:>2}/{core.N_ETAPAS}  {core.gasto_produccion(con, p['id']):6.2f}/"
                   f"{p['presupuesto_usd']:.0f} USD  {p['titulo']}")
     elif c == "estado":
         p, tareas = core.estado_produccion(con, a.pid)
@@ -241,6 +243,10 @@ def _ejecutar(con, a):
         for v, n in hechos:
             print(f"{'✔' if a.aplicar else '·'} {v}  →  {n}")
         print("✔ Hecho; índice regenerado." if a.aplicar else f"Plan: {len(hechos)} archivos. Añada --aplicar para moverlos.")
+    elif c == "migrar-13":
+        for linea in core.migrar_13(con, a.pid, a.aplicar):
+            print(f"{'✔' if a.aplicar else '·'} {linea}")
+        print("✔ Migrada; índice regenerado." if a.aplicar else "Plan. Añada --aplicar para migrar.")
     elif c == "siguiente":
         r = core.siguiente(con, a.pid)
         if a.json:

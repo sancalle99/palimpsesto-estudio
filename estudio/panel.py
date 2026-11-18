@@ -71,7 +71,7 @@ def estado(con, slug_canal="palimpsesto", cuota=20.0) -> dict:
 
 
 def linea(con, pid, tareas) -> list:
-    """Las 21 etapas de una producción con responsable, fechas, entregables y decisiones del Director."""
+    """Las etapas de una producción con responsable, fechas, entregables y decisiones del Director."""
     esc = lambda x: html.escape(x or "")
     arts, hist, decs = {}, {}, {}
     for a in con.execute("SELECT * FROM artefactos WHERE produccion_id=? ORDER BY creado", (pid,)):
@@ -83,8 +83,9 @@ def linea(con, pid, tareas) -> list:
         hist.setdefault(h["tarea_id"], []).append({
             "t": h["creado"], "actor": h["actor"], "nota": esc(h["nota"]),
             "txt": f"{ESTADOS_LEGIBLES.get(h['de_estado'], h['de_estado'] or '—')} → {ESTADOS_LEGIBLES.get(h['a_estado'], h['a_estado'])}"})
+    mig = core.migrada_13(con, pid)
     for d in con.execute("SELECT * FROM decisiones WHERE produccion_id=? ORDER BY creado", (pid,)):
-        n = int(d["tipo"].rsplit("_", 1)[1]) if d["tipo"].startswith("aprobacion_etapa_") else None
+        n = core.etapa_de_decision(d["tipo"], d["creado"], mig)
         decs.setdefault(n, []).append({"id": d["id"], "decidio": d["decidio"], "desc": esc(d["descripcion"]),
                                        "just": esc(d["justificacion"]), "t": d["creado"]})
     aportes = [{"id": x["id"], "tipo": x["tipo"], "texto": esc(x["texto"]), "estado": x["estado"],
@@ -102,7 +103,7 @@ def linea(con, pid, tareas) -> list:
             "estado": t["estado"], "iniciado": t["iniciado"], "entregado": t["entregado"], "cerrado": t["cerrado"],
             "actores": actores, "entregables": arts.get(t["id"], []), "historial": h,
             "decisiones": decs.get(t["etapa"], []),
-            "aportes": aportes if t["etapa"] == 5 else [],
+            "aportes": aportes if t["etapa"] == 4 else [],
         })
     # decisiones de la producción sin etapa propia: van a la primera etapa que seguía abierta cuando se tomaron
     for d in decs.get(None, []):
