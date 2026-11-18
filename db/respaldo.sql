@@ -52,6 +52,7 @@ INSERT INTO "artefactos" VALUES('PAL-2026-001-A017','PAL-2026-001',9,'escaleta',
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A018','PAL-2026-001',9,'solicitud_investigacion','producciones/PAL-2026-001/solicitudes_investigacion.md',2,'9068853b4df91ff858ab98344a643f276cb0ddc30c75fb2f82cb4cc1fc9978a1','guionista','2026-11-18T01:39:31+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A019','PAL-2026-001',10,'storyboard','producciones/PAL-2026-001/storyboard.md',1,'102a7abd79521872c98538a5226adedfef10b3db522cffd4d6fcbcd94dc92b7a','productor','2026-11-18T01:41:57+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A020','PAL-2026-001',11,'prompts','producciones/PAL-2026-001/prompts/prompts_v1.md',1,'9c6696b4a5a288840ecae63079c1210997a2ab39d83b93d55a37395e19fb12e2','productor','2026-11-18T01:44:02+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A021','PAL-2026-001',12,'storyboard','producciones/PAL-2026-001/storyboard.md',2,'860b2eb1701ec5fd412d731e44cf6ba68924bd9755c7fa4d2a2e9998d8e338de','productor','2026-11-18T15:41:44+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -346,6 +347,7 @@ INSERT INTO "historial_tareas" VALUES(44,10,'entregado','cerrado','productor','c
 INSERT INTO "historial_tareas" VALUES(45,11,'pendiente','en_curso','productor',NULL,'2026-11-18T01:43:43+00:00');
 INSERT INTO "historial_tareas" VALUES(46,11,'en_curso','entregado','productor','Prompts v1: P-01 a P-05 con bloque fijo de estilo y negativo común; sin rostros ni personas reales','2026-11-18T01:44:02+00:00');
 INSERT INTO "historial_tareas" VALUES(47,11,'entregado','cerrado','productor','cierre automático (sin puerta)','2026-11-18T01:44:02+00:00');
+INSERT INTO "historial_tareas" VALUES(48,12,'pendiente','en_curso','productor',NULL,'2026-11-18T15:36:22+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -365,7 +367,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',11,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:44:02+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',12,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -379,6 +381,17 @@ CREATE TABLE recursos (
   archivo       TEXT,
   creado        TEXT NOT NULL
 );
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0001','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/0000-100r/0000-100r_Arch53v_Heiberg_visible_stitch.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/0000-100r_Arch53v_Heiberg_visible_stitch.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0002','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/057r-064v/057r-064v_Arch16r_Sinar_true_pack8.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0003','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/057r-064v/057r-064v_Arch16r_XRF_FeFront_registered.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0004','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/057v-064r/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0005','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/077r-076v/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/077r-076v_Alex05r_Sinar_pseudo_sharpie.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0006','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/110r-105v/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0007','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/110r-105v/110r-105v_Arch27r_Sinar_true_pack8.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/110r-105v_Arch27r_Sinar_true_pack8.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0008','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/123r-118v/123r-118v_Arch61r_Sinar_true_pack8.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/123r-118v_Arch61r_Sinar_true_pack8.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0009','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/145r-144v/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg','2026-11-18T15:40:48+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0010','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/158r-159v/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg','2026-11-18T15:40:49+00:00');
+INSERT INTO "recursos" VALUES('PAL-2026-001-R0011','PAL-2026-001','imagen','licencia','The Archimedes Palimpsest Project / Walters Art Museum','CC BY 3.0 Unported (verificada en la metadata XMP de la imagen y en el README del 29-oct-2008)','https://archimedespalimpsest.net/Data/158r-159v/158r-159v_Arch28r_Sinar_true_pack8.jpg',NULL,0,'producciones/PAL-2026-001/recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg','2026-11-18T15:40:49+00:00');
 CREATE TABLE tareas (
   id            INTEGER PRIMARY KEY,
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -408,7 +421,7 @@ INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investig
 INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:32:03+00:00','2026-11-18T01:39:31+00:00','2026-11-18T01:39:31+00:00',NULL);
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:40:57+00:00','2026-11-18T01:41:57+00:00','2026-11-18T01:41:57+00:00',NULL);
 INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:43:43+00:00','2026-11-18T01:44:02+00:00','2026-11-18T01:44:02+00:00',NULL);
-INSERT INTO "tareas" VALUES(12,'PAL-2026-001',12,'Producción audiovisual','productor','presupuesto','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(12,'PAL-2026-001',12,'Producción audiovisual','productor','presupuesto','en_curso','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00',NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(13,'PAL-2026-001',13,'Edición','editor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(14,'PAL-2026-001',14,'Auditoría independiente','auditor','auditoria','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(15,'PAL-2026-001',15,'Correcciones','ceo','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);

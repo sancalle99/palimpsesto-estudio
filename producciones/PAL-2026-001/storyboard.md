@@ -81,3 +81,25 @@
 **Coherencia histórica:** ◌ vestuario, mobiliario y ubicación de Myronas no constan en el expediente, así que P-01, P-02 y P-05 muestran solo manos y objetos genéricos de taller de copista, sin arquitectura identificable.
 **Estimación para la etapa 12:** 5 prompts × 4 variantes = 20 imágenes × 0,067 USD ≈ **1,34 USD** (tarifa por verificar). Narración local con Kokoro (0 USD). Música de la YouTube Audio Library (0 USD). Antes del lote: `presupuesto-verificar PAL-2026-001 1.50`.
 **Archivo por localizar (etapa 12):** planos 02, 05, 06, 11, 13, 14, 21, 22, 24, 31, 32, 36, 42 y 50 en las imágenes del proyecto; 16, 18 y 29 en Wikimedia u otros repositorios abiertos. Cada uno se registra con `python -m estudio recurso`.
+
+## Asignación de recursos de archivo (etapa 12 · v1.1 · 18-nov-2026)
+
+Licencia verificada en la fuente primaria: README del 29-oct-2008 y metadata XMP de cada imagen, **CC BY 3.0 Unported**. Crédito en pantalla y en la descripción: *"Imágenes: The Archimedes Palimpsest Project, Walters Art Museum · CC BY 3.0"*. Uso solicitado (no obligatorio): enviar al Walters copia de los artículos publicados basados en los datos. Folios identificados con el índice oficial `Documents/Internal/FolioIndex.txt` (Noel y Emery, 2011).
+
+| Plano | Recurso | Archivo (folio del libro de oraciones · folio de Arquímedes) | Nota |
+|---|---|---|---|
+| 05, 21 | R0011 | 158r-159v · Arch28r, color real | Texto cruzado y manchas visibles. En el plano 21 no se afirma qué causó cada mancha |
+| 06 | R0010 | 158r-159v · Arch28r, pseudocolor procesado | Transición palimpsesto 05 → 06 |
+| 11 | R0006 | 110r-105v · Arch27r, procesado | **Cambio:** "folio de Arquímedes, imagen procesada" (no se garantiza que tenga un diagrama) |
+| 14 | R0008 | 123r-118v · Arch61r, color real | Borde dañado |
+| 18, 19 | R0001 | 0000-100r · Arch53v, fotografía de Heiberg de 1906 (reproducción) | **Cambio:** sustituye a la portada de la edición; rótulo "Fotografía de Heiberg, 1906" |
+| 22 | R0002 | 057r-064v · Arch16r, color real | Evangelista falsificado sobre un folio de *El Método* (índice oficial) |
+| 24, 32 | R0003 | 057r-064v · Arch16r, fluorescencia de rayos X (hierro) | El texto aparece bajo la miniatura. Transición 22 → 24 |
+| 31 | R0007 → R0006 | 110r-105v · Arch27r, color real y procesado | Fundido entre las dos versiones |
+| 36 | R0005 | 077r-076v · Alex05r, procesado | El proyecto cataloga el texto como "Alexander of Aphrodisias" (atribución de 2008-2011). En pantalla se rotula solo "Comentario a las *Categorías*", sin autor (AF-016b) |
+| 42 | R0004 | 057v-064r · Arch16v, procesado | **Cambio:** "folio de *El Método*". ◌ No se ha localizado el folio exacto de la proposición 14; no se resalta ningún pasaje |
+| 50 | R0009 | 145r-144v · Hype02r, procesado | Folio de Hipérides |
+| 51 | R0011, R0005, R0009 | — | Montaje |
+
+**Planos que pasan a gráfico o tarjeta (sin archivo localizado o para ahorrar búsquedas):** 02, el colofón (◌ folio no localizado; tarjeta "14 de abril de 1229 · colofón"); 13, el códice cerrado (no está en el conjunto de datos; diagrama de capas); 16, el retrato de Heiberg (tarjeta); 29, la fachada del Walters (tarjeta).
+**Resolución:** los JPG son vistas previas de 816 × 1088 px. Para el máster en 1080p, el editor usa los TIFF de 8 bits del mismo folio y la misma ruta (`.tif`), que tienen la misma licencia.
