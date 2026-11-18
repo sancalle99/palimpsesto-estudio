@@ -40,6 +40,8 @@ INSERT INTO "artefactos" VALUES('PAL-2026-001-A006','PAL-2026-001',8,'auditoria'
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A007','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/expediente.md',2,'8bc5d0c72ff391fb440c515d02be889e366f0b7ac18a490fa362b453fabb8d48','investigador','2026-11-18T01:20:16+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A008','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/auditoria/etapa_8_v2.md',2,'1fa453150b61aacc94e03d79f976e8f2cf846d8407471d31cdedcd3e9f7bbcfe','auditor','2026-11-18T01:23:17+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A009','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/expediente.md',3,'f6421cf5ceb9324ec02a4508679fe238273087b99bbc11a6cb472ed1119f71f7','investigador','2026-11-18T01:23:17+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A010','PAL-2026-001',8,'auditoria','producciones/PAL-2026-001/auditoria/etapa_8_v3.md',3,'65143637f754aac932527bdfc107b5c3f7df15d906fac64e6952e560c44c68bc','auditor','2026-11-18T01:24:45+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A011','PAL-2026-001',8,'expediente','producciones/PAL-2026-001/expediente.md',4,'d7849622d27e4e877a2d6a21565c3629ca692ae2c509290c189e7f072b66c274','investigador','2026-11-18T01:24:45+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -237,6 +239,8 @@ INSERT INTO "historial_tareas" VALUES(33,8,'en_revision','correcciones','auditor
 INSERT INTO "historial_tareas" VALUES(34,8,'correcciones','en_curso','investigador',NULL,'2026-11-18T01:23:17+00:00');
 INSERT INTO "historial_tareas" VALUES(35,8,'en_curso','entregado','investigador','v3: corrige HAL-13 a HAL-16','2026-11-18T01:23:18+00:00');
 INSERT INTO "historial_tareas" VALUES(36,8,'entregado','en_revision','investigador',NULL,'2026-11-18T01:23:18+00:00');
+INSERT INTO "historial_tareas" VALUES(37,8,'en_revision','aprobado','auditor','v3: HAL-13 resuelto en AF-020b (discrepancia F19/F24 sin prioridad, reserva del cuadrado, F24 añadida); HAL-14/15/16 resueltos. Menores antes de etapa 9: HAL-17 entrada F19 de bibliografia aun con atribucion erronea; HAL-18 ''32 simetrias'' impreciso; HAL-19 reserva ''rectangulo'' sin fuente. F24 no verificada en linea (dominio bloqueado).','2026-11-18T01:24:23+00:00');
+INSERT INTO "historial_tareas" VALUES(38,8,'aprobado','cerrado','auditor',NULL,'2026-11-18T01:24:23+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -256,7 +260,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',8,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:23:18+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',8,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:24:23+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -295,7 +299,7 @@ INSERT INTO "tareas" VALUES(4,'PAL-2026-001',4,'Propuesta de tres perspectivas n
 INSERT INTO "tareas" VALUES(5,'PAL-2026-001',5,'Observaciones editoriales del Director','director','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:23:56+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
 INSERT INTO "tareas" VALUES(6,'PAL-2026-001',6,'Aprobación de la perspectiva','director','humana','cerrado','[]','["PAL-2026-001-A004"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00','2026-11-18T00:25:47+00:00',NULL);
 INSERT INTO "tareas" VALUES(7,'PAL-2026-001',7,'Investigación profunda','investigador','ninguna','cerrado','[]','["PAL-2026-001-A005"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T00:25:48+00:00','2026-11-18T00:26:45+00:00','2026-11-18T00:26:45+00:00',NULL);
-INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','en_revision','[]','["PAL-2026-001-A005", "PAL-2026-001-A007", "PAL-2026-001-A009"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:23:17+00:00','2026-11-18T01:23:18+00:00',NULL,NULL);
+INSERT INTO "tareas" VALUES(8,'PAL-2026-001',8,'Expediente de fuentes','investigador','auditoria','cerrado','[]','["PAL-2026-001-A005", "PAL-2026-001-A007", "PAL-2026-001-A009"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:23:17+00:00','2026-11-18T01:23:18+00:00','2026-11-18T01:24:23+00:00',NULL);
 INSERT INTO "tareas" VALUES(9,'PAL-2026-001',9,'Escritura del guion','guionista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',10,'Storyboard','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(11,'PAL-2026-001',11,'Generación de prompts','productor','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
