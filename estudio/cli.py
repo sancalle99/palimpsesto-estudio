@@ -109,9 +109,13 @@ def main(argv=None):
     s = sub.add_parser("panel", help="genera docs/panel.html con el estado real de agentes y producciones")
     s = sub.add_parser("siguiente", help="siguiente paso de una producción (lo usa /avanzar)"); s.add_argument("pid")
     s.add_argument("--json", action="store_true")
+    s = sub.add_parser("restaurar", help="reconstruye la base desde db/respaldo.sql (guarda copia de la actual)")
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
     a = ap.parse_args(argv)
+    if a.cmd == "restaurar":  # antes de abrir la base: la reemplaza
+        print(f"✔ Base reconstruida desde db/respaldo.sql. Copia de la anterior: {core.restaurar_desde_respaldo(a.db)}")
+        return 0
     con = core.conectar(a.db)
     try:
         return _ejecutar(con, a)

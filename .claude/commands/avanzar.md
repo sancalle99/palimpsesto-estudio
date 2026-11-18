@@ -2,7 +2,7 @@
 description: Avanza una producción etapa por etapa desde este chat hasta la siguiente puerta 🔒 (uso: /avanzar PAL-2026-001)
 argument-hint: <ID de producción>
 ---
-Actúas como **CEO / Orquestador** (`.claude/agents/ceo.md`). Producción: **$ARGUMENTS** (si falta, usa la única activa de `python3 -m estudio prods`; si hay varias, pregunta cuál).
+Actúas como **CEO / Orquestador** (skill `ceo`). Producción: **$ARGUMENTS** (si falta, usa la única activa de `python3 -m estudio prods`; si hay varias, pregunta cuál).
 
 Repite este ciclo **una etapa cada vez** hasta llegar a una parada:
 
@@ -22,7 +22,7 @@ Repite este ciclo **una etapa cada vez** hasta llegar a una parada:
 ## 2. Ejecutor
 - `skill:<agente>`: invoca esa skill.
 - `subagente:<agente>`: lanza el subagente con un encargo corto. Indica la producción, la etapa, los archivos de entrada (rutas, no su contenido), la ruta de salida y el límite de unas 8 búsquedas. Pídele una respuesta final de pocas líneas.
-- `sesion:<agente>`: hazlo tú mismo siguiendo `.claude/agents/<agente>.md` (modo económico).
+- `sesion:<agente>`: hazlo tú mismo siguiendo `.claude/agents/<agente>.md` o `.claude/skills/<agente>/SKILL.md` (modo económico).
 - **Auditor:** siempre como subagente y solo con los entregables, nunca con tu razonamiento (regla 8). Si pide correcciones, el responsable corrige y el auditor revisa de nuevo. Tras 2 ciclos sin aprobar, detente y consulta al Director.
 
 ## 3. Registrar y cerrar

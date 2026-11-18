@@ -45,6 +45,23 @@ def conectar(ruta: str | os.PathLike | None = None) -> sqlite3.Connection:
     return con
 
 
+def restaurar_desde_respaldo(ruta=None) -> Path:
+    """Reconstruye la base desde db/respaldo.sql (p. ej., tras traer trabajo de otra sesión con git).
+    La base anterior se conserva como copia con fecha; no se borra nada."""
+    ruta = Path(ruta or DB_POR_DEFECTO)
+    copia = ruta.with_name(f"{ruta.stem}.antes-{ahora()[:19].replace(':', '')}.sqlite")
+    nueva = ruta.with_name(ruta.stem + ".nueva.sqlite")
+    if nueva.exists():
+        nueva.unlink()
+    con = sqlite3.connect(nueva)
+    con.executescript(RESPALDO.read_text(encoding="utf-8"))
+    con.close()
+    if ruta.exists():
+        ruta.replace(copia)
+    nueva.replace(ruta)
+    return copia
+
+
 def respaldar(con) -> Path:
     """Escribe un volcado SQL de texto (legible y versionable) de toda la base."""
     RESPALDO.write_text("\n".join(con.iterdump()) + "\n", encoding="utf-8")
@@ -655,31 +672,74 @@ def informe_video(con, pid) -> str:
 LOGS_CLAUDE = Path.home() / ".claude" / "projects"
 
 
+def _agente_de_registro(f):
+    """Nombre del agente dueño de un registro de sesión. Los subagentes guardan su transcripción en
+    `<sesión>/subagents/agent-<id>.jsonl`, con un `agent-<id>.meta.json` al lado que indica su tipo."""
+    if f.parent.name != "subagents":
+        return "claude-code"
+    meta = f.with_name(f.stem + ".meta.json")
+    try:
+        d = json.loads(meta.read_text(encoding="utf-8"))
+        tipo = d.get("agentType") or d.get("subagent_type") or d.get("agent_type")
+        if tipo:
+            return str(tipo)
+    except (OSError, ValueError, AttributeError):
+        pass
+    return "subagente"
+
+
+def _mensajes_con_uso(d):
+    """Respuestas con uso de tokens dentro de una línea del registro. Además de la respuesta propia
+    de la línea, algunas versiones incrustan las respuestas de un subagente en eventos de progreso
+    (`data.message.message`) del registro principal."""
+    m = d.get("message")
+    if isinstance(m, dict):
+        yield m, d.get("timestamp")
+    datos = d.get("data")
+    if isinstance(datos, dict) and isinstance(datos.get("message"), dict):
+        anidado = datos["message"]
+        mm = anidado.get("message")
+        if isinstance(mm, dict):
+            yield mm, anidado.get("timestamp") or d.get("timestamp")
+
+
 def importar_consumo_claude(con, slug_canal, pid=None, desde=None, hasta=None, logs=None):
-    """Lee los registros de sesión de Claude Code (JSONL) y registra el uso de tokens de cada
-    respuesta como costo 'suscripcion' (0 USD; la cuota se prorratea aparte). Cada respuesta se
-    identifica por su ID de mensaje: importar dos veces no duplica nada.
+    """Lee los registros de sesión de Claude Code (JSONL) —los de la sesión principal y los de sus
+    subagentes— y registra el uso de tokens de cada respuesta como costo 'suscripcion' (0 USD; la
+    cuota se prorratea aparte). Cada respuesta se identifica por su ID de mensaje: importar dos
+    veces no duplica nada. El campo `agente` distingue la sesión principal de cada subagente.
     Atribución: a `pid` las respuestas entre `desde` y `hasta`; si no hay pid, a GENERAL del mes."""
     c = canal(con, slug_canal)
-    archivos = sorted(Path(logs or LOGS_CLAUDE).glob("*/*.jsonl"))
+    # Búsqueda recursiva: los subagentes escriben en <proyecto>/<sesión>/subagents/*.jsonl
+    archivos = sorted(Path(logs or LOGS_CLAUDE).glob("**/*.jsonl"))
     # Una misma respuesta aparece en varias líneas (una por bloque de contenido) con el uso
     # repetido o parcial: se agrupa por ID de mensaje y se toma el máximo de cada contador.
+    campos = ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
     msgs = {}
     for f in archivos:
-        for linea in f.open(encoding="utf-8"):
-            try:
-                d = json.loads(linea)
-            except json.JSONDecodeError:
-                continue
-            m = d.get("message")
-            if not isinstance(m, dict) or not m.get("usage") or not m.get("id"):
-                continue
-            u, prev = m["usage"], msgs.get(m["id"])
-            campos = ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
-            vals = {k: max(u.get(k, 0) or 0, (prev or {}).get(k, 0)) for k in campos}
-            vals["ts"] = min(d.get("timestamp", "~"), (prev or {}).get("ts", "~"))
-            vals["model"] = m.get("model", "desconocido")
-            msgs[m["id"]] = vals
+        agente_archivo = _agente_de_registro(f)
+        with f.open(encoding="utf-8") as fh:
+            for linea in fh:
+                try:
+                    d = json.loads(linea)
+                except json.JSONDecodeError:
+                    continue
+                if not isinstance(d, dict):
+                    continue
+                for m, ts in _mensajes_con_uso(d):
+                    if not isinstance(m.get("usage"), dict) or not m.get("id"):
+                        continue
+                    u, prev = m["usage"], msgs.get(m["id"]) or {}
+                    vals = {k: max(u.get(k, 0) or 0, prev.get(k, 0)) for k in campos}
+                    vals["ts"] = min(ts or "~", prev.get("ts", "~"))
+                    vals["model"] = m.get("model") or prev.get("model") or "desconocido"
+                    # una respuesta incrustada en el registro principal es de un subagente
+                    es_anidado = m is not d.get("message")
+                    agente = "subagente" if es_anidado and agente_archivo == "claude-code" else agente_archivo
+                    # si la respuesta aparece en varios archivos, gana la etiqueta más específica
+                    rango = lambda a: {None: 0, "claude-code": 1, "subagente": 2}.get(a, 3)  # noqa: E731
+                    vals["agente"] = max(agente, prev.get("agente"), key=rango)
+                    msgs[m["id"]] = vals
     nuevas = dup = 0
     for mid, v in msgs.items():
         ts = v["ts"]
@@ -687,7 +747,7 @@ def importar_consumo_claude(con, slug_canal, pid=None, desde=None, hasta=None, l
             continue
         destino = pid or f"GENERAL-{c['prefijo']}-{ts[:7]}"
         try:
-            registrar_costo(con, destino, "claude-code", "anthropic", v["model"], id_externo=mid,
+            registrar_costo(con, destino, v["agente"], "anthropic", v["model"], id_externo=mid,
                             modalidad="suscripcion", tokens_in=v["input_tokens"], tokens_out=v["output_tokens"],
                             tokens_cache_w=v["cache_creation_input_tokens"], tokens_cache_r=v["cache_read_input_tokens"])
             nuevas += 1

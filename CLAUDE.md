@@ -5,7 +5,9 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 
 ## Cómo se trabaja
 
-- La sesión principal actúa como **CEO / Orquestador** (`.claude/agents/ceo.md`) y delega en los subagentes.
+- La sesión principal actúa como **CEO / Orquestador** (skill `ceo`).
+- **Roles ligeros como skills** (`.claude/skills/`: `ceo`, `guionista`, `productor`, `editor`, `analista`, `cfo`): la sesión principal carga la skill del rol y trabaja en línea, sin subagente.
+- **Subagentes** (`.claude/agents/`): solo `investigador` (etapa 7 y apoyo) y `auditor` (etapas 8 y 14), donde la independencia o la profundidad lo exigen.
 - Los agentes se comunican **solo mediante artefactos**: archivos en `producciones/<ID>/` registrados con `python -m estudio artefacto ...`.
 - El estado del flujo vive en la base de datos y se consulta con `python -m estudio estado <ID>`.
 - Las 21 etapas, sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa.
@@ -67,4 +69,8 @@ python -m estudio siguiente PAL-2026-001    # qué etapa toca y qué acción (lo
 python -m estudio alertas                   # alertas de presupuesto
 python -m estudio informe-video PAL-2026-001
 python -m unittest discover -s tests -v     # pruebas
+/tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/guion.md producciones/<ID>/recursos/audio   # narración + tiempos
+python3 scripts/montaje.py producciones/<ID>/montaje.json                                       # máster, SRT y capítulos
 ```
+
+**Recursos pesados** (`producciones/*/recursos/`, `render/`): no se versionan. En una sesión nueva se regeneran así: las imágenes, descargándolas de las URL registradas con `recurso`; la voz, con `scripts/instalar_voces.sh` y `narrar.py`; el vídeo, con `montaje.py`.

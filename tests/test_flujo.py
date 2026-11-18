@@ -103,6 +103,28 @@ class TestReglas(Base):
         core.prorratear_suscripcion(self.con, "prueba", mes, "anthropic", "claude-pro", 20.0)  # idempotente
         self.assertAlmostEqual(core.gasto_produccion(self.con, self.pid), 20.0)
 
+    def test_consumo_incluye_subagentes(self):
+        import json
+        logs = self.dir / "logs" / "-proyecto"
+        sub = logs / "sesion1" / "subagents"
+        sub.mkdir(parents=True)
+        uso = lambda i, o: {"input_tokens": i, "output_tokens": o}  # noqa: E731
+        lin = lambda mid, u, ts="2026-11-18T10:00:00Z": json.dumps(  # noqa: E731
+            {"timestamp": ts, "message": {"id": mid, "model": "claude-opus-5-5", "usage": u}})
+        (logs / "sesion1.jsonl").write_text(lin("m1", uso(10, 1)) + "\n" + lin("m1", uso(10, 5)) + "\n")
+        (sub / "agent-a1.jsonl").write_text(lin("m2", uso(100, 20)) + "\n")
+        (sub / "agent-a1.meta.json").write_text(json.dumps({"agentType": "auditor"}))
+        (sub / "agent-a2.jsonl").write_text(lin("m3", uso(7, 3)) + "\n")  # sin meta
+        n, d = core.importar_consumo_claude(self.con, "prueba", self.pid, logs=self.dir / "logs")
+        self.assertEqual((n, d), (3, 0))
+        filas = {r["id_externo"]: r for r in self.con.execute(
+            "SELECT id_externo, agente, tokens_in, tokens_out FROM costos WHERE produccion_id=?", (self.pid,))}
+        self.assertEqual(filas["m1"]["tokens_out"], 5)
+        self.assertEqual(filas["m1"]["agente"], "claude-code")
+        self.assertEqual(filas["m2"]["agente"], "auditor")
+        self.assertEqual(filas["m3"]["agente"], "subagente")
+        self.assertEqual(core.importar_consumo_claude(self.con, "prueba", self.pid, logs=self.dir / "logs"), (0, 3))
+
     def test_conciliacion_reemplaza_no_suma(self):
         cid, _ = core.registrar_costo(self.con, self.pid, "productor", "google", "veo-3.1-fast",
                                       "op_9", unidades=30, unidad="segundo")
@@ -190,7 +212,8 @@ class TestAvanzarYPanel(Base):
                 core.revisar(c, pid, 3, "aprobado", "director", "ok", director=True)
         self.assertEqual(core.siguiente(c, pid)["accion"], "iniciar_y_detenerse")
         self.assertEqual(core.ejecutor(7), "subagente:investigador")
-        self.assertEqual(core.ejecutor(2), "sesion:ceo")
+        self.assertEqual(core.ejecutor(2), "skill:ceo")
+        self.assertEqual(core.ejecutor(14), "subagente:auditor")
 
     def test_panel_linea(self):
         from estudio import panel
