@@ -1,0 +1,15 @@
+proveedor,producto,unidad,precio_usd,vigente_desde,fuente
+anthropic,claude-opus-5-5,mtok_in,4.00,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-opus-5-5,mtok_out,20.00,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-opus-5-5,mtok_cache_r,0.20,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-opus-5-5,mtok_cache_w,5.00,2026-11-01,VERIFICAR: supuesto 1.25x entrada (TTL 5 min)
+anthropic,claude-sonnet-5-5,mtok_in,2.00,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-sonnet-5-5,mtok_out,10.00,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-sonnet-5-5,mtok_cache_r,0.10,2026-11-01,Referencia oficial Anthropic (caché 2026-11-03)
+anthropic,claude-sonnet-5-5,mtok_cache_w,2.50,2026-11-01,VERIFICAR: supuesto 1.25x entrada (TTL 5 min)
+anthropic,claude-haiku-5-5,mtok_in,0.10,2026-11-01,Referencia oficial Anthropic (prompts <=100K)
+anthropic,claude-haiku-5-5,mtok_out,0.50,2026-11-01,Referencia oficial Anthropic (prompts <=100K)
+anthropic,claude-pro,mes,20.00,2026-11-01,VERIFICAR: suscripción Claude Pro (impuestos no incluidos)
+google,gemini-3.1-flash-image,imagen,0.067,2026-11-01,VERIFICAR: fuente secundaria (1K)
+google,veo-3.1-fast,segundo,0.10,2026-11-01,VERIFICAR: fuente secundaria
+elevenlabs,creator,mes,22.00,2026-11-01,VERIFICAR: fuente secundaria

@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(python -m estudio aprobar:*)",
+      "Bash(python3 -m estudio aprobar:*)",
+      "Bash(python -m estudio presupuesto-ampliar:*)",
+      "Bash(python3 -m estudio presupuesto-ampliar:*)",
+      "Bash(python3 -m estudio.hook_aprobacion:*)",
+      "Bash(python -m estudio.hook_aprobacion:*)",
+      "Bash(sqlite3:*)",
+      "Edit(db/estudio.sqlite)",
+      "Write(db/estudio.sqlite)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(estudio/hook_aprobacion.py)",
+      "Edit(.claude/settings.json)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python3 -m estudio.hook_aprobacion"
+          }
+        ]
+      }
+    ]
+  }
+}

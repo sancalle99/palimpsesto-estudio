@@ -1,0 +1,22 @@
+# Secretos: nunca en git
+.env
+.env.*
+!.env.example
+*.pem
+client_secret*.json
+token*.json
+
+# Base de datos local (se respalda aparte; contiene el libro de costos)
+db/*.sqlite
+db/*.sqlite-*
+
+# Recursos pesados (van a almacenamiento de objetos)
+producciones/*/recursos/
+producciones/*/render/
+*.mp4
+*.mov
+*.wav
+
+__pycache__/
+*.pyc
+.DS_Store

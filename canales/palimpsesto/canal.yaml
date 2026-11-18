@@ -1,0 +1,25 @@
+slug: palimpsesto
+prefijo: PAL
+nombre: Palimpsesto
+handle: "@Palimpsestostudio"
+youtube_channel_id: UCqGznx_OIKoZWTrORoe4xcw
+cuenta_propietaria: astrakastudio@gmail.com   # solo referencia; credenciales en poder exclusivo del Director
+idioma: es
+mercado: Latinoamérica + España (español neutro)
+eslogan: "La historia, debajo de la historia."
+presupuesto:
+  mensual_usd_meses_1_2: 150
+  mensual_usd_desde_mes_3: 300
+  tope_produccion_usd: 50
+  umbral_alerta: 0.8
+cadencia:
+  meses_1_2: 1 documental cada 2 semanas
+  desde_mes_3: semanal si hay >= 2 episodios en reserva
+  duracion_objetivo_min: [14, 22]
+  shorts_por_documental: 3
+pilares:
+  - Versiones que se impusieron
+  - Descubrimientos que reescribieron la historia
+  - Personajes borrados
+  - Enigmas con evidencia
+  - Conexiones improbables
