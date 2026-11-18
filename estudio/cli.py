@@ -102,6 +102,10 @@ def main(argv=None):
     s.add_argument("producto"); s.add_argument("usd", type=float)
     s = sub.add_parser("informe-video"); s.add_argument("pid")
     s = sub.add_parser("alertas"); s.add_argument("--todas", action="store_true")
+    s = sub.add_parser("consumo-importar", help="importa el uso de tokens de Claude Code desde los registros de sesión")
+    s.add_argument("canal"); s.add_argument("--pid"); s.add_argument("--desde"); s.add_argument("--hasta")
+    s = sub.add_parser("consumo-plan", help="cuánto del plan de Claude consumió cada producción en el mes")
+    s.add_argument("canal"); s.add_argument("mes"); s.add_argument("--cuota", type=float, default=20.0)
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
     a = ap.parse_args(argv)
@@ -206,4 +210,11 @@ def _ejecutar(con, a):
             print(f"[{x['nivel'].upper()}] {x['creado'][:16]} {x['mensaje']}")
     elif c == "respaldo":
         print(f"✔ Respaldo escrito en {core.respaldar(con)}")
+    elif c == "consumo-importar":
+        n, d = core.importar_consumo_claude(con, a.canal, a.pid, a.desde, a.hasta)
+        print(f"✔ {n} respuestas importadas ({d} ya estaban registradas).")
+    elif c == "consumo-plan":
+        print(f"Plan de Claude — {a.mes} — cuota {a.cuota:.2f} USD")
+        for pid, frac, usd in core.consumo_plan(con, a.canal, a.mes, a.cuota):
+            print(f"  {pid:<22} {frac:6.1%}  ≈ {usd:5.2f} USD   (valor API equivalente ≈ {core.valor_api_equivalente(con, pid):6.2f} USD)")
     return 0

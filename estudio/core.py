@@ -588,9 +588,88 @@ def informe_video(con, pid) -> str:
     l += [f"| {r['agente']} | {r['ti'] or 0:,} | {r['tout'] or 0:,} | {r['tcr'] or 0:,} | {r['c']:.2f} |" for r in por_agente]
     l += ["", "## Por proveedor", "| Proveedor | Producto | USD |", "|---|---|---|"]
     l += [f"| {r['proveedor']} | {r['producto']} | {r['c']:.2f} |" for r in por_prov]
+    eq = valor_api_equivalente(con, pid)
+    if eq:
+        l += ["", f"**Uso de Claude (plan de suscripción):** valor equivalente en API ≈ {eq:.2f} USD "
+              "(referencia; no es un cargo real: el plan es una cuota fija)."]
     l += ["", "## Por tipo de costo", "| Tipo | USD |", "|---|---|"]
     l += [f"| {r['tipo_costo']} | {r['c']:.2f} |" for r in por_tipo]
     return "\n".join(l) + "\n"
+
+
+# ---------------------------------------------------------------------------
+# Consumo del plan de Claude (suscripción): tokens reales de los registros de sesión
+# ---------------------------------------------------------------------------
+LOGS_CLAUDE = Path.home() / ".claude" / "projects"
+
+
+def importar_consumo_claude(con, slug_canal, pid=None, desde=None, hasta=None, logs=None):
+    """Lee los registros de sesión de Claude Code (JSONL) y registra el uso de tokens de cada
+    respuesta como costo 'suscripcion' (0 USD; la cuota se prorratea aparte). Cada respuesta se
+    identifica por su ID de mensaje: importar dos veces no duplica nada.
+    Atribución: a `pid` las respuestas entre `desde` y `hasta`; si no hay pid, a GENERAL del mes."""
+    c = canal(con, slug_canal)
+    archivos = sorted(Path(logs or LOGS_CLAUDE).glob("*/*.jsonl"))
+    # Una misma respuesta aparece en varias líneas (una por bloque de contenido) con el uso
+    # repetido o parcial: se agrupa por ID de mensaje y se toma el máximo de cada contador.
+    msgs = {}
+    for f in archivos:
+        for linea in f.open(encoding="utf-8"):
+            try:
+                d = json.loads(linea)
+            except json.JSONDecodeError:
+                continue
+            m = d.get("message")
+            if not isinstance(m, dict) or not m.get("usage") or not m.get("id"):
+                continue
+            u, prev = m["usage"], msgs.get(m["id"])
+            campos = ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
+            vals = {k: max(u.get(k, 0) or 0, (prev or {}).get(k, 0)) for k in campos}
+            vals["ts"] = min(d.get("timestamp", "~"), (prev or {}).get("ts", "~"))
+            vals["model"] = m.get("model", "desconocido")
+            msgs[m["id"]] = vals
+    nuevas = dup = 0
+    for mid, v in msgs.items():
+        ts = v["ts"]
+        if (desde and ts < desde) or (hasta and ts >= hasta):
+            continue
+        destino = pid or f"GENERAL-{c['prefijo']}-{ts[:7]}"
+        try:
+            registrar_costo(con, destino, "claude-code", "anthropic", v["model"], id_externo=mid,
+                            modalidad="suscripcion", tokens_in=v["input_tokens"], tokens_out=v["output_tokens"],
+                            tokens_cache_w=v["cache_creation_input_tokens"], tokens_cache_r=v["cache_read_input_tokens"])
+            nuevas += 1
+        except ErrorEstudio:
+            dup += 1
+    return nuevas, dup
+
+
+def valor_api_equivalente(con, pid):
+    """Lo que habrían costado los tokens de suscripción con tarifas de API (referencia de eficiencia)."""
+    total = 0.0
+    for r in con.execute("SELECT producto, SUM(tokens_in) ti, SUM(tokens_out) tout, SUM(tokens_cache_w) tw,"
+                         " SUM(tokens_cache_r) tr FROM v_costos_vigentes WHERE produccion_id=? AND tipo_costo='suscripcion'"
+                         " AND proveedor='anthropic' GROUP BY producto", (pid,)):
+        for cant, u in ((r["ti"], "mtok_in"), (r["tout"], "mtok_out"), (r["tw"], "mtok_cache_w"), (r["tr"], "mtok_cache_r")):
+            if cant:
+                try:
+                    total += cant / 1e6 * tarifa_vigente(con, "anthropic", r["producto"], u)["precio_usd"]
+                except ErrorEstudio:
+                    pass
+    return total
+
+
+def consumo_plan(con, slug_canal, mes, cuota_usd):
+    """Reparto de la cuota mensual del plan entre producciones según sus tokens del mes."""
+    c = canal(con, slug_canal)
+    filas = con.execute(
+        "SELECT produccion_id, SUM(tokens_in+tokens_out+tokens_cache_w) tok, SUM(tokens_cache_r) tcr"
+        " FROM v_costos_vigentes WHERE canal_id=? AND tipo_costo='suscripcion' AND substr(creado,1,7)=?"
+        " GROUP BY produccion_id", (c["id"], mes)).fetchall()
+    # ponderación: tokens nuevos completos + lecturas de caché al 10 % (aprox. su peso relativo en el plan)
+    pesos = {f["produccion_id"]: (f["tok"] or 0) + 0.1 * (f["tcr"] or 0) for f in filas}
+    total = sum(pesos.values()) or 1
+    return [(pid, peso / total, cuota_usd * peso / total) for pid, peso in sorted(pesos.items(), key=lambda x: -x[1])]
 
 
 def cargar_tarifas_csv(con, ruta):

@@ -20,3 +20,7 @@ producciones/*/render/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Muestras y audios generados (se entregan como archivo, no van a git)
+producciones/*/muestra_voz_*
+*.mp3

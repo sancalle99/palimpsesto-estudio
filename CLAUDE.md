@@ -30,6 +30,11 @@ Decisión del Director del 18-nov-2026. Mientras el plan sea Pro:
 4. Entregables concisos: tablas en lugar de prosa; nada de repetir el contexto ya escrito en otros archivos.
 5. Cuando se acerque el límite de uso, se cierra la etapa en curso, se hace commit y se retoma en la siguiente ventana.
 
+## Voces y costo (decisiones del Director, 18-nov-2026)
+
+- **Voces gratis y locales**, sin suscripciones: Piper y Kokoro-82M, ambas con licencia que permite uso comercial. Se instalan con `scripts/instalar_voces.sh`. Ninguna voz imita a una persona real.
+- **El "costo del vídeo" que interesa al Director es cuánto del plan Claude Pro consume cada producción.** Al cerrar cada bloque de trabajo de una producción: `python3 -m estudio consumo-importar palimpsesto --pid <ID> --desde <inicio del bloque>`. Informe: `python3 -m estudio consumo-plan palimpsesto <AAAA-MM> --cuota 20`.
+
 ## Persistencia (la sesión en la nube es efímera)
 
 - La base `db/estudio.sqlite` no se versiona. Su contenido se guarda como texto en `db/respaldo.sql`: un hook lo regenera al final de cada turno y, en una sesión nueva, la base se reconstruye sola desde ese archivo.
