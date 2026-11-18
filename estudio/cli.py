@@ -106,6 +106,7 @@ def main(argv=None):
     s.add_argument("canal"); s.add_argument("--pid"); s.add_argument("--desde"); s.add_argument("--hasta")
     s = sub.add_parser("consumo-plan", help="cuánto del plan de Claude consumió cada producción en el mes")
     s.add_argument("canal"); s.add_argument("mes"); s.add_argument("--cuota", type=float, default=20.0)
+    s = sub.add_parser("panel", help="genera docs/panel.html con el estado real de agentes y producciones")
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
     a = ap.parse_args(argv)
@@ -217,4 +218,7 @@ def _ejecutar(con, a):
         print(f"Plan de Claude — {a.mes} — cuota {a.cuota:.2f} USD")
         for pid, frac, usd in core.consumo_plan(con, a.canal, a.mes, a.cuota):
             print(f"  {pid:<22} {frac:6.1%}  ≈ {usd:5.2f} USD   (valor API equivalente ≈ {core.valor_api_equivalente(con, pid):6.2f} USD)")
+    elif c == "panel":
+        from . import panel
+        print(f"✔ Panel generado: {panel.generar(con)}")
     return 0

@@ -1,4 +1,4 @@
-<title>Organigrama del Estudio</title>
+<title>Estudio Documental Histórico</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -71,6 +71,20 @@ article.card{background:var(--panel);border:1px solid var(--line);border-radius:
 .q button:focus-visible{outline:2px solid var(--accent)}
 .note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin:0}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--line);margin-left:auto}
+.dot.trabajando{background:var(--ok)} .dot.decidir{background:var(--accent)} .dot.revisando{background:var(--warn)}
+.ahora{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.ahora h2{font-family:var(--display);font-size:24px;margin:0;font-weight:600}
+.prog{display:grid;grid-template-columns:repeat(21,1fr);gap:3px}
+.prog span{height:10px;border-radius:2px;background:var(--line)}
+.prog span.cerrado{background:var(--ok)} .prog span.en_curso,.prog span.entregado{background:var(--warn)}
+.prog span.en_revision{background:var(--accent)} .prog span.correcciones,.prog span.rechazado{background:var(--accent)}
+.kv{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;color:var(--muted)} .kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.alerta{background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:8px 12px;font-size:14px}
+.hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.hist li{display:grid;grid-template-columns:auto 1fr;gap:10px} .hist time{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.estado-box{border-left:3px solid var(--line);padding:6px 12px;font-size:14.5px}
+.estado-box.trabajando{border-color:var(--ok)} .estado-box.decidir{border-color:var(--accent)} .estado-box.revisando{border-color:var(--warn)}
 @media (prefers-reduced-motion:no-preference){.card{animation:in .18s ease-out}@keyframes in{from{opacity:.6;transform:translateY(3px)}}}
 </style>
 
@@ -81,6 +95,8 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <p>Pulse cualquier agente para ver qué hace, en qué etapas trabaja, qué no puede hacer y cómo consultarlo directamente desde el chat.</p>
   </header>
 
+  <section class="ahora" id="ahora" hidden></section>
+
   <div class="grid">
     <nav class="tree" aria-label="Organigrama">
       <ul id="tree"></ul>
@@ -88,12 +104,13 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <article class="card" id="card" aria-live="polite"></article>
   </div>
 
-  <footer>
-    Definiciones en <code>.claude/agents/</code> del repositorio. Estado a 18-nov-2026: los agentes están definidos (Fase 2). Las herramientas externas (imagen, voz, YouTube) se conectan en las Fases 4 y 7.
+  <footer id="pie">
+    Definiciones en <code>.claude/agents/</code> del repositorio <code>sancalle99/palimpsesto-estudio</code>. El estado se genera desde la base de datos del estudio con <code>python3 -m estudio panel</code> y se actualiza al cerrar cada bloque de trabajo; no es en tiempo real.
   </footer>
 </div>
 
 <script>
+const ESTADO = /*ESTADO*/null/*FIN*/;
 const A = {
   director:{n:"Director",ini:"DIR",r:"Usted · propietario y decisión final",model:"Humano",estado:["acc","Decide"],
     hace:["Propone temas y aporta preguntas, ideas y objeciones","Aprueba tema, enfoque, vídeo terminado y publicación","Autoriza presupuestos extraordinarios"],
@@ -145,7 +162,20 @@ const ETAPA={1:"Oportunidades",2:"Temas al CEO",3:"Selección del tema",4:"Tres 
 const GATES=new Set([3,6,16,17,18]);
 const GRUPOS=[["Contenido",["investigador","guionista"]],["Producción",["productor","editor"]],["Control",["auditor","cfo"]],["Crecimiento",["analista"]]];
 
-const btn=(k)=>`<button class="node" data-k="${k}" aria-current="false"><span class="mark">${A[k].ini}</span><span class="txt"><span class="n">${A[k].n}</span><span class="r">${A[k].r}</span></span></button>`;
+const EST = (ESTADO && ESTADO.agentes) || {};
+const ETQ = {trabajando:"Trabajando", decidir:"Le toca decidir", revisando:"Revisando", espera:"En espera"};
+const btn=(k)=>`<button class="node" data-k="${k}" aria-current="false"><span class="mark">${A[k].ini}</span><span class="txt"><span class="n">${A[k].n}</span><span class="r">${A[k].r}</span></span>${EST[k]?`<span class="dot ${EST[k].estado}" title="${ETQ[EST[k].estado]}"></span>`:""}</button>`;
+const fmt = t => t ? t.slice(0,16).replace("T"," ") : "";
+if (ESTADO) {
+  const s = document.getElementById("ahora"); s.hidden = false;
+  s.innerHTML = `<span class="eyebrow">Estado al ${fmt(ESTADO.generado)} UTC</span>` +
+    ESTADO.producciones.map(p => `
+      <h2>${p.id} · ${p.titulo}</h2>
+      <div class="prog" aria-label="Avance por etapas">${p.etapas.map(e=>`<span class="${e.estado}" title="${e.n} · ${ETAPA[e.n]}: ${e.estado.replace("_"," ")}"></span>`).join("")}</div>
+      <div class="kv"><span>Etapa actual <b>${p.etapa_actual} · ${ETAPA[p.etapa_actual]}</b></span><span>Cerradas <b>${p.cerradas}/21</b></span>
+        <span>Plan Claude usado <b>${p.consumo_pct}</b></span><span>Valor equivalente en API <b>≈ US$${p.api_eq}</b></span><span>Gasto externo <b>US$${p.gasto}</b></span></div>
+      ${p.pendiente_director ? `<div class="alerta">Le toca decidir: ${p.pendiente_director}</div>` : ""}`).join("");
+}
 document.getElementById("tree").innerHTML=`
  <li><div class="node static"><span class="mark">EST</span><span class="txt"><span class="n">Estudio de Documentales Históricos</span><span class="r">Canal Palimpsesto · @Palimpsestostudio</span></span></div>
   <ul><li>${btn("director")}
@@ -162,12 +192,14 @@ function show(k){
   const li=x=>x.map(t=>`<li>${t}</li>`).join("");
   document.getElementById("card").innerHTML=`
    <h2>${a.n}</h2><p class="role">${a.r}</p>
+   ${EST[k] ? `<div class="sec"><h3>Ahora mismo</h3><div class="estado-box ${EST[k].estado}"><b>${ETQ[EST[k].estado]}</b>${EST[k].detalle?" · "+EST[k].detalle:""}</div></div>` : ""}
    <div class="chips"><span class="chip ${a.estado[0]}">${a.estado[1]}</span><span class="chip">${a.model}</span>${a.grupo?`<span class="chip">Área: ${a.grupo}</span>`:""}</div>
    <div class="sec"><h3>Qué hace</h3><ul>${li(a.hace)}</ul></div>
    <div class="sec"><h3>Etapas del flujo</h3><div class="stages">${a.etapas.map(n=>`<span class="stage ${GATES.has(n)?"gate":""}" title="${GATES.has(n)?"Puerta: decisión del Director":""}">${n} · ${ETAPA[n]}${GATES.has(n)?" 🔒":""}</span>`).join("")}</div></div>
    <div class="cols"><div class="sec"><h3>Entrega</h3><ul>${li(a.ent)}</ul></div><div class="sec"><h3>Límites</h3><ul>${li(a.lim)}</ul></div></div>
    <div class="sec ask"><h3>${k==="director"?"Lo que usted escribe en el chat":"Cómo consultarlo en el chat"}</h3>
      ${a.ask.map((q,i)=>`<div class="q"><code id="q-${k}-${i}">${q}</code><button type="button" data-copy="q-${k}-${i}">Copiar</button></div>`).join("")}</div>
+   ${EST[k] && EST[k].historial.length ? `<div class="sec"><h3>Últimas acciones</h3><ul class="hist">${EST[k].historial.map(h=>`<li><time>${fmt(h.t)}</time><span>${h.txt}</span></li>`).join("")}</ul></div>` : ""}
    <p class="note">${a.nota||"Escriba <code>/agente "+k+"</code> seguido de su pregunta. Las consultas no cambian el estado de ninguna producción ni generan gastos, salvo que usted lo pida."}</p>`;
 }
 document.addEventListener("click",e=>{

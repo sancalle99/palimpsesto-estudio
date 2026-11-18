@@ -1,0 +1,216 @@
+<title>Estudio Documental Histórico</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Concepto: un índice de archivo. A la izquierda, el árbol como registro de fondos; a la derecha, la ficha del agente como una cédula de catálogo. Colores de la biblia visual de Palimpsesto. */
+:root{
+  --bg:#EFE7D6; --panel:#F7F2E7; --ink:#2B2A33; --muted:#6B6457; --line:#CDBFA3;
+  --accent:#9E2B25; --accent-soft:#F1DCD6; --ok:#3F6B4A; --ok-soft:#DDE8DC; --warn:#8A6418; --warn-soft:#F2E6C8;
+  --display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121216; --panel:#1B1B21; --ink:#E6DDCB; --muted:#A39A89; --line:#3A3843;
+  --accent:#D0574E; --accent-soft:#3A1F1E; --ok:#8DBB97; --ok-soft:#1F2B22; --warn:#D9B160; --warn-soft:#2E2718; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121216; --panel:#1B1B21; --ink:#E6DDCB; --muted:#A39A89; --line:#3A3843;
+  --accent:#D0574E; --accent-soft:#3A1F1E; --ok:#8DBB97; --ok-soft:#1F2B22; --warn:#D9B160; --warn-soft:#2E2718; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+header{display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,44px);line-height:1.05;margin:0;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:68ch}
+.grid{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:28px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+/* Árbol */
+nav.tree{min-width:0}
+.tree ul{list-style:none;margin:0;padding:0}
+.tree ul ul{margin-left:14px;padding-left:16px;border-left:1px solid var(--line)}
+.tree li{position:relative}
+.tree ul ul>li::before{content:"";position:absolute;left:-16px;top:22px;width:12px;border-top:1px solid var(--line)}
+.node{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;
+  padding:8px 10px;border-radius:6px;cursor:pointer}
+.node:hover{background:var(--panel)}
+.node:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.node[aria-current="true"]{background:var(--accent-soft)}
+.node .n{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.1}
+.node .r{font-size:12.5px;color:var(--muted)}
+.node .txt{display:flex;flex-direction:column;min-width:0}
+.mark{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:500;
+  border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.node[aria-current="true"] .mark{border-color:var(--accent);color:var(--accent)}
+.group{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:14px 10px 4px}
+.static{cursor:default}.static:hover{background:none}
+/* Ficha */
+article.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.card h2{font-family:var(--display);font-size:34px;font-weight:600;margin:0;line-height:1}
+.card .role{color:var(--muted);margin:-8px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec h3{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.sec ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.cols{grid-template-columns:1fr}}
+.stages{display:flex;flex-wrap:wrap;gap:6px}
+.stage{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:4px;padding:2px 7px;font-variant-numeric:tabular-nums}
+.stage.gate{border-color:var(--accent);color:var(--accent)}
+.ask{display:flex;flex-direction:column;gap:8px}
+.q{display:flex;gap:8px;align-items:stretch}
+.q code{flex:1;min-width:0;font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;
+  overflow-wrap:anywhere;user-select:all}
+.q button{flex:none;font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:0 12px;cursor:pointer}
+.q button:hover{border-color:var(--accent);color:var(--accent)}
+.q button:focus-visible{outline:2px solid var(--accent)}
+.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin:0}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--line);margin-left:auto}
+.dot.trabajando{background:var(--ok)} .dot.decidir{background:var(--accent)} .dot.revisando{background:var(--warn)}
+.ahora{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.ahora h2{font-family:var(--display);font-size:24px;margin:0;font-weight:600}
+.prog{display:grid;grid-template-columns:repeat(21,1fr);gap:3px}
+.prog span{height:10px;border-radius:2px;background:var(--line)}
+.prog span.cerrado{background:var(--ok)} .prog span.en_curso,.prog span.entregado{background:var(--warn)}
+.prog span.en_revision{background:var(--accent)} .prog span.correcciones,.prog span.rechazado{background:var(--accent)}
+.kv{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;color:var(--muted)} .kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.alerta{background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:8px 12px;font-size:14px}
+.hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.hist li{display:grid;grid-template-columns:auto 1fr;gap:10px} .hist time{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.estado-box{border-left:3px solid var(--line);padding:6px 12px;font-size:14.5px}
+.estado-box.trabajando{border-color:var(--ok)} .estado-box.decidir{border-color:var(--accent)} .estado-box.revisando{border-color:var(--warn)}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .18s ease-out}@keyframes in{from{opacity:.6;transform:translateY(3px)}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Estudio de Documentales Históricos · Canal Palimpsesto</span>
+    <h1>Organigrama del estudio</h1>
+    <p>Pulse cualquier agente para ver qué hace, en qué etapas trabaja, qué no puede hacer y cómo consultarlo directamente desde el chat.</p>
+  </header>
+
+  <section class="ahora" id="ahora" hidden></section>
+
+  <div class="grid">
+    <nav class="tree" aria-label="Organigrama">
+      <ul id="tree"></ul>
+    </nav>
+    <article class="card" id="card" aria-live="polite"></article>
+  </div>
+
+  <footer id="pie">
+    Definiciones en <code>.claude/agents/</code> del repositorio <code>sancalle99/palimpsesto-estudio</code>. El estado se genera desde la base de datos del estudio con <code>python3 -m estudio panel</code> y se actualiza al cerrar cada bloque de trabajo; no es en tiempo real.
+  </footer>
+</div>
+
+<script>
+const ESTADO = {"generado": "2026-11-18T01:11:41+00:00", "canal": "palimpsesto", "producciones": [{"id": "PAL-2026-001", "titulo": "El Palimpsesto de Arquímedes (piloto)", "etapa_actual": 8, "cerradas": 7, "etapas": [{"n": 1, "estado": "cerrado"}, {"n": 2, "estado": "cerrado"}, {"n": 3, "estado": "cerrado"}, {"n": 4, "estado": "cerrado"}, {"n": 5, "estado": "cerrado"}, {"n": 6, "estado": "cerrado"}, {"n": 7, "estado": "cerrado"}, {"n": 8, "estado": "en_revision"}, {"n": 9, "estado": "pendiente"}, {"n": 10, "estado": "pendiente"}, {"n": 11, "estado": "pendiente"}, {"n": 12, "estado": "pendiente"}, {"n": 13, "estado": "pendiente"}, {"n": 14, "estado": "pendiente"}, {"n": 15, "estado": "pendiente"}, {"n": 16, "estado": "pendiente"}, {"n": 17, "estado": "pendiente"}, {"n": 18, "estado": "pendiente"}, {"n": 19, "estado": "pendiente"}, {"n": 20, "estado": "pendiente"}, {"n": 21, "estado": "pendiente"}], "consumo_pct": "35% del uso del mes", "api_eq": "3.21", "gasto": "0.00", "pendiente_director": ""}], "agentes": {"director": {"estado": "espera", "detalle": "", "historial": [{"t": "2026-11-18T00:25:47+00:00", "txt": "Etapa 6 (Aprobación de la perspectiva): en revisión → aprobado"}, {"t": "2026-11-18T00:25:47+00:00", "txt": "Etapa 6 (Aprobación de la perspectiva): aprobado → cerrado"}, {"t": "2026-11-18T00:25:47+00:00", "txt": "DEC-0004: Aprobada etapa 6: Aprobación de la perspectiva"}, {"t": "2026-11-18T00:23:10+00:00", "txt": "Etapa 3 (Selección del tema): en revisión → aprobado"}, {"t": "2026-11-18T00:23:10+00:00", "txt": "Etapa 3 (Selección del tema): aprobado → cerrado"}]}, "ceo": {"estado": "espera", "detalle": "", "historial": [{"t": "2026-11-18T00:47:15+00:00", "txt": "DEC-0009: Voz del narrador de Palimpsesto: Kokoro em_alex (voz 1), velocidad 0.95, licencia Apache-2.0"}, {"t": "2026-11-18T00:45:02+00:00", "txt": "DEC-0006: Voces: gratuitas y locales (Piper / Kokoro), sin ElevenLabs por ahora"}, {"t": "2026-11-18T00:45:02+00:00", "txt": "DEC-0007: Métrica de costo principal: consumo del plan Claude Pro por producción (tokens reales + reparto de la cuota)"}, {"t": "2026-11-18T00:45:02+00:00", "txt": "DEC-0008: Canal verificado por teléfono; Studio configurado con subida privada por defecto"}, {"t": "2026-11-18T00:28:44+00:00", "txt": "DEC-0005: Auditoría de fuentes (etapa 8) aplazada a la próxima sesión, abierta con el repositorio seleccionado"}]}, "investigador": {"estado": "espera", "detalle": "", "historial": [{"t": "2026-11-18T00:26:45+00:00", "txt": "Etapa 7 (Investigación profunda): en curso → entregado"}, {"t": "2026-11-18T00:26:45+00:00", "txt": "Etapa 7 (Investigación profunda): entregado → cerrado"}, {"t": "2026-11-18T00:26:45+00:00", "txt": "Etapa 8 (Expediente de fuentes): pendiente → en curso"}, {"t": "2026-11-18T00:26:45+00:00", "txt": "Etapa 8 (Expediente de fuentes): en curso → entregado"}, {"t": "2026-11-18T00:26:45+00:00", "txt": "Etapa 8 (Expediente de fuentes): entregado → en revisión"}]}, "guionista": {"estado": "espera", "detalle": "", "historial": []}, "productor": {"estado": "espera", "detalle": "", "historial": []}, "editor": {"estado": "espera", "detalle": "", "historial": []}, "auditor": {"estado": "revisando", "detalle": "etapa 8 · Expediente de fuentes (PAL-2026-001)", "historial": []}, "cfo": {"estado": "espera", "detalle": "", "historial": []}, "analista": {"estado": "espera", "detalle": "", "historial": []}}};
+const A = {
+  director:{n:"Director",ini:"DIR",r:"Usted · propietario y decisión final",model:"Humano",estado:["acc","Decide"],
+    hace:["Propone temas y aporta preguntas, ideas y objeciones","Aprueba tema, enfoque, vídeo terminado y publicación","Autoriza presupuestos extraordinarios"],
+    etapas:[3,5,6,16,17,18],ent:["Decisiones registradas con su texto literal"],lim:["Nadie decide por usted: las puertas 🔒 solo se abren con su mensaje"],
+    ask:["APRUEBO PAL-2026-001 3","CORRECCIONES PAL-2026-001 16 el minuto 4 exagera la cifra","/nota PAL-2026-001 pregunta ¿y si el protagonista fuera el escriba?","/tablero"],
+    nota:"Sus mensajes que empiezan por APRUEBO, CORRECCIONES, RECHAZO o AMPLÍO PRESUPUESTO quedan registrados como decisiones."},
+  ceo:{n:"CEO",ini:"CEO",r:"Orquestador · coordina a los siete agentes",model:"Claude Opus",estado:["ok","Activo"],
+    hace:["Planifica la semana y prioriza producciones","Inicia cada etapa y la delega en su responsable","Prepara las Fichas de decisión que usted aprueba","Resuelve bloqueos y convierte lecciones en mejoras"],
+    etapas:[2,15,21],ent:["Plan semanal","Fichas de decisión","Registro de decisiones operativas"],
+    lim:["No aprueba temas, enfoques, vídeos ni presupuestos: los recomienda","No produce contenido: delega"],
+    ask:["/agente ceo ¿qué producciones están activas y qué espera mi decisión?","/agente ceo propón el plan de las próximas dos semanas"]},
+  investigador:{n:"Investigador",ini:"INV",r:"Investigación histórica y fuentes",model:"Claude Opus",estado:["ok","Activo"],grupo:"Contenido",
+    hace:["Busca temas y analiza qué hacen los vídeos más vistos","Propone tres enfoques narrativos por tema","Consulta fuentes primarias y académicas y las contrasta","Clasifica cada afirmación: H hecho · I interpretación · Hp hipótesis · L leyenda"],
+    etapas:[1,4,7,8],ent:["Informe de oportunidades","Ficha de tres enfoques","Expediente de investigación con bibliografía"],
+    lim:["Nunca inventa fuentes, citas ni fechas","Lo que no puede verificar lo marca como no verificado"],
+    ask:["/agente investigador propón 8 temas sobre personajes borrados de la historia de América","/agente investigador ¿qué fuentes primarias existen sobre el Códice Florentino?"]},
+  guionista:{n:"Guionista",ini:"GUI",r:"Director creativo · guion y títulos",model:"Claude Opus",estado:["ok","Activo"],grupo:"Contenido",
+    hace:["Diseña la estructura narrativa en seis actos","Escribe guion, hooks, transiciones y cierre","Propone cinco títulos sin clickbait falso"],
+    etapas:[9],ent:["Escaleta","Guion con referencias de fuente por párrafo","Títulos y hooks"],
+    lim:["Solo usa datos del Expediente; si falta uno, lo pide al Investigador","Nunca usa su voz sin una cita textual de un aporte registrado"],
+    ask:["/agente guionista escribe tres cold opens posibles para el episodio piloto","/agente guionista ¿cómo estructurarías un episodio de 18 minutos sobre Roanoke?"]},
+  productor:{n:"Productor",ini:"PRO",r:"Producción audiovisual y prompts",model:"Claude Sonnet",estado:["warn","APIs en Fase 4"],grupo:"Producción",
+    hace:["Crea el storyboard plano a plano","Busca primero material de archivo de dominio público","Genera recreaciones, clips y narración dentro del presupuesto","Registra licencia y procedencia de cada recurso"],
+    etapas:[10,11,12],ent:["Storyboard","Prompts versionados","Recursos con registro de licencias"],
+    lim:["Verifica el presupuesto antes de cada gasto y lo registra después","Toda recreación con IA se rotula como tal"],
+    ask:["/agente productor ¿qué archivos de dominio público sirven para un episodio sobre la Roma tardía?","/agente productor estima el costo visual de un episodio de 18 minutos"]},
+  editor:{n:"Editor",ini:"EDI",r:"Montaje, Shorts y distribución",model:"Claude Sonnet",estado:["warn","Herramientas en Fase 4"],grupo:"Producción",
+    hace:["Monta el documental con FFmpeg y Remotion","Añade música, subtítulos, mapas y rótulos","Crea tres miniaturas y los metadatos","Crea de 3 a 5 Shorts con arco narrativo propio"],
+    etapas:[13,18],ent:["Máster del vídeo","Subtítulos","Miniaturas","Metadatos","Shorts"],
+    lim:["Solo sube a YouTube en privado: publica usted"],
+    ask:["/agente editor ¿cómo será la transición “palimpsesto” entre actos?","/agente editor propón tres conceptos de miniatura para el piloto"]},
+  auditor:{n:"Auditor",ini:"AUD",r:"Control de calidad independiente",model:"Claude Opus",estado:["ok","Activo"],grupo:"Control",
+    hace:["Verifica cifras, fechas, citas y fuentes","Comprueba originalidad y derechos de cada recurso","Revisa políticas de YouTube y la declaración de contenido sintético","Comprueba que cada aporte suyo tenga respuesta"],
+    etapas:[8,14],ent:["Informe de auditoría con hallazgos numerados y veredicto"],
+    lim:["Solo ve los entregables, no el razonamiento de quien los hizo","Señala, no corrige; puede bloquear"],
+    ask:["/agente auditor ¿qué riesgos de política de YouTube ves en un episodio sobre la Inquisición?","/agente auditor revisa la checklist de auditoría y dime qué le falta"]},
+  cfo:{n:"CFO",ini:"CFO",r:"Control de costos y presupuesto",model:"Claude Haiku + cálculo por código",estado:["ok","Activo"],grupo:"Control",
+    hace:["Registra tokens y gastos por producción y agente","Convierte tokens a dólares con tarifas fechadas","Concilia facturas y prorratea la suscripción de Claude","Alerta al 80 % y congela al 100 % del presupuesto"],
+    etapas:[20],ent:["Informe financiero por vídeo","Informe mensual"],
+    lim:["No calcula de memoria: todo sale de la base de datos","Solo usted amplía un presupuesto"],
+    ask:["/agente cfo ¿cuánto llevamos gastado este mes y cuánto queda?","/agente cfo explica cómo se reparte el costo de Claude Pro"]},
+  analista:{n:"Analista",ini:"ANA",r:"Métricas y crecimiento del canal",model:"Claude Sonnet",estado:["warn","YouTube Analytics en Fase 7"],grupo:"Crecimiento",
+    hace:["Analiza vistas, CTR, retención, suscriptores y Shorts","Compara rendimiento por tema y formato","Propone experimentos con una sola variable"],
+    etapas:[19],ent:["Informes a 48 h, 7 y 28 días","Informe semanal","Propuestas de experimento"],
+    lim:["Nunca propone sacrificar el rigor por métricas","Acceso solo de lectura"],
+    ask:["/agente analista ¿qué métricas debemos mirar en los primeros 30 días de un canal nuevo?"]}
+};
+const ETAPA={1:"Oportunidades",2:"Temas al CEO",3:"Selección del tema",4:"Tres enfoques",5:"Observaciones",6:"Aprobación del enfoque",7:"Investigación profunda",8:"Expediente",9:"Guion",10:"Storyboard",11:"Prompts",12:"Producción audiovisual",13:"Edición",14:"Auditoría",15:"Correcciones",16:"Aprobación del vídeo",17:"Publicación",18:"Shorts",19:"Métricas",20:"Informe financiero",21:"Retroalimentación"};
+const GATES=new Set([3,6,16,17,18]);
+const GRUPOS=[["Contenido",["investigador","guionista"]],["Producción",["productor","editor"]],["Control",["auditor","cfo"]],["Crecimiento",["analista"]]];
+
+const EST = (ESTADO && ESTADO.agentes) || {};
+const ETQ = {trabajando:"Trabajando", decidir:"Le toca decidir", revisando:"Revisando", espera:"En espera"};
+const btn=(k)=>`<button class="node" data-k="${k}" aria-current="false"><span class="mark">${A[k].ini}</span><span class="txt"><span class="n">${A[k].n}</span><span class="r">${A[k].r}</span></span>${EST[k]?`<span class="dot ${EST[k].estado}" title="${ETQ[EST[k].estado]}"></span>`:""}</button>`;
+const fmt = t => t ? t.slice(0,16).replace("T"," ") : "";
+if (ESTADO) {
+  const s = document.getElementById("ahora"); s.hidden = false;
+  s.innerHTML = `<span class="eyebrow">Estado al ${fmt(ESTADO.generado)} UTC</span>` +
+    ESTADO.producciones.map(p => `
+      <h2>${p.id} · ${p.titulo}</h2>
+      <div class="prog" aria-label="Avance por etapas">${p.etapas.map(e=>`<span class="${e.estado}" title="${e.n} · ${ETAPA[e.n]}: ${e.estado.replace("_"," ")}"></span>`).join("")}</div>
+      <div class="kv"><span>Etapa actual <b>${p.etapa_actual} · ${ETAPA[p.etapa_actual]}</b></span><span>Cerradas <b>${p.cerradas}/21</b></span>
+        <span>Plan Claude usado <b>${p.consumo_pct}</b></span><span>Valor equivalente en API <b>≈ US$${p.api_eq}</b></span><span>Gasto externo <b>US$${p.gasto}</b></span></div>
+      ${p.pendiente_director ? `<div class="alerta">Le toca decidir: ${p.pendiente_director}</div>` : ""}`).join("");
+}
+document.getElementById("tree").innerHTML=`
+ <li><div class="node static"><span class="mark">EST</span><span class="txt"><span class="n">Estudio de Documentales Históricos</span><span class="r">Canal Palimpsesto · @Palimpsestostudio</span></span></div>
+  <ul><li>${btn("director")}
+    <ul><li>${btn("ceo")}
+      <ul>${GRUPOS.map(([g,ks])=>`<li><div class="group">${g}</div><ul>${ks.map(k=>`<li>${btn(k)}</li>`).join("")}</ul></li>`).join("")}</ul>
+    </li></ul>
+  </li></ul>
+ </li>`;
+
+function show(k){
+  if(!A[k]) k="ceo";
+  const a=A[k];
+  document.querySelectorAll(".node[data-k]").forEach(b=>b.setAttribute("aria-current",b.dataset.k===k?"true":"false"));
+  const li=x=>x.map(t=>`<li>${t}</li>`).join("");
+  document.getElementById("card").innerHTML=`
+   <h2>${a.n}</h2><p class="role">${a.r}</p>
+   ${EST[k] ? `<div class="sec"><h3>Ahora mismo</h3><div class="estado-box ${EST[k].estado}"><b>${ETQ[EST[k].estado]}</b>${EST[k].detalle?" · "+EST[k].detalle:""}</div></div>` : ""}
+   <div class="chips"><span class="chip ${a.estado[0]}">${a.estado[1]}</span><span class="chip">${a.model}</span>${a.grupo?`<span class="chip">Área: ${a.grupo}</span>`:""}</div>
+   <div class="sec"><h3>Qué hace</h3><ul>${li(a.hace)}</ul></div>
+   <div class="sec"><h3>Etapas del flujo</h3><div class="stages">${a.etapas.map(n=>`<span class="stage ${GATES.has(n)?"gate":""}" title="${GATES.has(n)?"Puerta: decisión del Director":""}">${n} · ${ETAPA[n]}${GATES.has(n)?" 🔒":""}</span>`).join("")}</div></div>
+   <div class="cols"><div class="sec"><h3>Entrega</h3><ul>${li(a.ent)}</ul></div><div class="sec"><h3>Límites</h3><ul>${li(a.lim)}</ul></div></div>
+   <div class="sec ask"><h3>${k==="director"?"Lo que usted escribe en el chat":"Cómo consultarlo en el chat"}</h3>
+     ${a.ask.map((q,i)=>`<div class="q"><code id="q-${k}-${i}">${q}</code><button type="button" data-copy="q-${k}-${i}">Copiar</button></div>`).join("")}</div>
+   ${EST[k] && EST[k].historial.length ? `<div class="sec"><h3>Últimas acciones</h3><ul class="hist">${EST[k].historial.map(h=>`<li><time>${fmt(h.t)}</time><span>${h.txt}</span></li>`).join("")}</ul></div>` : ""}
+   <p class="note">${a.nota||"Escriba <code>/agente "+k+"</code> seguido de su pregunta. Las consultas no cambian el estado de ninguna producción ni generan gastos, salvo que usted lo pida."}</p>`;
+}
+document.addEventListener("click",e=>{
+  const n=e.target.closest(".node[data-k]");
+  if(n){ if(location.hash!=="#"+n.dataset.k) location.hash=n.dataset.k; else show(n.dataset.k); return; }
+  const c=e.target.closest("[data-copy]");
+  if(c){ const el=document.getElementById(c.dataset.copy), t=el.textContent;
+    const done=()=>{c.textContent="Copiado";setTimeout(()=>c.textContent="Copiar",1400)};
+    try{ navigator.clipboard.writeText(t).then(done,()=>{sel(el);c.textContent="Seleccionado"}) }catch(_){ sel(el);c.textContent="Seleccionado" } }
+});
+function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+window.addEventListener("hashchange",()=>show(location.hash.slice(1)));
+show(location.hash.slice(1)||"ceo");
+</script>
