@@ -103,3 +103,17 @@ Licencia verificada en la fuente primaria: README del 29-oct-2008 y metadata XMP
 
 **Planos que pasan a gráfico o tarjeta (sin archivo localizado o para ahorrar búsquedas):** 02, el colofón (◌ folio no localizado; tarjeta "14 de abril de 1229 · colofón"); 13, el códice cerrado (no está en el conjunto de datos; diagrama de capas); 16, el retrato de Heiberg (tarjeta); 29, la fachada del Walters (tarjeta).
 **Resolución:** los JPG son vistas previas de 816 × 1088 px. Para el máster en 1080p, el editor usa los TIFF de 8 bits del mismo folio y la misma ruta (`.tif`), que tienen la misma licencia.
+
+## Sustitución de las recreaciones IA (v1.2 · 18-nov-2026)
+
+Por la decisión del Director DIR-PAL-2026-001-02 (no activar por ahora la facturación de Google), el piloto se monta **sin imágenes generadas con IA**. Los prompts P-01 a P-05 quedan en reserva (`prompts/prompts_v1.md`), por si se activa más adelante.
+
+| Plano | Antes | Ahora | Recurso |
+|---|---|---|---|
+| 01 | IA P-01, manos del copista | ARC: detalle del texto superior (las oraciones de 1229) en color real | R0011 |
+| 03 | IA P-02, cuchilla raspando | GRA sobre ARC: la tinta del texto inferior se desvanece en la imagen procesada | R0010 → R0011 |
+| 17 | IA P-03, lupa sobre folio | ARC + GRA: círculo de "lupa" que recorre la fotografía de Heiberg de 1906 | R0001 |
+| 25 | IA P-04, sala de subastas | TIP: "29 de octubre de 1998 · Christie's · Nueva York" | — |
+| 38 | IA P-05, libro en atril | ARC: montaje lento de los folios de tres obras distintas | R0011, R0005, R0009 |
+
+**Resultado:** 0 % de recreaciones con IA. Solo el plano 45 (*Stomachion*) conserva el rótulo de reconstrucción, porque es un gráfico moderno. Gasto externo de la etapa 12: **0 USD**.

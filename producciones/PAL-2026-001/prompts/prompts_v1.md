@@ -1,6 +1,6 @@
 # Prompts de recreación — PAL-2026-001 · v1 · 18-nov-2026
 
-**Etapa 11 · Productor** · Origen: `storyboard.md` v1 (planos 01, 03, 17, 25, 38) · Modelo previsto: `gemini-3.1-flash-image` (1K, 16:9) · 4 variantes por prompt
+**Etapa 11 · Productor** · **En reserva** desde el 18-nov-2026 (DIR-PAL-2026-001-02): el piloto se monta sin IA; ver storyboard v1.2 · Origen: `storyboard.md` v1 (planos 01, 03, 17, 25, 38) · Modelo previsto: `gemini-3.1-flash-image` (1K, 16:9) · 4 variantes por prompt
 
 ## Bloque fijo de estilo (biblia visual v0, se añade al final de cada prompt)
 ```

@@ -9,3 +9,5 @@ Escriba aquí sus notas libremente; para que queden registradas y trazables use:
 
 - **DIR-PAL-2026-001-01** · decision · 2026-11-18
   > Acepto el piloto
+- **DIR-PAL-2026-001-02** · decision · 2026-11-18
+  > Por ahora no activemos la facturación ya que tengo problemas con mi cuenta de de banco
