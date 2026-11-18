@@ -62,4 +62,8 @@ python -m estudio estado PAL-2026-001       # tablero de una producción
 python -m estudio alertas                   # alertas de presupuesto
 python -m estudio informe-video PAL-2026-001
 python -m unittest discover -s tests -v     # pruebas
+/tmp/kenv/bin/python scripts/narrar.py producciones/<ID>/guion.md producciones/<ID>/recursos/audio   # narración + tiempos
+python3 scripts/montaje.py producciones/<ID>/montaje.json                                       # máster, SRT y capítulos
 ```
+
+**Recursos pesados** (`producciones/*/recursos/`, `render/`): no se versionan. En una sesión nueva se regeneran así: las imágenes, descargándolas de las URL registradas con `recurso`; la voz, con `scripts/instalar_voces.sh` y `narrar.py`; el vídeo, con `montaje.py`.

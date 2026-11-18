@@ -383,6 +383,9 @@ INSERT INTO "decisiones" VALUES('DEC-0007',1,NULL,'estrategia','Métrica de cost
 INSERT INTO "decisiones" VALUES('DEC-0008',1,NULL,'operativa','Canal verificado por teléfono; Studio configurado con subida privada por defecto','ceo','Confirmado por el Director','2026-11-18T00:45:02+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0009',1,NULL,'estrategia','Voz del narrador de Palimpsesto: Kokoro em_alex (voz 1), velocidad 0.95, licencia Apache-2.0','ceo','Elección del Director: «Prefiero la voz 1»','2026-11-18T00:47:15+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0010',1,'PAL-2026-001','operativa','Roles ligeros (ceo, guionista, productor, editor, analista, cfo) convertidos en skills que asume la sesión principal; investigador y auditor siguen como subagentes. Importación del consumo ahora incluye los registros de subagentes.','ceo',NULL,'2026-11-18T01:31:31+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0011',1,'PAL-2026-001','operativa','Clave de la API de Gemini guardada como secreto de red del entorno Default (nunca en el repo ni en el chat). El proyecto de Google está en el nivel gratuito, sin cuota para modelos de imagen; sin facturación por decisión del Director (DIR-PAL-2026-001-02)','ceo',NULL,'2026-11-18T19:43:16+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0012',1,'PAL-2026-001','operativa','Montaje con un motor propio (scripts/montaje.py, PIL + FFmpeg) en lugar de Remotion para el piloto: sin licencias ni instalación adicional; el vídeo se regenera desde montaje.json y tiempos.json','editor',NULL,'2026-11-18T19:43:17+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0013',1,'PAL-2026-001','operativa','Recursos pesados fuera de git (imágenes, audio y render): se regeneran con las URL registradas en ''recurso'', scripts/narrar.py y scripts/montaje.py','ceo',NULL,'2026-11-18T19:43:17+00:00');
 CREATE TABLE historial_tareas (
   id         INTEGER PRIMARY KEY,
   tarea_id   INTEGER NOT NULL REFERENCES tareas(id),
