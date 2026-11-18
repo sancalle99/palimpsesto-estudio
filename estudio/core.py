@@ -21,6 +21,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 DB_POR_DEFECTO = RAIZ / "db" / "estudio.sqlite"
 SCHEMA = RAIZ / "db" / "schema.sql"
+RESPALDO = RAIZ / "db" / "respaldo.sql"   # volcado de texto versionado en git
 
 
 class ErrorEstudio(Exception):
@@ -34,11 +35,20 @@ def ahora() -> str:
 def conectar(ruta: str | os.PathLike | None = None) -> sqlite3.Connection:
     ruta = Path(ruta or os.environ.get("ESTUDIO_DB", DB_POR_DEFECTO))
     ruta.parent.mkdir(parents=True, exist_ok=True)
+    restaurar = ruta == DB_POR_DEFECTO and not ruta.exists() and RESPALDO.exists()
     con = sqlite3.connect(ruta)
+    if restaurar:  # sesión nueva: se reconstruye la base desde el respaldo versionado
+        con.executescript(RESPALDO.read_text(encoding="utf-8"))
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA foreign_keys = ON")
     con.executescript(SCHEMA.read_text(encoding="utf-8"))
     return con
+
+
+def respaldar(con) -> Path:
+    """Escribe un volcado SQL de texto (legible y versionable) de toda la base."""
+    RESPALDO.write_text("\n".join(con.iterdump()) + "\n", encoding="utf-8")
+    return RESPALDO
 
 
 # ---------------------------------------------------------------------------

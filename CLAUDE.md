@@ -21,6 +21,11 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 7. **Secretos:** nunca se piden, se muestran ni se escriben claves, contraseñas o códigos. Viven en `.env` (fuera de git) o en el gestor de secretos del Director.
 8. **Independencia del Auditor:** el auditor recibe solo los entregables, no el razonamiento de quien los produjo.
 
+## Persistencia (la sesión en la nube es efímera)
+
+- La base `db/estudio.sqlite` no se versiona. Su contenido se guarda como texto en `db/respaldo.sql`: un hook lo regenera al final de cada turno y, en una sesión nueva, la base se reconstruye sola desde ese archivo.
+- **Al terminar cada bloque de trabajo:** `git add -A && git commit` y `git push`. Lo que no está en GitHub se pierde al cerrar la máquina.
+
 ## Identificadores
 
 - Producción: `PAL-2026-001` · Artefacto: `PAL-2026-001-A007` · Recurso: `PAL-2026-001-R0042`

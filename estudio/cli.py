@@ -102,6 +102,7 @@ def main(argv=None):
     s.add_argument("producto"); s.add_argument("usd", type=float)
     s = sub.add_parser("informe-video"); s.add_argument("pid")
     s = sub.add_parser("alertas"); s.add_argument("--todas", action="store_true")
+    s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
     a = ap.parse_args(argv)
     con = core.conectar(a.db)
@@ -203,4 +204,6 @@ def _ejecutar(con, a):
         sql = "SELECT * FROM alertas" + ("" if a.todas else " WHERE resuelta=0") + " ORDER BY creado DESC"
         for x in con.execute(sql):
             print(f"[{x['nivel'].upper()}] {x['creado'][:16]} {x['mensaje']}")
+    elif c == "respaldo":
+        print(f"✔ Respaldo escrito en {core.respaldar(con)}")
     return 0
