@@ -21,6 +21,15 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 7. **Secretos:** nunca se piden, se muestran ni se escriben claves, contraseñas o códigos. Viven en `.env` (fuera de git) o en el gestor de secretos del Director.
 8. **Independencia del Auditor:** el auditor recibe solo los entregables, no el razonamiento de quien los produjo.
 
+## Modo económico (plan Claude Pro: cuidar el consumo)
+
+Decisión del Director del 18-nov-2026. Mientras el plan sea Pro:
+1. Las etapas ligeras (1, 2, 4, 5 y las consultas) las hace la sesión principal sin lanzar subagentes. Los subagentes se usan solo donde la independencia o la profundidad lo exigen: auditoría (8, 14) e investigación profunda (7).
+2. Búsquedas: como máximo unas 8 por etapa. Se usan primero las APIs académicas compactas (Crossref; OpenAlex cuando esté disponible) en lugar de leer páginas completas.
+3. El análisis de competencia (los 10 vídeos más vistos) se hace solo sobre el tema elegido, no sobre todos los candidatos.
+4. Entregables concisos: tablas en lugar de prosa; nada de repetir el contexto ya escrito en otros archivos.
+5. Cuando se acerque el límite de uso, se cierra la etapa en curso, se hace commit y se retoma en la siguiente ventana.
+
 ## Persistencia (la sesión en la nube es efímera)
 
 - La base `db/estudio.sqlite` no se versiona. Su contenido se guarda como texto en `db/respaldo.sql`: un hook lo regenera al final de cada turno y, en una sesión nueva, la base se reconstruye sola desde ese archivo.
