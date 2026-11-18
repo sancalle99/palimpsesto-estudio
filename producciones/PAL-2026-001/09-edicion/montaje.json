@@ -1,6 +1,6 @@
 {
  "produccion": "PAL-2026-001",
- "storyboard": "v1.2",
+ "storyboard": "v1.2 + correcciones de la auditoría v1 (etapa 10)",
  "entrada": 1.5,
  "cola": 3.5,
  "capitulos": [
@@ -274,14 +274,14 @@
     330,
     2.2
    ],
-   "fuente": "Fotografía de Heiberg, 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r"
+   "fuente": "Fotografía tomada por Heiberg en 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r"
   },
   {
    "id": "18",
    "par": 9,
    "tipo": "img",
    "img": "recursos/archivo/0000-100r_Arch53v_Heiberg_visible_stitch.jpg",
-   "fuente": "Fotografía de Heiberg, 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r",
+   "fuente": "Fotografía tomada por Heiberg en 1906 · Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 0000-100r",
    "nota": "Transcripciones publicadas entre 1910 y 1915",
    "mov": "der"
   },
@@ -328,7 +328,7 @@
     1.0,
     0.55
    ],
-   "nota": "Agua y moho",
+   "nota": "Daños en el pergamino",
    "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
   },
   {
@@ -665,6 +665,21 @@
    ]
   },
   {
+   "id": "44a",
+   "par": 26,
+   "tipo": "img",
+   "img": "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg",
+   "recorte": [
+    0.0,
+    0.5,
+    1.0,
+    1.0
+   ],
+   "mov": "der",
+   "nota": "Folio de El Método",
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057v-064r"
+  },
+  {
    "id": "44",
    "par": 26,
    "tipo": "columnas",
@@ -678,27 +693,33 @@
      "Crítica al tono del libro divulgativo"
     ]
    ],
-   "pie": "◐ interpretación"
+   "pie": "◐ interpretación",
+   "fondo_img": "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg"
   },
   {
    "id": "45",
    "par": 27,
-   "tipo": "tarjeta",
-   "lineas": [
-    [
-     "Stomachion",
-     "titulo"
-    ],
-    [
-     "Un rompecabezas de 14 piezas",
-     "normal"
-    ],
-    [
-     "¿De cuántas formas se forma un cuadrado?",
-     "pequeño"
-    ]
-   ],
-   "rotulo": "INTERPRETACIÓN DE NETZ"
+   "tipo": "diagrama",
+   "diagrama": "stomachion",
+   "leyenda": "Stomachion: 14 piezas que forman un cuadrado",
+   "transicion_a": {
+    "diagrama": "stomachion_suelto",
+    "leyenda": "¿De cuántas formas pueden volver a formar un cuadrado?"
+   },
+   "corte": 0.55,
+   "rotulo": "RECONSTRUCCIÓN MODERNA · INTERPRETACIÓN DE NETZ",
+   "fuente": "Diagrama propio · disposición moderna habitual de las 14 piezas"
+  },
+  {
+   "id": "46a",
+   "par": 28,
+   "tipo": "diagrama",
+   "diagrama": "stomachion",
+   "reticula": true,
+   "leyenda": "Retícula de 12 × 12 · recuento de 2003",
+   "rotulo": "RECONSTRUCCIÓN MODERNA",
+   "fuente": "Diagrama propio · disposición moderna habitual de las 14 piezas",
+   "peso": 1.1
   },
   {
    "id": "46",
@@ -713,7 +734,18 @@
      "Recuento de 2003",
      "pequeño"
     ]
-   ]
+   ],
+   "peso": 0.9
+  },
+  {
+   "id": "47a",
+   "par": 29,
+   "tipo": "diagrama",
+   "diagrama": "stomachion_suelto",
+   "separacion": 0.45,
+   "leyenda": "¿Era un cuadrado? ¿Se permitían giros y reflejos?",
+   "rotulo": "RECONSTRUCCIÓN MODERNA",
+   "fuente": "Diagrama propio · disposición moderna habitual de las 14 piezas"
   },
   {
    "id": "47",
@@ -728,7 +760,17 @@
      "NO SABEMOS si así era el juego original",
      "acento"
     ]
-   ]
+   ],
+   "revelar": true
+  },
+  {
+   "id": "48a",
+   "par": 30,
+   "tipo": "img",
+   "img": "recursos/archivo/110r-105v_Arch27r_Sinar_pseudo_sharpie.jpg",
+   "mov": "der",
+   "peso": 0.6,
+   "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 110r-105v"
   },
   {
    "id": "48",
@@ -759,7 +801,9 @@
      "“Quinientos años de retraso”",
      "normal"
     ]
-   ]
+   ],
+   "peso": 1.4,
+   "fondo_img": "recursos/archivo/110r-105v_Arch27r_Sinar_true_pack8.jpg"
   },
   {
    "id": "49",
@@ -790,7 +834,7 @@
    "tipo": "img",
    "img": "recursos/archivo/145r-144v_Hype02r_Sinar_pseudo_sharpie.jpg",
    "mov": "izq",
-   "nota": "Hipérides: Contra Timandro · Contra Diondas",
+   "nota": "Folio de Hipérides (fol. 145r-144v)",
    "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 145r-144v"
   },
   {
@@ -815,11 +859,11 @@
      "rotulo"
     ],
     [
-     "Fuentes y grados de evidencia en la descripción",
+     "Fuentes principales y grados de evidencia en la descripción",
      "normal"
     ],
     [
-     "Imágenes: The Archimedes Palimpsest Project, Walters Art Museum · CC BY 3.0",
+     "Imágenes: The Archimedes Palimpsest Project, Walters Art Museum · CC BY 3.0 · recortadas y rotuladas por Palimpsesto",
      "pequeño"
     ]
    ]

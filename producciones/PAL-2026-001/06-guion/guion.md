@@ -1,13 +1,13 @@
 # Guion — PAL-2026-001 · El Palimpsesto de Arquímedes
 
-**Etapa 9 · Guionista · v1.1 · 18-nov-2026** · Piloto de ≈ 11 min aceptado por el Director (DIR-PAL-2026-001-01). SOL-01 y SOL-02 resueltas con la alternativa prevista; SOL-03 sin cambios; SOL-04 descartada.
+**Guionista · v1.2 · 18-nov-2026** (correcciones de la auditoría de la etapa 10: HAL-01, 05, 06, 10; marcas de recreación retiradas porque el vídeo no usa imágenes IA) · Piloto de ≈ 11 min aceptado por el Director (DIR-PAL-2026-001-01). SOL-01 y SOL-02 resueltas con la alternativa prevista; SOL-03 sin cambios; SOL-04 descartada.
 Narrador: voz del canal (Kokoro em_alex, DEC-0009). Cada párrafo termina con las afirmaciones del expediente que lo sostienen. Marcas para el editor: `[GRADO: …]`, `[RÓTULO: Recreación]`, `[DOCUMENTO: R-…]` (los recursos se asignan en la etapa 10; `R-?` = por asignar).
 
 ---
 
 ## 1. Cold open (0:00–0:45)
 
-`[RÓTULO: Recreación]` `[VISUAL: mesa de copista, cuchilla sobre pergamino]`
+`[VISUAL: folio 158r-159v, oraciones sobre Arquímedes]`
 
 El 14 de abril de 1229, un sacerdote llamado Ioannes Myronas termina de copiar un libro de oraciones. Es lo que dice la nota que dejó al final, su colofón. Lo que no dice es de dónde salieron las páginas. `[GRADO: H]`
 > [AF-002]
@@ -18,7 +18,7 @@ Myronas no usó pergamino nuevo. Tomó un libro más antiguo, raspó su tinta, d
 Debajo de esas oraciones quedó, casi invisible, la copia bizantina más antigua que se conserva de varios tratados de Arquímedes, hecha en el siglo X. `[GRADO: H]`
 > [AF-001]
 
-Esta es la historia de un libro que se negó a morir. Y de una pregunta: cuando por fin pudimos leer lo que había debajo, ¿qué encontramos de verdad? Como siempre en Palimpsesto: qué sabemos, cómo lo sabemos y qué sigue en duda.
+Esta es la historia de un libro que se negó a morir. Y de una pregunta: cuando por fin pudimos leer lo que había debajo, ¿qué encontramos de verdad? En Palimpsesto contamos siempre tres cosas: qué sabemos, cómo lo sabemos y qué sigue en duda.
 > [AF-001, AF-021]
 
 `[TÍTULO DEL EPISODIO]`
@@ -120,7 +120,7 @@ Lo que cambió fue una página. En la proposición 14 de *El Método* hay un pas
 Es una interpretación seria, publicada en revistas revisadas por pares. Pero es una interpretación. Y no todos comparten el tono con que se divulgó: una reseña en *Physics Today* criticó que el libro divulgativo sobre el palimpsesto exagera, en general, la importancia de Arquímedes. Esa crítica no refuta la lectura de la proposición 14; discute el entusiasmo del relato. `[GRADO: I]`
 > [AF-018, AF-019]
 
-`[VISUAL: las 14 piezas del Stomachion formando un cuadrado]` `[RÓTULO: Recreación]`
+`[VISUAL: diagrama propio de las 14 piezas del Stomachion]` `[RÓTULO: Reconstrucción moderna]`
 
 El *Stomachion* tiene una historia parecida. Es un rompecabezas de catorce piezas. Netz lo interpretó como un problema de combinatoria: ¿de cuántas formas pueden esas piezas formar un cuadrado? `[GRADO: I]`
 > [AF-020]
@@ -141,13 +141,13 @@ Entonces, ¿casi inventó el cálculo? Lo que la evidencia permite decir es más
 Esto es lo que sigue en duda: no sabemos cómo salió el libro de Constantinopla, si por compra o por robo. No sabemos quién escribió el comentario a Aristóteles. Y no sabemos qué forma tenía el juego del *Stomachion*. `[GRADO: H para la existencia de cada duda]`
 > [AF-006, AF-016b, AF-020b]
 
-Y queda una voz más bajo el texto. A comienzos de los 2000, Natalie Tchernetska identificó en el palimpsesto fragmentos de dos discursos perdidos del orador Hipérides: *Contra Timandro* y *Contra Diondas*. Incluso su fecha se discute: unos la sitúan en el 334 antes de nuestra era; otros, en el 331. Pero esa es otra historia. Quizá la próxima. `[GRADO: H para la identificación; I para la fecha]`
+Y queda una voz más bajo el texto. A comienzos de los 2000, Natalie Tchernetska identificó en el palimpsesto fragmentos de dos discursos perdidos del orador Hipérides: *Contra Timandro* y *Contra Diondas*. La fecha de *Contra Diondas* se discute: unos la sitúan en el 334 antes de nuestra era; otros, en el 331. Pero esa es otra historia. Quizá la próxima. `[GRADO: H para la identificación; I para la fecha]`
 > [AF-015]
 
-Un sacerdote raspó un libro para escribir oraciones. Lo hizo con varios libros, y al reunirlos en uno salvó a Arquímedes, a un comentarista de Aristóteles y a Hipérides. Casi ocho siglos después, la luz y los rayos X nos devolvieron lo que había debajo. Y lo publicamos para que cualquiera pueda leerlo. Eso es un palimpsesto. `[VISUAL: transición "palimpsesto" del canal]`
+Un sacerdote raspó un libro para escribir oraciones. Lo hizo con varios libros, y al reunirlos en uno salvó a Arquímedes, a un comentarista de Aristóteles y a Hipérides. Casi ocho siglos después, la luz y los rayos X nos devolvieron lo que había debajo. Y se publicó para que cualquiera pueda leerlo. Eso es un palimpsesto. `[VISUAL: transición "palimpsesto" del canal]`
 > [AF-002, AF-013, AF-014, AF-015, AF-016]
 
-`[CTA]` Las fuentes de este episodio, con el grado de evidencia de cada afirmación, están en la descripción. Si crees que algo está mal contado, dínoslo en los comentarios con tu fuente: lo revisaremos. Y si quieres que contemos la historia de Hipérides, suscríbete a Palimpsesto.
+`[CTA]` Las fuentes principales de este episodio, y el grado de evidencia de lo que contamos, están en la descripción. Si crees que algo está mal contado, dínoslo en los comentarios con tu fuente: lo revisaremos. Y si quieres que contemos la historia de Hipérides, suscríbete a Palimpsesto.
 > [AF-015]
 
 ---

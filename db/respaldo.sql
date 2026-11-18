@@ -74,6 +74,7 @@ INSERT INTO "artefactos" VALUES('PAL-2026-001-A037','PAL-2026-001',14,'miniatura
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A038','PAL-2026-001',14,'miniatura','producciones/PAL-2026-001/render/miniaturas/miniatura_B.jpg',5,'7282101b8e54819b08b75b1c73df6a9123aee33af7942bcdb301dc6c82a05ea5','editor','2026-11-18T20:23:19+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A039','PAL-2026-001',14,'miniatura','producciones/PAL-2026-001/render/miniaturas/miniatura_C.jpg',6,'e088b432e6f004e04c6695ce443644c0d2f4f2313b13cfff96904bbe6a66475b','editor','2026-11-18T20:23:19+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A040','PAL-2026-001',14,'miniaturas_plan','producciones/PAL-2026-001/09-edicion/miniaturas.json',1,'2c1ddf8a99b4ab9e0815d44197753091f70f450de86a11de8862815e2eefa866','editor','2026-11-18T20:23:19+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A041','PAL-2026-001',14,'auditoria','producciones/PAL-2026-001/10-auditoria/auditoria_v1.md',4,'e70c3e44d9f4c5ec5aeac2d1cf7fbf928f4121608ba3652ffeef875ec3cb87df','auditor','2026-11-18T20:29:10+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -465,6 +466,9 @@ INSERT INTO "historial_tareas" VALUES(51,13,'pendiente','en_curso','editor',NULL
 INSERT INTO "historial_tareas" VALUES(52,13,'en_curso','entregado','editor','Máster 9:22 1080p25, -16,5 LUFS, solo narración (DIR-PAL-2026-001-03); 52 planos sin IA; subtítulos SRT, 3 miniaturas y metadatos. Subida a YouTube no realizada (sin credenciales); cuando se haga, solo privada','2026-11-18T16:13:40+00:00');
 INSERT INTO "historial_tareas" VALUES(53,13,'entregado','cerrado','editor','cierre automático (sin puerta)','2026-11-18T16:13:40+00:00');
 INSERT INTO "historial_tareas" VALUES(54,14,'pendiente','en_curso','auditor',NULL,'2026-11-18T20:10:59+00:00');
+INSERT INTO "historial_tareas" VALUES(55,14,'en_curso','entregado','auditor','Auditoría integral v1: CORRECCIONES. 0 bloqueantes, 3 mayores (CTA de fuentes con grados sin cumplir en la descripción; Shorts S2-S4 no autónomos; ritmo con 55% de tarjetas estáticas y bloque 6:35-8:05 sin imágenes), 8 menores.','2026-11-18T20:29:15+00:00');
+INSERT INTO "historial_tareas" VALUES(56,14,'entregado','en_revision','auditor',NULL,'2026-11-18T20:29:15+00:00');
+INSERT INTO "historial_tareas" VALUES(57,14,'en_revision','correcciones','auditor','Auditoría integral v1: CORRECCIONES. 0 bloqueantes, 3 mayores (CTA de fuentes con grados sin cumplir en la descripción; Shorts S2-S4 no autónomos; ritmo con 55% de tarjetas estáticas y bloque 6:35-8:05 sin imágenes), 8 menores.','2026-11-18T20:29:15+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -484,7 +488,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',10,50.0,0,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:10:59+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',10,50.0,1,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:29:15+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -537,7 +541,7 @@ INSERT INTO "tareas" VALUES(9,'PAL-2026-001',6,'Guion y títulos','guionista','n
 INSERT INTO "tareas" VALUES(10,'PAL-2026-001',7,'Storyboard y prompts','productor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T01:40:57+00:00','2026-11-18T01:44:02+00:00','2026-11-18T01:44:02+00:00',NULL);
 INSERT INTO "tareas" VALUES(12,'PAL-2026-001',8,'Producción audiovisual','productor','presupuesto','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:36:22+00:00','2026-11-18T15:57:30+00:00','2026-11-18T15:57:30+00:00',NULL);
 INSERT INTO "tareas" VALUES(13,'PAL-2026-001',9,'Edición, Shorts y subida privada','editor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00','2026-11-18T16:13:40+00:00','2026-11-18T16:13:40+00:00',NULL);
-INSERT INTO "tareas" VALUES(14,'PAL-2026-001',10,'Auditoría y correcciones','auditor','auditoria','en_curso','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:10:59+00:00',NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(14,'PAL-2026-001',10,'Auditoría y correcciones','auditor','auditoria','correcciones','[]','["PAL-2026-001-A041"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:10:59+00:00','2026-11-18T20:29:15+00:00',NULL,NULL);
 INSERT INTO "tareas" VALUES(16,'PAL-2026-001',11,'Aprobación del vídeo, Shorts y título final','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(17,'PAL-2026-001',12,'Publicación a la hora recomendada','director','humana','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
 INSERT INTO "tareas" VALUES(19,'PAL-2026-001',13,'Cierre: métricas, costos y lecciones','analista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);

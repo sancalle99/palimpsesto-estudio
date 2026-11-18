@@ -1,7 +1,320 @@
-{"produccion": "PAL-2026-001", "nota": "Editor · Shorts v1 (DEC-0014: hechos dentro de la etapa 10, ver DEC-0018). Cada tramo es narración íntegra del máster, sin texto nuevo.",
+{
+ "produccion": "PAL-2026-001",
+ "nota": "Editor · Shorts v2 (correcciones de la auditoría v1: HAL-02 frase de entrada propia; HAL-09 composición vertical nativa; HAL-04 subtítulos). Texto tomado del guion aprobado, con una frase de entrada; mismas afirmaciones y grados (AF citadas en cada Short).",
  "shorts": [
-  {"id": "S1", "titulo": "Lo borraron para rezar", "seccion": 1, "pares": [0, 2], "arco": "pregunta: ¿de dónde salieron las páginas? → giro: raspó un libro más antiguo → revelación: debajo estaba Arquímedes"},
-  {"id": "S2", "titulo": "Un verde lo delató", "seccion": 3, "pares": [4, 5], "arco": "pregunta: ¿iluminaciones medievales? → giro: no lo eran → revelación: la ftalocianina las fecha después de 1938"},
-  {"id": "S3", "titulo": "¿Arquímedes y el infinito?", "seccion": 5, "pares": [1, 2], "arco": "pregunta: ¿cómo descubría Arquímedes? → giro: no lo consideraba demostración → revelación: una página recuperada sugiere conjuntos infinitos (I)"},
-  {"id": "S4", "titulo": "536 soluciones… ¿o no?", "seccion": 5, "pares": [4, 6], "arco": "pregunta: ¿de cuántas formas se arma el cuadrado? → giro: 536 / 17.152 → revelación: no sabemos si así era el juego"}
- ]}
+  {
+   "id": "S1",
+   "titulo": "Lo borraron para rezar",
+   "af": "AF-002, AF-003, AF-001",
+   "parrafos": [
+    "El 14 de abril de 1229, un sacerdote llamado Ioannes Myronas termina de copiar un libro de oraciones. Es lo que dice la nota que dejó al final, su colofón. Lo que no dice es de dónde salieron las páginas.",
+    "Myronas no usó pergamino nuevo. Tomó un libro más antiguo, raspó su tinta, dobló las hojas por la mitad y las giró noventa grados. Sobre ellas escribió sus oraciones, de modo que las líneas nuevas cruzan las viejas.",
+    "Debajo de esas oraciones quedó, casi invisible, la copia bizantina más antigua que se conserva de varios tratados de Arquímedes, hecha en el siglo X."
+   ],
+   "planos": [
+    {
+     "id": "1a",
+     "par": 0,
+     "tipo": "img",
+     "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+     "cubrir": true,
+     "centro": [
+      0.3,
+      0.5
+     ],
+     "mov": "arriba",
+     "zoom": 1.08,
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+    },
+    {
+     "id": "1b",
+     "par": 0,
+     "tipo": "tarjeta",
+     "lineas": [
+      [
+       "14 de abril de 1229",
+       "titulo"
+      ],
+      [
+       "Colofón de Ioannes Myronas",
+       "normal"
+      ],
+      [
+       "● hecho documentado",
+       "grado"
+      ]
+     ],
+     "fondo_img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg"
+    },
+    {
+     "id": "1c",
+     "par": 1,
+     "tipo": "diagrama",
+     "diagrama": "hoja",
+     "transicion_a": {
+      "diagrama": "hoja_cruzada"
+     },
+     "leyenda": "Hojas giradas 90°"
+    },
+    {
+     "id": "1d",
+     "par": 1,
+     "tipo": "img",
+     "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg",
+     "cubrir": true,
+     "centro": [
+      0.7,
+      0.5
+     ],
+     "mov": "abajo",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+    },
+    {
+     "id": "1e",
+     "par": 2,
+     "tipo": "img",
+     "img": "recursos/archivo/158r-159v_Arch28r_Sinar_true_pack8.jpg",
+     "cubrir": true,
+     "centro": [
+      0.45,
+      0.5
+     ],
+     "transicion_a": {
+      "img": "recursos/archivo/158r-159v_Arch28r_Sinar_pseudo_sharpie.jpg"
+     },
+     "corte": 0.3,
+     "nota": "Debajo: Arquímedes, siglo X",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 158r-159v"
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "titulo": "Un verde lo delató",
+   "af": "AF-008, AF-012",
+   "parrafos": [
+    "En el siglo XX, alguien pintó cuatro retratos de evangelistas sobre algunas hojas de un libro que escondía a Arquímedes.",
+    "Imitaban modelos de manuscritos de la Biblioteca Nacional de Francia. Parecían iluminaciones medievales. No lo eran.",
+    "¿Cómo lo sabemos? Por un pigmento. En las falsificaciones aparece un verde de ftalocianina, y ese pigmento permite fecharlas: como pronto, son posteriores a 1938. Y al pintarlas, alguien tapó páginas de Arquímedes."
+   ],
+   "planos": [
+    {
+     "id": "2a",
+     "par": 0,
+     "tipo": "img",
+     "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+     "recorte": [
+      0.0,
+      0.0,
+      0.75,
+      0.5
+     ],
+     "cubrir": true,
+     "centro": [
+      0.5,
+      0.5
+     ],
+     "mov": "arriba",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+    },
+    {
+     "id": "2b",
+     "par": 1,
+     "tipo": "img",
+     "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+     "recorte": [
+      0.0,
+      0.0,
+      0.75,
+      0.5
+     ],
+     "cubrir": true,
+     "centro": [
+      0.5,
+      0.5
+     ],
+     "zoom": 1.12,
+     "nota": "Evangelista falsificado, siglo XX",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v"
+    },
+    {
+     "id": "2c",
+     "par": 2,
+     "tipo": "tarjeta",
+     "lineas": [
+      [
+       "Verde de ftalocianina",
+       "grande"
+      ],
+      [
+       "→ posterior a 1938",
+       "acento"
+      ],
+      [
+       "● hecho documentado",
+       "grado"
+      ]
+     ],
+     "fondo_img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg"
+    },
+    {
+     "id": "2d",
+     "par": 2,
+     "tipo": "img",
+     "img": "recursos/archivo/057r-064v_Arch16r_Sinar_true_pack8.jpg",
+     "cubrir": true,
+     "recorte": [
+      0.0,
+      0.0,
+      0.75,
+      0.5
+     ],
+     "transicion_a": {
+      "img": "recursos/archivo/057r-064v_Arch16r_XRF_FeFront_registered.jpg",
+      "recorte": null
+     },
+     "nota": "Rayos X: el texto bajo la pintura",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057r-064v · fluorescencia de rayos X"
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "titulo": "¿Arquímedes y el infinito?",
+   "af": "AF-017, AF-018",
+   "parrafos": [
+    "¿Cómo descubría Arquímedes sus resultados? En El Método, dividía las figuras en infinitas rebanadas. Pero no lo consideraba una demostración: era su manera de descubrir. Para demostrar, usaba el método de exhaución, que trabaja con un infinito que nunca se completa.",
+    "Lo que cambió fue una página. En la proposición 14 de El Método hay un pasaje que Heiberg no pudo leer. Con nuevas imágenes, los historiadores Reviel Netz, Ken Saito y Natalie Tchernetska lo leyeron.",
+    "Según su lectura, Arquímedes aplica una regla a una proporción entre conjuntos infinitos de objetos. Eso se acerca a lo que hoy llamamos un \"infinito actual\": un infinito tratado como algo completo. Es una interpretación, no un hecho."
+   ],
+   "planos": [
+    {
+     "id": "3a",
+     "par": 0,
+     "tipo": "diagrama",
+     "diagrama": "rebanadas",
+     "leyenda": "Descubrir: rebanadas"
+    },
+    {
+     "id": "3b",
+     "par": 0,
+     "tipo": "diagrama",
+     "diagrama": "exhaucion",
+     "leyenda": "Demostrar: exhaución"
+    },
+    {
+     "id": "3c",
+     "par": 1,
+     "tipo": "img",
+     "img": "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg",
+     "cubrir": true,
+     "centro": [
+      0.35,
+      0.5
+     ],
+     "mov": "arriba",
+     "nota": "Folio de El Método",
+     "fuente": "Archimedes Palimpsest Project · Walters Art Museum · CC BY 3.0 · fol. 057v-064r"
+    },
+    {
+     "id": "3d",
+     "par": 2,
+     "tipo": "tarjeta",
+     "lineas": [
+      [
+       "Netz · Saito · Tchernetska",
+       "grande"
+      ],
+      [
+       "Un “infinito actual”: tratado como algo completo",
+       "normal"
+      ],
+      [
+       "◐ interpretación académica",
+       "grado"
+      ]
+     ],
+     "fondo_img": "recursos/archivo/057v-064r_Arch16v_Sinar_pseudo_sharpie.jpg",
+     "revelar": true
+    }
+   ]
+  },
+  {
+   "id": "S4",
+   "titulo": "536 soluciones… ¿o no?",
+   "af": "AF-014, AF-020, AF-020b",
+   "parrafos": [
+    "En el palimpsesto se conserva el Stomachion, una obra de Arquímedes sobre un rompecabezas de catorce piezas. El historiador Reviel Netz lo interpretó como un problema de combinatoria: ¿de cuántas formas pueden esas piezas formar un cuadrado?",
+    "En 2003, un grupo de matemáticos y un programador hicieron el recuento: 536 soluciones geométricamente distintas. Si se cuentan además las simetrías del cuadrado y el intercambio de piezas iguales, son 17.152.",
+    "Pero ese recuento supone dos cosas: que la figura es un cuadrado y que se permiten giros y reflejos. No sabemos si así era el juego original. Y es un cálculo moderno: no significa que Arquímedes lo resolviera."
+   ],
+   "planos": [
+    {
+     "id": "4a",
+     "par": 0,
+     "tipo": "diagrama",
+     "diagrama": "stomachion",
+     "transicion_a": {
+      "diagrama": "stomachion_suelto"
+     },
+     "corte": 0.6,
+     "rotulo": "RECONSTRUCCIÓN MODERNA",
+     "fuente": "Diagrama propio · disposición moderna habitual"
+    },
+    {
+     "id": "4b",
+     "par": 1,
+     "tipo": "diagrama",
+     "diagrama": "stomachion",
+     "reticula": true,
+     "rotulo": "RECONSTRUCCIÓN MODERNA",
+     "fuente": "Diagrama propio · disposición moderna habitual"
+    },
+    {
+     "id": "4c",
+     "par": 1,
+     "tipo": "tarjeta",
+     "lineas": [
+      [
+       "536 × 32",
+       "titulo"
+      ],
+      [
+       "= 17.152",
+       "acento"
+      ],
+      [
+       "Recuento de 2003 · ● hecho",
+       "grado"
+      ]
+     ]
+    },
+    {
+     "id": "4d",
+     "par": 2,
+     "tipo": "diagrama",
+     "diagrama": "stomachion_suelto",
+     "separacion": 0.45,
+     "rotulo": "RECONSTRUCCIÓN MODERNA",
+     "fuente": "Diagrama propio · disposición moderna habitual"
+    },
+    {
+     "id": "4e",
+     "par": 2,
+     "tipo": "tarjeta",
+     "lineas": [
+      [
+       "¿Cuadrado? ¿Giros y reflejos?",
+       "normal"
+      ],
+      [
+       "NO SABEMOS",
+       "acento"
+      ]
+     ],
+     "revelar": true
+    }
+   ]
+  }
+ ]
+}
