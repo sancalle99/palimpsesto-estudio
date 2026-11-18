@@ -26,7 +26,7 @@ Repite este ciclo **una etapa cada vez** hasta llegar a una parada:
 - **Auditor:** siempre como subagente y solo con los entregables, nunca con tu razonamiento (regla 8). Si pide correcciones, el responsable corrige y el auditor revisa de nuevo. Tras 2 ciclos sin aprobar, detente y consulta al Director.
 
 ## 3. Registrar y cerrar
-1. Guarda el entregable en `producciones/<ID>/`. Usa la carpeta de la etapa si `producciones/<ID>/README.md` la define; si no, el nombre `etapaNN_<nombre>.md`.
+1. Guarda el entregable en la carpeta de la etapa: `python3 -m estudio carpeta <ID> <N>` (p. ej. `producciones/<ID>/09-guion/`).
 2. Registra el artefacto:
    `python3 -m estudio artefacto <ID> <tipo> <ruta> --actor <responsable> --etapa <N>`
 3. Entrega la etapa:

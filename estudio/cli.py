@@ -109,6 +109,10 @@ def main(argv=None):
     s = sub.add_parser("panel", help="genera docs/panel.html con el estado real de agentes y producciones")
     s = sub.add_parser("siguiente", help="siguiente paso de una producción (lo usa /avanzar)"); s.add_argument("pid")
     s.add_argument("--json", action="store_true")
+    s = sub.add_parser("carpeta", help="carpeta de entregables de una etapa (la crea)"); s.add_argument("pid"); s.add_argument("etapa", type=int)
+    s = sub.add_parser("indice", help="regenera producciones/<ID>/README.md"); s.add_argument("pid", nargs="?")
+    s = sub.add_parser("reorganizar", help="mueve entregables a sus carpetas de etapa (sin --aplicar solo muestra el plan)")
+    s.add_argument("pid"); s.add_argument("--mapa", help="JSON {ruta_vieja: ruta_nueva}"); s.add_argument("--aplicar", action="store_true")
     s = sub.add_parser("restaurar", help="reconstruye la base desde db/respaldo.sql (guarda copia de la actual)")
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
@@ -224,6 +228,19 @@ def _ejecutar(con, a):
         print(f"Plan de Claude — {a.mes} — cuota {a.cuota:.2f} USD")
         for pid, frac, usd in core.consumo_plan(con, a.canal, a.mes, a.cuota):
             print(f"  {pid:<22} {frac:6.1%}  ≈ {usd:5.2f} USD   (valor API equivalente ≈ {core.valor_api_equivalente(con, pid):6.2f} USD)")
+    elif c == "carpeta":
+        print(core.carpeta_etapa(a.pid, a.etapa).relative_to(core.RAIZ))
+    elif c == "indice":
+        pids = [a.pid] if a.pid else [p["id"] for p in con.execute("SELECT id FROM producciones")]
+        for pid in pids:
+            print(f"✔ {core.escribir_indice(con, pid).relative_to(core.RAIZ)}")
+    elif c == "reorganizar":
+        import json
+        mapa = json.loads(open(a.mapa, encoding="utf-8").read()) if a.mapa else None
+        hechos = core.reorganizar(con, a.pid, mapa, a.aplicar)
+        for v, n in hechos:
+            print(f"{'✔' if a.aplicar else '·'} {v}  →  {n}")
+        print("✔ Hecho; índice regenerado." if a.aplicar else f"Plan: {len(hechos)} archivos. Añada --aplicar para moverlos.")
     elif c == "siguiente":
         r = core.siguiente(con, a.pid)
         if a.json:
@@ -235,4 +252,6 @@ def _ejecutar(con, a):
     elif c == "panel":
         from . import panel
         print(f"✔ Panel generado: {panel.generar(con)}")
+        for (pid,) in con.execute("SELECT id FROM producciones WHERE estado NOT IN ('cancelada')"):
+            core.escribir_indice(con, pid)
     return 0

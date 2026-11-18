@@ -225,3 +225,19 @@ class TestAvanzarYPanel(Base):
         self.assertEqual(len(l), 21)
         self.assertEqual(l[0]["entregables"][0]["url"], panel.REPO_URL + "producciones/x/a%20b.md")
         self.assertEqual(l[0]["estado"], "cerrado")
+
+    def test_reorganizar_e_indice(self):
+        c, pid = self.con, self.pid
+        raiz = core.RAIZ / "producciones" / pid
+        (raiz / "guion.md").write_text("x", encoding="utf-8")
+        for n in range(1, 9):
+            core.tarea(c, pid, n)  # existe
+        core.registrar_artefacto(c, pid, "guion", f"producciones/{pid}/guion.md", "guionista", 9)
+        plan = core.reorganizar(c, pid)
+        self.assertEqual(plan, [(f"producciones/{pid}/guion.md", f"producciones/{pid}/09-guion/guion.md")])
+        self.assertTrue((raiz / "guion.md").exists())  # sin aplicar no mueve nada
+        core.reorganizar(c, pid, aplicar=True)
+        self.assertTrue((raiz / "09-guion" / "guion.md").exists())
+        self.assertEqual(c.execute("SELECT ruta FROM artefactos").fetchone()[0], f"producciones/{pid}/09-guion/guion.md")
+        self.assertIn("[guion v1](09-guion/guion.md)", (raiz / "README.md").read_text(encoding="utf-8"))
+        self.assertEqual(core.carpeta_etapa(pid, 13).name, "13-edicion")

@@ -104,6 +104,20 @@ ETAPAS: list[Etapa] = [
 ]
 ETAPA = {e.n: e for e in ETAPAS}
 ETAPAS_QUE_EXIGEN_APORTES_RESUELTOS = {9, 16}
+
+# Carpeta de entregables de cada etapa: producciones/<ID>/NN-nombre/ (recursos/ y render/ quedan en la raíz).
+CARPETAS = {1: "01-oportunidades", 2: "02-temas", 3: "03-seleccion-tema", 4: "04-enfoques", 5: "05-observaciones",
+            6: "06-aprobacion-enfoque", 7: "07-investigacion", 8: "08-expediente", 9: "09-guion", 10: "10-storyboard",
+            11: "11-prompts", 12: "12-produccion", 13: "13-edicion", 14: "14-auditoria", 15: "15-correcciones",
+            16: "16-aprobacion-video", 17: "17-publicacion", 18: "18-shorts", 19: "19-metricas",
+            20: "20-informe-financiero", 21: "21-retroalimentacion"}
+
+
+def carpeta_etapa(pid, etapa, crear=True) -> Path:
+    c = RAIZ / "producciones" / pid / CARPETAS[etapa]
+    if crear:
+        c.mkdir(parents=True, exist_ok=True)
+    return c
 MAX_CICLOS_CORRECCION = 2
 
 ESTADOS = ("pendiente", "en_curso", "entregado", "en_revision",
@@ -183,6 +197,7 @@ def crear_produccion(con, slug_canal, titulo, tema=None, presupuesto=None):
             "Escriba aquí sus notas libremente; para que queden registradas y trazables use:\n"
             f"`python -m estudio nota {pid} <tipo> \"texto\"` (tipos: pregunta, perspectiva, objecion, idea, decision).\n\n"
             "## Aportes registrados\n\n", encoding="utf-8")
+    escribir_indice(con, pid)
     return pid
 
 
@@ -352,6 +367,93 @@ def siguiente(con, pid) -> dict:
         r["detalle"] += " Etapa del Director: pedirle sus observaciones (/nota) y detenerse; si dice que no tiene, el CEO la entrega."
         r["accion"] += "_y_detenerse"
     return r
+
+
+# ---------------------------------------------------------------------------
+# Índice y orden de archivos por etapa
+# ---------------------------------------------------------------------------
+def escribir_indice(con, pid) -> Path:
+    """producciones/<ID>/README.md: índice de etapas, entregables y decisiones, generado desde la base."""
+    p = produccion(con, pid)
+    raiz = RAIZ / "producciones" / pid
+    marca = {"humana": " 🔒", "auditoria": " 🔍", "presupuesto": " 💲"}
+    arts = {}
+    for a in con.execute("SELECT a.*, t.etapa FROM artefactos a JOIN tareas t ON t.id=a.tarea_id"
+                         " WHERE a.produccion_id=? ORDER BY a.creado", (pid,)):
+        arts.setdefault(a["etapa"], {})[a["ruta"]] = a  # una fila por archivo: su última versión
+    decs = {}
+    for d in con.execute("SELECT * FROM decisiones WHERE produccion_id=? AND tipo LIKE 'aprobacion_etapa_%'", (pid,)):
+        decs.setdefault(int(d["tipo"].rsplit("_", 1)[1]), []).append(d["id"])
+    pref = f"producciones/{pid}/"
+    lin = [f"# {pid} · {p['titulo']}", "",
+           "_Índice generado desde la base de datos (`python3 -m estudio indice`). No editar a mano._", "",
+           f"Estado: **{p['estado']}** · etapa actual **{p['etapa_actual']}** · "
+           "[Cuaderno del Director](cuaderno_director.md)", "",
+           "| Etapa | Carpeta | Responsable | Estado | Entregables | Decisión |", "|---|---|---|---|---|---|"]
+    for t in con.execute("SELECT * FROM tareas WHERE produccion_id=? ORDER BY etapa", (pid,)):
+        n = t["etapa"]
+        ents = []
+        for ruta, a in arts.get(n, {}).items():
+            rel = ruta[len(pref):] if ruta.startswith(pref) else "../../" + ruta
+            nombre = f"{a['tipo'].replace('_', ' ')} v{a['version']}"
+            ents.append(f"[{nombre}]({rel.replace(' ', '%20')})" if (RAIZ / ruta).exists() or not
+                        rel.startswith(("render/", "recursos/")) else f"{nombre} (`{rel}`, fuera de git)")
+        carpeta = CARPETAS[n]
+        enlace = f"[{carpeta}/]({carpeta}/)" if (raiz / carpeta).is_dir() else "—"
+        lin.append(f"| {n}{marca.get(t['puerta'], '')} · {t['nombre']} | {enlace} | {t['responsable']} | {t['estado']} | "
+                   f"{'<br>'.join(ents) or '—'} | {', '.join(decs.get(n, [])) or '—'} |")
+    lin += ["", "`recursos/` (imágenes, audio) y `render/` (máster, subtítulos, miniaturas) quedan en la raíz "
+            "de la producción y no se versionan (ver CLAUDE.md, sección de recursos pesados).", ""]
+    raiz.mkdir(parents=True, exist_ok=True)
+    salida = raiz / "README.md"
+    salida.write_text("\n".join(lin), encoding="utf-8")
+    return salida
+
+
+def plan_reorganizacion(con, pid) -> dict:
+    """Destino de cada entregable registrado que aún no está en su carpeta de etapa: la primera etapa que lo registró."""
+    pref = f"producciones/{pid}/"
+    mapa = {}
+    for a in con.execute("SELECT a.ruta, MIN(t.etapa) AS etapa FROM artefactos a JOIN tareas t ON t.id=a.tarea_id"
+                         " WHERE a.produccion_id=? GROUP BY a.ruta", (pid,)):
+        rel = a["ruta"][len(pref):] if a["ruta"].startswith(pref) else None
+        if not rel or rel.split("/")[0] in set(CARPETAS.values()) | {"recursos", "render"}:
+            continue
+        mapa[a["ruta"]] = f"{pref}{CARPETAS[a['etapa']]}/{Path(rel).name}"
+    return mapa
+
+
+def reorganizar(con, pid, mapa=None, aplicar=False) -> list:
+    """Mueve entregables a producciones/<ID>/NN-etapa/ (git mv si están versionados) y actualiza las rutas
+    en artefactos y recursos. Sin aplicar=True solo devuelve el plan."""
+    import subprocess
+    mapa = mapa if mapa is not None else plan_reorganizacion(con, pid)
+    hechos = []
+    for viejo, nuevo in mapa.items():
+        o, d = RAIZ / viejo, RAIZ / nuevo
+        if not o.exists():
+            raise ErrorEstudio(f"No existe {viejo}.")
+        if d.exists():
+            raise ErrorEstudio(f"El destino {nuevo} ya existe.")
+        hechos.append((viejo, nuevo))
+        if not aplicar:
+            continue
+        d.parent.mkdir(parents=True, exist_ok=True)
+        versionado = subprocess.run(["git", "ls-files", "--error-unmatch", viejo], cwd=RAIZ,
+                                    capture_output=True).returncode == 0
+        if versionado:
+            subprocess.run(["git", "mv", viejo, nuevo], cwd=RAIZ, check=True)
+        else:
+            o.rename(d)
+        con.execute("UPDATE artefactos SET ruta=? WHERE ruta=?", (nuevo, viejo))
+        con.execute("UPDATE recursos SET archivo=? WHERE archivo=?", (nuevo, viejo))
+    if aplicar:
+        for vacia in sorted({(RAIZ / v).parent for v, _ in hechos}, reverse=True):
+            if vacia != RAIZ / "producciones" / pid and vacia.is_dir() and not any(vacia.iterdir()):
+                vacia.rmdir()
+        con.commit()
+        escribir_indice(con, pid)
+    return hechos
 
 
 # ---------------------------------------------------------------------------
