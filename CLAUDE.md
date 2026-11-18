@@ -10,6 +10,12 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 - El estado del flujo vive en la base de datos y se consulta con `python -m estudio estado <ID>`.
 - Las 21 etapas, sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa.
 
+## Flujo desde un solo chat: `/avanzar <ID>`
+
+- `/avanzar PAL-2026-001` ejecuta la siguiente etapa con su responsable, la registra, actualiza el panel y sigue con la próxima. Se detiene en cada puerta 🔒 mostrando la Ficha de decisión (detalle en `.claude/commands/avanzar.md`).
+- El siguiente paso lo dice la base de datos: `python3 -m estudio siguiente <ID>`.
+- Tras un `APRUEBO / CORRECCIONES / RECHAZO <ID> <N>` registrado por el hook, el CEO retoma `/avanzar <ID>` en el mismo chat.
+
 ## Reglas inviolables
 
 1. **Puertas humanas (🔒 etapas 3, 6, 16, 17, 18):** ningún agente ejecuta `python -m estudio aprobar` ni `presupuesto-ampliar`. Se le presenta al Director una Ficha de decisión y se espera. El sistema lo bloquea técnicamente.
@@ -57,6 +63,7 @@ Decisión del Director del 18-nov-2026. Mientras el plan sea Pro:
 ```
 python -m estudio prods                     # producciones activas
 python -m estudio estado PAL-2026-001       # tablero de una producción
+python -m estudio siguiente PAL-2026-001    # qué etapa toca y qué acción (lo usa /avanzar)
 python -m estudio alertas                   # alertas de presupuesto
 python -m estudio informe-video PAL-2026-001
 python -m unittest discover -s tests -v     # pruebas

@@ -8,9 +8,11 @@ from __future__ import annotations
 
 import html
 import json
+from urllib.parse import quote
 
 from . import core
 
+REPO_URL = "https://github.com/sancalle99/palimpsesto-estudio/blob/main/"
 AGENTES = ("director", "ceo", "investigador", "guionista", "productor", "editor", "auditor", "cfo", "analista")
 ESTADOS_LEGIBLES = {"pendiente": "pendiente", "en_curso": "en curso", "entregado": "entregado",
                     "en_revision": "en revisión", "aprobado": "aprobado", "correcciones": "correcciones",
@@ -48,6 +50,7 @@ def estado(con, slug_canal="palimpsesto", cuota=20.0) -> dict:
             "api_eq": f"{core.valor_api_equivalente(con, p['id']):.2f}",
             "gasto": f"{con.execute('SELECT COALESCE(SUM(costo_usd),0) FROM v_costos_vigentes WHERE produccion_id=? AND tipo_costo IN (\"real\",\"estimado\")', (p['id'],)).fetchone()[0]:.2f}",
             "pendiente_director": html.escape(pendiente),
+            "linea": linea(con, p["id"], tareas),
         })
     # historial por agente: cambios de estado, artefactos y decisiones
     eventos = []
@@ -65,6 +68,47 @@ def estado(con, slug_canal="palimpsesto", cuota=20.0) -> dict:
         if len(agentes[actor]["historial"]) < 5:
             agentes[actor]["historial"].append({"t": t, "txt": html.escape(txt)})
     return {"generado": core.ahora(), "canal": c["slug"], "producciones": prods, "agentes": agentes}
+
+
+def linea(con, pid, tareas) -> list:
+    """Las 21 etapas de una producción con responsable, fechas, entregables y decisiones del Director."""
+    esc = lambda x: html.escape(x or "")
+    arts, hist, decs = {}, {}, {}
+    for a in con.execute("SELECT * FROM artefactos WHERE produccion_id=? ORDER BY creado", (pid,)):
+        arts.setdefault(a["tarea_id"], []).append({
+            "id": a["id"], "tipo": esc(a["tipo"].replace("_", " ")), "v": a["version"], "autor": a["autor"],
+            "ruta": esc(a["ruta"]), "url": REPO_URL + quote(a["ruta"]), "t": a["creado"]})
+    for h in con.execute("SELECT * FROM historial_tareas WHERE tarea_id IN (SELECT id FROM tareas WHERE produccion_id=?)"
+                         " ORDER BY creado, id", (pid,)):
+        hist.setdefault(h["tarea_id"], []).append({
+            "t": h["creado"], "actor": h["actor"], "nota": esc(h["nota"]),
+            "txt": f"{ESTADOS_LEGIBLES.get(h['de_estado'], h['de_estado'] or '—')} → {ESTADOS_LEGIBLES.get(h['a_estado'], h['a_estado'])}"})
+    for d in con.execute("SELECT * FROM decisiones WHERE produccion_id=? ORDER BY creado", (pid,)):
+        n = int(d["tipo"].rsplit("_", 1)[1]) if d["tipo"].startswith("aprobacion_etapa_") else None
+        decs.setdefault(n, []).append({"id": d["id"], "decidio": d["decidio"], "desc": esc(d["descripcion"]),
+                                       "just": esc(d["justificacion"]), "t": d["creado"]})
+    aportes = [{"id": x["id"], "tipo": x["tipo"], "texto": esc(x["texto"]), "estado": x["estado"],
+                "resolucion": esc(x["resolucion"])}
+               for x in con.execute("SELECT * FROM aportes WHERE produccion_id=? ORDER BY creado", (pid,))]
+    filas = []
+    for t in tareas:
+        h = hist.get(t["id"], [])
+        actores = []
+        for x in [t["responsable"]] + [e["actor"] for e in h] + [a["autor"] for a in arts.get(t["id"], [])]:
+            if x in AGENTES and x not in actores:
+                actores.append(x)
+        filas.append({
+            "n": t["etapa"], "nombre": esc(t["nombre"]), "resp": t["responsable"], "puerta": t["puerta"],
+            "estado": t["estado"], "iniciado": t["iniciado"], "entregado": t["entregado"], "cerrado": t["cerrado"],
+            "actores": actores, "entregables": arts.get(t["id"], []), "historial": h,
+            "decisiones": decs.get(t["etapa"], []),
+            "aportes": aportes if t["etapa"] == 5 else [],
+        })
+    # decisiones de la producción sin etapa propia: van a la primera etapa que seguía abierta cuando se tomaron
+    for d in decs.get(None, []):
+        destino = next((f for f in filas if not f["cerrado"] or f["cerrado"] > d["t"]), filas[-1])
+        destino.setdefault("otras", []).append(d)
+    return filas
 
 
 def generar(con, salida=None) -> str:

@@ -285,6 +285,58 @@ def estado_produccion(con, pid):
     return p, tareas
 
 
+# Etapas que corren en un subagente (independencia o volumen); el resto, en la sesión principal (modo económico).
+ETAPAS_EN_SUBAGENTE = {7, 9, 10, 11, 12, 13, 14, 18, 19, 20}
+
+
+def ejecutor(etapa: int) -> str:
+    """Quién ejecuta la etapa en /avanzar: una skill del responsable si existe; si no, subagente o sesión principal."""
+    e = ETAPA[etapa]
+    if e.responsable == "director":
+        return "director"
+    if (RAIZ / ".claude" / "skills" / e.responsable / "SKILL.md").exists() and e.responsable != "auditor":
+        return f"skill:{e.responsable}"
+    return f"subagente:{e.responsable}" if etapa in ETAPAS_EN_SUBAGENTE else f"sesion:{e.responsable}"
+
+
+def siguiente(con, pid) -> dict:
+    """Siguiente paso de una producción para /avanzar: la primera etapa no cerrada y la acción que toca."""
+    p = produccion(con, pid)
+    t = con.execute("SELECT * FROM tareas WHERE produccion_id=? AND estado!='cerrado' ORDER BY etapa LIMIT 1",
+                    (pid,)).fetchone()
+    if t is None:
+        return {"pid": pid, "accion": "completa", "detalle": "Las 21 etapas están cerradas."}
+    e = ETAPA[t["etapa"]]
+    r = {"pid": pid, "etapa": e.n, "nombre": e.nombre, "responsable": e.responsable, "puerta": e.puerta,
+         "estado": t["estado"], "ejecutor": ejecutor(e.n), "nota": None}
+    ultima = con.execute("SELECT nota FROM historial_tareas WHERE tarea_id=? AND nota IS NOT NULL ORDER BY id DESC LIMIT 1",
+                         (t["id"],)).fetchone()
+    if t["estado"] in ("correcciones", "rechazado"):
+        r["nota"] = ultima["nota"] if ultima else None
+    if p["estado"] == "congelada" and e.puerta == "presupuesto":
+        r.update(accion="detenerse", detalle="Producción CONGELADA por presupuesto: solo el Director puede ampliarlo.")
+    elif t["estado"] == "en_revision" and e.puerta == "humana":
+        r.update(accion="detenerse", detalle=f"Puerta 🔒: mostrar la Ficha de decisión y esperar APRUEBO / CORRECCIONES / RECHAZO {pid} {e.n}.")
+    elif t["estado"] == "en_revision" and e.puerta == "auditoria":
+        r.update(accion="auditar", detalle="Lanzar el subagente auditor solo con los entregables; él resuelve con 'auditar'.")
+    elif e.n in ETAPAS_QUE_EXIGEN_APORTES_RESUELTOS and t["estado"] == "pendiente" and aportes_pendientes(con, pid):
+        r.update(accion="resolver_aportes",
+                 detalle="Hay aportes del Director sin resolver: integrarlos o descartarlos con justificación antes de iniciar.")
+    elif t["estado"] == "pendiente":
+        r.update(accion="iniciar", detalle=f"python3 -m estudio iniciar {pid} {e.n} --actor "
+                                           f"{'ceo' if e.responsable == 'director' else e.responsable}")
+    elif t["estado"] in ("correcciones", "rechazado"):
+        r.update(accion="reabrir", detalle="Reabrir y rehacer según la nota de la revisión.")
+    elif t["estado"] == "en_curso":
+        r.update(accion="trabajar", detalle="Producir el entregable, registrarlo con 'artefacto' y 'entregar'.")
+    else:
+        r.update(accion="revisar_estado", detalle=f"Estado transitorio '{t['estado']}': revisar con 'estado'.")
+    if e.responsable == "director" and e.puerta != "humana" and r["accion"] in ("iniciar", "trabajar"):
+        r["detalle"] += " Etapa del Director: pedirle sus observaciones (/nota) y detenerse; si dice que no tiene, el CEO la entrega."
+        r["accion"] += "_y_detenerse"
+    return r
+
+
 # ---------------------------------------------------------------------------
 # Artefactos y recursos
 # ---------------------------------------------------------------------------

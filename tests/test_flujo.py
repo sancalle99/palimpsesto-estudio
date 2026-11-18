@@ -164,3 +164,41 @@ class TestHookDirector(Base):
         from estudio.hook_aprobacion import procesar
         self.assertIn("justificación", procesar(f"AMPLÍO PRESUPUESTO {self.pid} 70", self.con))
         self.assertIn("ampliado", procesar(f"AMPLÍO PRESUPUESTO {self.pid} 70 más planos de vídeo", self.con))
+
+
+class TestAvanzarYPanel(Base):
+    def test_siguiente_recorre_y_se_detiene_en_puertas(self):
+        c, pid = self.con, self.pid
+        r = core.siguiente(c, pid)
+        self.assertEqual((r["etapa"], r["accion"]), (1, "iniciar"))
+        self.paso(1, "investigador"); self.paso(2, "ceo")
+        r = core.siguiente(c, pid)
+        self.assertEqual((r["etapa"], r["ejecutor"]), (3, "director"))
+        self.paso(3, "ceo")
+        r = core.siguiente(c, pid)
+        self.assertEqual(r["accion"], "detenerse")
+        core.revisar(c, pid, 3, "correcciones", "director", "otro tema", director=True)
+        r = core.siguiente(c, pid)
+        self.assertEqual((r["accion"], r["nota"]), ("reabrir", "otro tema"))
+
+    def test_siguiente_auditoria_y_etapa_5(self):
+        c, pid = self.con, self.pid
+        for n in range(1, 5):
+            actor = "ceo" if core.ETAPA[n].responsable == "director" else core.ETAPA[n].responsable
+            self.paso(n, actor)
+            if n == 3:
+                core.revisar(c, pid, 3, "aprobado", "director", "ok", director=True)
+        self.assertEqual(core.siguiente(c, pid)["accion"], "iniciar_y_detenerse")
+        self.assertEqual(core.ejecutor(7), "subagente:investigador")
+        self.assertEqual(core.ejecutor(2), "sesion:ceo")
+
+    def test_panel_linea(self):
+        from estudio import panel
+        c, pid = self.con, self.pid
+        core.iniciar(c, pid, 1, "investigador")
+        aid = core.registrar_artefacto(c, pid, "informe", "producciones/x/a b.md", "investigador", 1)
+        core.entregar(c, pid, 1, "investigador", [aid])
+        l = panel.estado(c, "prueba")["producciones"][0]["linea"]
+        self.assertEqual(len(l), 21)
+        self.assertEqual(l[0]["entregables"][0]["url"], panel.REPO_URL + "producciones/x/a%20b.md")
+        self.assertEqual(l[0]["estado"], "cerrado")

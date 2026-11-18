@@ -85,6 +85,42 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 .hist li{display:grid;grid-template-columns:auto 1fr;gap:10px} .hist time{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 .estado-box{border-left:3px solid var(--line);padding:6px 12px;font-size:14.5px}
 .estado-box.trabajando{border-color:var(--ok)} .estado-box.decidir{border-color:var(--accent)} .estado-box.revisando{border-color:var(--warn)}
+/* Línea de producción */
+.linea{display:flex;flex-direction:column;gap:14px}
+.linea-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;border-top:1px solid var(--line);padding-top:20px}
+.linea-head h2{font-family:var(--display);font-size:30px;font-weight:600;margin:0;line-height:1.05}
+.linea-head .sub{color:var(--muted);font-size:13.5px}
+.filtro{display:flex;align-items:center;gap:8px;font-size:13px;margin-left:auto}
+.filtro button,.linea select{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:3px 10px;cursor:pointer}
+.linea-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px);gap:24px;align-items:start}
+@media (max-width:820px){.linea-grid{grid-template-columns:1fr}}
+ol.etapas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.et{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:4px 12px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;
+  background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:6px;padding:8px 12px;cursor:pointer;transition:opacity .15s}
+.et:hover{border-color:var(--muted)} .et:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.et[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.et.cerrado{border-left-color:var(--ok)} .et.en_curso,.et.entregado{border-left-color:var(--warn)}
+.et.en_revision,.et.correcciones,.et.rechazado{border-left-color:var(--accent)}
+.et .num{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.et .nom{font-weight:500;min-width:0}
+.et .meta{grid-column:2/4;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--muted)}
+.et .est{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.et.cerrado .est{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.et.en_curso .est,.et.entregado .est{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.et.en_revision .est,.et.correcciones .est,.et.rechazado .est{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.et .suyo{color:var(--accent);font-weight:600}
+.linea.filtrada .et:not(.mine){opacity:.38}
+.linea.filtrada .et.mine{border-color:var(--accent)}
+aside.det{position:sticky;top:16px;gap:16px;padding:20px}
+aside.det h3.t{font-family:var(--display);font-size:26px;font-weight:600;margin:0;line-height:1.1;text-transform:none;letter-spacing:0;color:var(--ink)}
+.det ul.files{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.det ul.files li{display:flex;flex-direction:column;gap:1px;font-size:14px}
+.det ul.files small{color:var(--muted);font-size:12px}
+.det a{color:var(--accent);text-underline-offset:2px;overflow-wrap:anywhere}
+.det .dec{border-left:3px solid var(--accent);padding:4px 10px;font-size:14px;display:flex;flex-direction:column;gap:2px}
+.det .dec small{color:var(--muted)}
+.det .vacio{color:var(--muted);font-size:13.5px;margin:0}
+.card .entregas li{font-size:14px}
 @media (prefers-reduced-motion:no-preference){.card{animation:in .18s ease-out}@keyframes in{from{opacity:.6;transform:translateY(3px)}}}
 </style>
 
@@ -92,7 +128,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <header>
     <span class="eyebrow">Estudio de Documentales Históricos · Canal Palimpsesto</span>
     <h1>Organigrama del estudio</h1>
-    <p>Pulse cualquier agente para ver qué hace, en qué etapas trabaja, qué no puede hacer y cómo consultarlo directamente desde el chat.</p>
+    <p>Pulse un agente para ver qué hace, cómo consultarlo y qué entregó; sus etapas se resaltan en la línea de producción. Pulse una etapa para ver quién la hizo, qué entregó y qué decidió usted.</p>
   </header>
 
   <section class="ahora" id="ahora" hidden></section>
@@ -103,6 +139,18 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     </nav>
     <article class="card" id="card" aria-live="polite"></article>
   </div>
+
+  <section class="linea" id="linea" hidden>
+    <div class="linea-head">
+      <h2>Línea de producción</h2>
+      <span class="sub" id="linea-sub"></span>
+      <span class="filtro" id="filtro"></span>
+    </div>
+    <div class="linea-grid">
+      <ol class="etapas" id="etapas" aria-label="Las 21 etapas"></ol>
+      <aside class="card det" id="det" aria-live="polite"></aside>
+    </div>
+  </section>
 
   <footer id="pie">
     Definiciones en <code>.claude/agents/</code> del repositorio <code>sancalle99/palimpsesto-estudio</code>. El estado se genera desde la base de datos del estudio con <code>python3 -m estudio panel</code> y se actualiza al cerrar cada bloque de trabajo; no es en tiempo real.
@@ -200,17 +248,78 @@ function show(k){
    <div class="sec ask"><h3>${k==="director"?"Lo que usted escribe en el chat":"Cómo consultarlo en el chat"}</h3>
      ${a.ask.map((q,i)=>`<div class="q"><code id="q-${k}-${i}">${q}</code><button type="button" data-copy="q-${k}-${i}">Copiar</button></div>`).join("")}</div>
    ${EST[k] && EST[k].historial.length ? `<div class="sec"><h3>Últimas acciones</h3><ul class="hist">${EST[k].historial.map(h=>`<li><time>${fmt(h.t)}</time><span>${h.txt}</span></li>`).join("")}</ul></div>` : ""}
+   ${entregasDe(k)}
    <p class="note">${a.nota||"Escriba <code>/agente "+k+"</code> seguido de su pregunta. Las consultas no cambian el estado de ninguna producción ni generan gastos, salvo que usted lo pida."}</p>`;
 }
 document.addEventListener("click",e=>{
   const n=e.target.closest(".node[data-k]");
-  if(n){ if(location.hash!=="#"+n.dataset.k) location.hash=n.dataset.k; else show(n.dataset.k); return; }
+  if(n){ if(location.hash!=="#"+n.dataset.k) location.hash=n.dataset.k; else show(n.dataset.k,true); return; }
   const c=e.target.closest("[data-copy]");
   if(c){ const el=document.getElementById(c.dataset.copy), t=el.textContent;
     const done=()=>{c.textContent="Copiado";setTimeout(()=>c.textContent="Copiar",1400)};
     try{ navigator.clipboard.writeText(t).then(done,()=>{sel(el);c.textContent="Seleccionado"}) }catch(_){ sel(el);c.textContent="Seleccionado" } }
 });
 function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
-window.addEventListener("hashchange",()=>show(location.hash.slice(1)));
-show(location.hash.slice(1)||"ceo");
+/* ---- Línea de producción ---- */
+const PRODS=(ESTADO&&ESTADO.producciones)||[];
+let prodIdx=0, filtro=null, etSel=null;
+const PUERTA={humana:"🔒",auditoria:"🔍",presupuesto:"💲"};
+const PUERTA_TXT={humana:"Puerta 🔒: decide el Director",auditoria:"Puerta 🔍: auditoría independiente",presupuesto:"Puerta 💲: verificación de presupuesto"};
+const nomA=k=>A[k]?A[k].n:k;
+const fechaEt=e=>e.cerrado?"cerrada "+fmt(e.cerrado):e.iniciado?"iniciada "+fmt(e.iniciado):"";
+const esDe=(e,k)=>e.resp===k||e.entregables.some(x=>x.autor===k)||(k==="director"&&(e.decisiones.length||e.historial.some(h=>h.actor==="director")));
+function entregasDe(k){
+  const p=PRODS[prodIdx]; if(!p) return "";
+  const filas=p.linea.map(e=>[e,e.entregables.filter(x=>x.autor===k)]).filter(([,xs])=>xs.length);
+  const decs=k==="director"?p.linea.flatMap(e=>e.decisiones.map(d=>`<li>Etapa ${e.n}: ${d.id} · ${d.desc}</li>`)):[];
+  if(!filas.length&&!decs.length) return `<div class="sec"><h3>Entregó en ${p.id}</h3><p class="vacio" style="margin:0;color:var(--muted);font-size:13.5px">Aún nada en esta producción.</p></div>`;
+  return `<div class="sec"><h3>${k==="director"?"Decidió":"Entregó"} en ${p.id}</h3><ul class="entregas">${
+    filas.map(([e,xs])=>`<li>Etapa ${e.n} · ${e.nombre}: ${xs.map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.tipo} v${x.v}</a>`).join(", ")}</li>`).join("")}${decs.join("")}</ul></div>`;
+}
+function pintarLinea(){
+  const p=PRODS[prodIdx]; const sec=document.getElementById("linea"); if(!p){sec.hidden=true;return}
+  sec.hidden=false;
+  document.getElementById("linea-sub").innerHTML=PRODS.length>1
+    ?`<select id="prod-sel" aria-label="Producción">${PRODS.map((x,i)=>`<option value="${i}" ${i===prodIdx?"selected":""}>${x.id} · ${x.titulo}</option>`).join("")}</select>`
+    :`${p.id} · ${p.titulo}`;
+  sec.classList.toggle("filtrada",!!filtro);
+  document.getElementById("filtro").innerHTML=filtro?`Resaltando: <b>${nomA(filtro)}</b> <button type="button" id="ver-todas">Ver todas</button>`:"";
+  document.getElementById("etapas").innerHTML=p.linea.map(e=>`<li><button type="button" class="et ${e.estado}${filtro&&esDe(e,filtro)?" mine":""}" data-et="${e.n}" aria-pressed="${e.n===etSel}">
+    <span class="num">${String(e.n).padStart(2,"0")} ${PUERTA[e.puerta]||""}</span><span class="nom">${e.nombre}</span><span class="est">${ESTADOS[e.estado]||e.estado}</span>
+    <span class="meta"><span class="${filtro===e.resp?"suyo":""}">${nomA(e.resp)}</span>${fechaEt(e)?`<span>${fechaEt(e)}</span>`:""}${e.entregables.length?`<span>${e.entregables.length} entregable${e.entregables.length>1?"s":""}</span>`:""}${e.decisiones.length?`<span>decisión del Director</span>`:""}</span>
+  </button></li>`).join("");
+  pintarEtapa();
+}
+const ESTADOS={pendiente:"pendiente",en_curso:"en curso",entregado:"entregado",en_revision:"en revisión",aprobado:"aprobado",correcciones:"correcciones",rechazado:"rechazado",cerrado:"cerrada"};
+function pintarEtapa(){
+  const p=PRODS[prodIdx]; const e=p.linea.find(x=>x.n===etSel)||p.linea[0];
+  const dec=[...e.decisiones,...(e.otras||[])];
+  const dirHist=e.historial.filter(h=>h.actor==="director"&&h.nota);
+  document.getElementById("det").innerHTML=`
+    <span class="eyebrow">Etapa ${e.n} de 21 · ${p.id}</span>
+    <h3 class="t">${e.nombre}</h3>
+    <div class="chips"><span class="chip">${ESTADOS[e.estado]||e.estado}</span>${PUERTA_TXT[e.puerta]?`<span class="chip acc">${PUERTA_TXT[e.puerta]}</span>`:""}</div>
+    <div class="sec"><h3>Quién la hizo</h3><p style="margin:0">Responsable: <b>${nomA(e.resp)}</b>${e.actores.filter(a=>a!==e.resp).length?` · también intervino: ${e.actores.filter(a=>a!==e.resp).map(nomA).join(", ")}`:""}</p>
+      <p class="vacio">${[e.iniciado&&"Iniciada "+fmt(e.iniciado),e.entregado&&"entregada "+fmt(e.entregado),e.cerrado&&"cerrada "+fmt(e.cerrado)].filter(Boolean).join(" · ")||"Aún no empieza."}</p></div>
+    <div class="sec"><h3>Entregables</h3>${e.entregables.length?`<ul class="files">${e.entregables.map(x=>`<li><a href="${x.url}" target="_blank" rel="noopener">${x.tipo} · v${x.v}</a><small>${x.id} · ${nomA(x.autor)} · ${fmt(x.t)} · ${x.ruta}</small></li>`).join("")}</ul>`:`<p class="vacio">Sin entregables registrados.</p>`}</div>
+    <div class="sec"><h3>Lo que decidió el Director</h3>${dec.length||dirHist.length||e.aportes.length?
+      dec.map(d=>`<div class="dec"><b>${d.id}${d.decidio!=="director"?" · registrada por "+nomA(d.decidio):""}</b><span>${d.desc}</span>${d.just?`<small>${d.just}</small>`:""}</div>`).join("")
+      +dirHist.map(h=>`<div class="dec"><b>${h.txt}</b><small>${h.nota}</small></div>`).join("")
+      +e.aportes.map(x=>`<div class="dec"><b>${x.id} · ${x.tipo} · ${x.estado}</b><span>${x.texto}</span>${x.resolucion?`<small>→ ${x.resolucion}</small>`:""}</div>`).join("")
+      :`<p class="vacio">${e.puerta==="humana"?"Pendiente de su decisión.":"Ninguna decisión suya en esta etapa."}</p>`}</div>
+    ${e.historial.length?`<div class="sec"><h3>Historial</h3><ul class="hist">${e.historial.map(h=>`<li><time>${fmt(h.t)}</time><span>${nomA(h.actor)}: ${h.txt}${h.nota&&h.actor!=="director"?` · <span style="color:var(--muted)" title="${h.nota}">${h.nota.length>140?h.nota.slice(0,140)+"…":h.nota}</span>`:""}</span></li>`).join("")}</ul></div>`:""}`;
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".et[data-et]");
+  if(b){ etSel=+b.dataset.et; document.querySelectorAll(".et").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); pintarEtapa();
+    if(matchMedia("(max-width:820px)").matches) document.getElementById("det").scrollIntoView({behavior:"smooth",block:"start"}); return; }
+  if(e.target.id==="ver-todas"){ filtro=null; pintarLinea(); }
+});
+document.addEventListener("change",e=>{ if(e.target.id==="prod-sel"){ prodIdx=+e.target.value; etSel=null; iniciarEt(); pintarLinea(); show(location.hash.slice(1)||"ceo"); }});
+function iniciarEt(){ const p=PRODS[prodIdx]; if(p) etSel=etSel||(p.linea.find(x=>x.estado!=="cerrado")||p.linea[20]).n; }
+const showBase=show;
+show=function(k,marcar){ showBase(k); if(marcar){ filtro=A[k]?k:null; pintarLinea(); } };
+window.addEventListener("hashchange",()=>show(location.hash.slice(1),true));
+iniciarEt(); pintarLinea();
+show(location.hash.slice(1)||"ceo", !!location.hash.slice(1));
 </script>

@@ -107,6 +107,8 @@ def main(argv=None):
     s = sub.add_parser("consumo-plan", help="cuánto del plan de Claude consumió cada producción en el mes")
     s.add_argument("canal"); s.add_argument("mes"); s.add_argument("--cuota", type=float, default=20.0)
     s = sub.add_parser("panel", help="genera docs/panel.html con el estado real de agentes y producciones")
+    s = sub.add_parser("siguiente", help="siguiente paso de una producción (lo usa /avanzar)"); s.add_argument("pid")
+    s.add_argument("--json", action="store_true")
     s = sub.add_parser("respaldo", help="vuelca la base a db/respaldo.sql (versionado en git)")
 
     a = ap.parse_args(argv)
@@ -218,6 +220,14 @@ def _ejecutar(con, a):
         print(f"Plan de Claude — {a.mes} — cuota {a.cuota:.2f} USD")
         for pid, frac, usd in core.consumo_plan(con, a.canal, a.mes, a.cuota):
             print(f"  {pid:<22} {frac:6.1%}  ≈ {usd:5.2f} USD   (valor API equivalente ≈ {core.valor_api_equivalente(con, pid):6.2f} USD)")
+    elif c == "siguiente":
+        r = core.siguiente(con, a.pid)
+        if a.json:
+            import json; print(json.dumps(r, ensure_ascii=False))
+        else:
+            print(f"{r['pid']} · " + (f"etapa {r['etapa']} ({r['nombre']}) · responsable {r['responsable']} · puerta {r['puerta']} · "
+                                     f"estado {r['estado']} · ejecutor {r['ejecutor']}\n" if "etapa" in r else "")
+                  + f"ACCIÓN: {r['accion']} — {r['detalle']}" + (f"\nNota de la revisión: {r['nota']}" if r.get("nota") else ""))
     elif c == "panel":
         from . import panel
         print(f"✔ Panel generado: {panel.generar(con)}")
