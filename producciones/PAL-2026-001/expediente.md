@@ -1,6 +1,7 @@
 # Expediente de investigación — PAL-2026-001 · El Palimpsesto de Arquímedes
 
-**Etapas 7–8 · Investigador · v2 · 18-nov-2026 · Modo económico**
+**Etapas 7–8 · Investigador · v3 · 18-nov-2026 · Modo económico**
+**v3:** corrige HAL-13 a HAL-16 de la auditoría v2 (`auditoria/etapa_8_v2.md`). HAL-08 y HAL-12 quedan como pendientes ◌ documentados. Regla para el guion: no nombrar al equipo de imagen hasta confirmarlo.
 **Enfoque aprobado (DEC-0004):** A, "El libro que se negó a morir", más el bloque B (lo demostrado frente a lo exagerado) y una mención de Hipérides (C) en el cierre.
 **v2:** corrige los hallazgos HAL-01 a HAL-12 de la auditoría v1 (`auditoria/etapa_8_v1.md`); la columna "Cambio v2" indica cuál.
 
@@ -31,9 +32,9 @@ Fuentes: **[P]** primaria o del proyecto · **[A]** académica revisada por pare
 | ID | Afirmación | Grado | Fuentes | Notas | Cambio v2 |
 |---|---|---|---|---|---|
 | AF-014 | Contiene *El Método* y el *Stomachion*, que no se conservan en ningún otro manuscrito, y la única copia en griego de *Sobre los cuerpos flotantes* | H | F1, F3 | — | — |
-| AF-015 | Contiene fragmentos de dos discursos perdidos de Hipérides, identificados por Natalie Tchernetska. Su *editio princeps*: *Contra Timandro* (Tchernetska, *ZPE* 154, 2005) y *Contra Diondas* (Carey *et al.*, *ZPE* 165, 2008) | H | **F12a, F12b** (primarias); F11 solo como orientación | ◌ El año exacto de la identificación (2002, según fuentes secundarias) se comprueba en F12a. Si no se confirma, el guion dirá "a comienzos de los 2000". La fecha de *Contra Diondas* (334 o 331 a. C.) se debate, con grado I (F21, F22) | HAL-03 |
+| AF-015 | Contiene fragmentos de dos discursos perdidos de Hipérides, identificados por Natalie Tchernetska. Su *editio princeps*: *Contra Timandro* (Tchernetska, *ZPE* 154, 2005) y *Contra Diondas* (Carey *et al.*, *ZPE* 165, 2008) | H | **F12a, F12b** (primarias); F11 solo como orientación | ◌ El año exacto de la identificación (2002, según fuentes secundarias) se comprueba en F12a. Si no se confirma, el guion dirá "a comienzos de los 2000". La fecha de *Contra Diondas* se debate, con grado I: Horváth defiende el 334 a. C. (F21, F22) y Lane Fox el 331 a. C. (◌ referencia de Lane Fox) | HAL-03, HAL-14 |
 | AF-016 | Contiene un comentario a las *Categorías* de Aristóteles de los siglos II o III d. C. | H | F13, F1 | — | — |
-| AF-016b | Su autoría tiene dos propuestas: **Porfirio, con fragmentos de Boeto de Sidón** (Chiaradonna, Rashed y Sedley, *OSAP* 44, 2013, la más reciente y detallada) y **Alejandro de Afrodisias** (R. Sharples) | **Hp** (ambas) | F23, F13 | Se narra como debate abierto | HAL-04 |
+| AF-016b | Su autoría tiene dos propuestas: **Porfirio, con fragmentos de Boeto de Sidón** (Chiaradonna, Rashed y Sedley, *OSAP* 44, 2013) y **Alejandro de Afrodisias** (R. Sharples, según la cita en F13) | **Hp** (ambas) | F23, F13 | Se narra como debate abierto, sin preferir una propuesta. ◌ Referencia propia de Sharples | HAL-04, HAL-16 |
 
 ## 3. Bloque B: lo demostrado frente a lo exagerado
 
@@ -43,7 +44,7 @@ Fuentes: **[P]** primaria o del proyecto · **[A]** académica revisada por pare
 | AF-018 | Netz, Saito y Tchernetska leyeron en la proposición 14 de *El Método* un pasaje que Heiberg no pudo leer. Según su lectura, Arquímedes aplica un lema a una proporción entre conjuntos infinitos de objetos, lo que se acerca a un "infinito actual" | I | **F17, F18** (revisadas por pares), F1 | "Según los historiadores Reviel Netz, Ken Saito y Natalie Tchernetska…" | HAL-05 |
 | AF-019 | Una reseña en *Physics Today* critica que *The Archimedes Codex* exagera, en general, la importancia de Arquímedes | I | F15 | Es una crítica general al tono del libro, no una refutación de AF-018. Se narra: "algunos críticos ven exageración en el relato divulgativo" | HAL-08 |
 | AF-020 | Netz interpreta el *Stomachion* como un problema de combinatoria: de cuántas formas sus 14 piezas pueden formar un cuadrado | I | F1, F16 | Interpretación de Netz | HAL-01 |
-| AF-020b | Ese recuento existe: **17.152 soluciones** (536 si no se cuentan como distintas las que se obtienen girando o reflejando el cuadrado). Lo calcularon **Persi Diaconis, Susan Holmes, Ronald Graham y Fan Chung** en 2003, y lo confirmó Bill Cutler | H | F19 | El recuento es moderno: no implica que Arquímedes lo resolviera. **Se eliminó la cita textual atribuida a Netz**, que no tenía fuente | HAL-01, HAL-02 |
+| AF-020b | Ese recuento existe: **17.152 soluciones**, que son 536 soluciones geométricamente distintas multiplicadas por 32 simetrías. Se obtuvieron en 2003 | H (las cifras) | F19, F24, F16 | **Atribución con discrepancia entre fuentes:** F24 y Wikipedia lo atribuyen a Fan Chung, Persi Diaconis, Susan Holmes y Ronald Graham, con confirmación por computadora de Bill Cutler; F19 (página de Chung y Graham) dice que Cutler fue el primero en calcular las 536. **En el guion:** "en 2003, un grupo de matemáticos y un programador calcularon…", sin asignar prioridad. **Reserva:** el recuento supone un cuadrado y que se permiten giros y reflejos; no sabemos si así era el juego original (los testimonios antiguos sugieren un rectángulo). El recuento es moderno y no implica que Arquímedes lo resolviera. Se eliminó la cita textual atribuida a Netz, que no tenía fuente | HAL-01, HAL-02, **HAL-13** |
 | AF-021 | "Arquímedes casi inventó el cálculo" / "nos retrasó 500 años" | L | Vídeos de la competencia; ninguna fuente académica | Se presenta como el mito que el episodio examina | — |
 
 ## 4. Personajes
@@ -86,7 +87,8 @@ Ioannes Myronas (sacerdote, 1229) · J. L. Heiberg (filólogo, 1906) · la famil
 - **F17 [A]** Netz, R.; Saito, K.; Tchernetska, N., "A New Reading of Method Proposition 14: Preliminary Evidence from the Archimedes Palimpsest (Part 1)", *SCIAMVS* 2 (2001), 9–29. https://sciamvs.org/files/SCIAMVS_02_009-029_Netz_Saito_Tchernetska.pdf
 - **F18 [A]** Ídem, Part 2, *SCIAMVS* 3 (2002), 109–125. https://sciamvs.org/files/SCIAMVS_03_109-125_Netz_Saito_Tchernetska.pdf
 - **F19 [S/A]** Chung, F., "The Stomachion" (UCSD), que documenta el recuento de Diaconis, Holmes, Graham y Chung (2003) y la confirmación de Cutler. https://mathweb.ucsd.edu/~fan/stomach/tour/stomach.html
-- **F20 [P]** *Greek Orthodox Patriarchate of Jerusalem v. Christie's, Inc.*, U.S. District Court, S.D.N.Y. (fallo de la jueza Kimba Wood) (◌ número de caso y fecha del fallo); cobertura de agencia: https://reuters.screenocean.com/record/646416
-- **F21 [A]** Horváth, L., "Dating Hyperides' *Against Diondas*", *ZPE* 166 (2008), 27–34.
+- **F20 [S]** Cobertura de agencia (Reuters) del caso *Greek Orthodox Patriarchate of Jerusalem v. Christie's, Inc.*, U.S. District Court, S.D.N.Y., jueza Kimba Wood: https://reuters.screenocean.com/record/646416 (◌ completar la referencia judicial, con número de caso y fecha del fallo, para elevarla a [P])
+- **F21 [A]** Horváth, L., "Dating Hyperides' *Against Diondas*", *ZPE* 166 (2008), 27–34 (◌ no consultada directamente); véase también Horváth en *Acta Antiqua*: https://real.mtak.hu/244185/1/068-article-p235.pdf
 - **F22 [A]** Rhodes, P. J. (2009), doi:10.1111/j.2041-5370.2009.tb00757.x · Horváth, L. (2025/2026), doi:10.1556/068.2025.00234.
-- **F23 [A]** Chiaradonna, R.; Rashed, M.; Sedley, D., "A Rediscovered Categories Commentary", *Oxford Studies in Ancient Philosophy* 44 (2013) (◌ páginas). https://dc2.philarchive.org/rec/CHIARC
+- **F23 [A]** Chiaradonna, R.; Rashed, M.; Sedley, D., "A Rediscovered Categories Commentary", *Oxford Studies in Ancient Philosophy* 44 (2013), 129–194. https://dc2.philarchive.org/rec/CHIARC
+- **F24 [S]** Kolata, G., "In Archimedes' Puzzle, a New Eureka Moment", *The New York Times*, 14-dic-2003 (◌ original no consultado; reproducción: https://www.taipeitimes.com/News/feat/archives/2003/12/15/2003079718). Wikipedia, "Ostomachion" (orientación): https://en.wikipedia.org/wiki/Ostomachion
