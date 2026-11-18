@@ -2,7 +2,7 @@
 
 _Índice generado desde la base de datos (`python3 -m estudio indice`). No editar a mano._
 
-Estado: **activa** · etapa actual **11** · [Cuaderno del Director](cuaderno_director.md)
+Estado: **activa** · etapa actual **12** · [Cuaderno del Director](cuaderno_director.md)
 
 | Etapa | Carpeta | Responsable | Estado | Entregables | Decisión |
 |---|---|---|---|---|---|
@@ -16,8 +16,8 @@ Estado: **activa** · etapa actual **11** · [Cuaderno del Director](cuaderno_di
 | 8 💲 · Producción audiovisual | — | productor | cerrado | [storyboard v3](07-storyboard/storyboard.md) | — |
 | 9 · Edición, Shorts y subida privada | [09-edicion/](09-edicion/) | editor | cerrado | [master v1](render/master.mp4)<br>[subtitulos v1](render/subtitulos.srt)<br>[miniatura v1](render/miniaturas/miniatura_A.jpg)<br>[miniatura v2](render/miniaturas/miniatura_B.jpg)<br>[miniatura v3](render/miniaturas/miniatura_C.jpg)<br>[metadatos v1](09-edicion/metadatos.md)<br>[plan montaje v1](09-edicion/montaje.json) | — |
 | 10 🔍 · Auditoría y correcciones | [10-auditoria/](10-auditoria/) | auditor | cerrado | [video master v1](render/master.mp4)<br>[subtitulos v3](render/subtitulos.srt)<br>[plan shorts v1](09-edicion/shorts.json)<br>[short v5](render/shorts/PAL-2026-001-S1.mp4)<br>[short v6](render/shorts/PAL-2026-001-S2.mp4)<br>[short v7](render/shorts/PAL-2026-001-S3.mp4)<br>[short v8](render/shorts/PAL-2026-001-S4.mp4)<br>[miniatura v4](render/miniaturas/miniatura_A.jpg)<br>[miniatura v5](render/miniaturas/miniatura_B.jpg)<br>[miniatura v6](render/miniaturas/miniatura_C.jpg)<br>[miniaturas plan v1](09-edicion/miniaturas.json)<br>[auditoria v4](10-auditoria/auditoria_v1.md)<br>[guion v3](06-guion/guion.md)<br>[metadatos v2](09-edicion/metadatos.md)<br>[montaje v1](09-edicion/montaje.json)<br>[correcciones v1](10-auditoria/correcciones_v1.md)<br>[auditoria v5](10-auditoria/auditoria_v2.md) | — |
-| 11 🔒 · Aprobación del vídeo, Shorts y título final | [11-aprobacion/](11-aprobacion/) | director | en_revision | [ficha decision v2](11-aprobacion/ficha_decision.md) | — |
-| 12 🔒 · Publicación a la hora recomendada | — | director | pendiente | — | — |
+| 11 🔒 · Aprobación del vídeo, Shorts y título final | [11-aprobacion/](11-aprobacion/) | director | cerrado | [ficha decision v2](11-aprobacion/ficha_decision.md) | DEC-0019 |
+| 12 🔒 · Publicación a la hora recomendada | [12-publicacion/](12-publicacion/) | director | en_revision | [hora recomendada v1](12-publicacion/hora_recomendada.md)<br>[ficha decision v3](12-publicacion/ficha_decision.md)<br>[descripcion v1](12-publicacion/descripcion.txt) | — |
 | 13 · Cierre: métricas, costos y lecciones | — | analista | pendiente | — | — |
 
 `recursos/` (imágenes, audio) y `render/` (máster, subtítulos, miniaturas) quedan en la raíz de la producción y no se versionan (ver CLAUDE.md, sección de recursos pesados).
