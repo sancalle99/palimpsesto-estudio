@@ -1,6 +1,6 @@
 # Escaleta — PAL-2026-001 · El Palimpsesto de Arquímedes
 
-**Etapa 9 · Guionista · v1 · 18-nov-2026** · Enfoque A + bloque B + Hipérides en el cierre (DEC-0004) · Duración del borrador ≈ 11 min (≈ 1.500 palabras a 140 ppm); ver SOL-04
+**Etapa 9 · Guionista · v1 · 18-nov-2026** · Enfoque A + bloque B + Hipérides en el cierre (DEC-0004) · Duración ≈ 11 min (≈ 1.500 palabras a 140 ppm), aceptada por el Director (DIR-PAL-2026-001-01)
 
 | # | Bloque | Tiempo | Contenido | AF |
 |---|---|---|---|---|

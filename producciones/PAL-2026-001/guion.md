@@ -1,6 +1,6 @@
 # Guion — PAL-2026-001 · El Palimpsesto de Arquímedes
 
-**Etapa 9 · Guionista · v1 (borrador para la auditoría de la etapa 14) · 18-nov-2026**
+**Etapa 9 · Guionista · v1.1 · 18-nov-2026** · Piloto de ≈ 11 min aceptado por el Director (DIR-PAL-2026-001-01). SOL-01 y SOL-02 resueltas con la alternativa prevista; SOL-03 sin cambios; SOL-04 descartada.
 Narrador: voz del canal (Kokoro em_alex, DEC-0009). Cada párrafo termina con las afirmaciones del expediente que lo sostienen. Marcas para el editor: `[GRADO: …]`, `[RÓTULO: Recreación]`, `[DOCUMENTO: R-…]` (los recursos se asignan en la etapa 10; `R-?` = por asignar).
 
 ---
@@ -60,10 +60,8 @@ Lo que no se discute es lo que le pasó al libro mientras tanto. Durante década
 Y entonces alguien hizo algo peor. Sobre algunas hojas se pintaron cuatro retratos de evangelistas, imitando modelos de manuscritos de la Biblioteca Nacional de Francia. Parecían iluminaciones medievales. No lo eran. `[GRADO: H]` `[DOCUMENTO: R-? — miniatura falsificada]`
 > [AF-008]
 
-¿Cómo lo sabemos? Por un pigmento. En las falsificaciones aparece un verde de ftalocianina, y ese pigmento permite fecharlas: como pronto, son posteriores a 1938. Quien las pintó, quizá para que el libro pareciera más valioso, tapó con ellas páginas de Arquímedes. `[GRADO: H para el pigmento y la fecha; la intención no está documentada y se dice con "quizá"]`
+¿Cómo lo sabemos? Por un pigmento. En las falsificaciones aparece un verde de ftalocianina, y ese pigmento permite fecharlas: como pronto, son posteriores a 1938. Y al pintarlas, alguien tapó páginas de Arquímedes. `[GRADO: H]`
 > [AF-008]
-
-> **Nota para la auditoría:** la frase "quizá para que el libro pareciera más valioso" es una conjetura del guion no recogida en el expediente. Ver `solicitudes_investigacion.md` (SOL-01). Si no se sostiene, se elimina.
 
 ---
 
@@ -82,13 +80,11 @@ Lo que hizo el comprador sí lo sabemos: depositó el libro en el Walters Art Mu
 
 `[VISUAL: animación — el pergamino bajo distintas longitudes de onda]`
 
-La tinta que Myronas raspó no desapareció del todo. Bajo luz de distintas longitudes de onda, el texto antiguo y el nuevo responden de forma diferente, y esa diferencia permite separarlos. Es la imagen multiespectral. `[GRADO: H para el uso de la técnica; la explicación es divulgativa]`
+La tinta que Myronas raspó no desapareció del todo. Para recuperarla, el proyecto fotografió el pergamino con imagen multiespectral, una técnica que permite separar el texto antiguo del nuevo. `[GRADO: H]`
 > [AF-012]
 
-Quedaban las páginas tapadas por los evangelistas falsos, donde la pintura ocultaba todo. Para esas se usó otra cosa: fluorescencia de rayos X en el SLAC, en Stanford. Los rayos X hacen brillar el hierro de la tinta antigua, incluso bajo una capa de pintura. `[GRADO: H para la técnica y el lugar]`
+Quedaban las páginas tapadas por los evangelistas falsos, donde la pintura ocultaba todo. Para esas se usó otra cosa: fluorescencia de rayos X en el SLAC, en Stanford. Con ella se pudo leer incluso bajo la pintura. `[GRADO: H]`
 > [AF-012]
-
-> **Nota para la auditoría:** la explicación de cómo funciona la imagen multiespectral y "el hierro de la tinta" no figuran en el expediente. Ver SOL-02. Si no se confirman, se dice solo "permiten separar los textos" y "permiten leer bajo la pintura".
 
 > **Nota para el productor:** "muchas de las imágenes… vienen de ahí" depende de la licencia de cada imagen (AF-013, ◌ etapa 12).
 
@@ -135,7 +131,7 @@ En 2003, un grupo de matemáticos y un programador hicieron el recuento: 536 sol
 Pero ese recuento supone dos cosas: que la figura es un cuadrado y que se permiten giros y reflejos. No sabemos si así era el juego original. Y es un cálculo moderno: no significa que Arquímedes lo resolviera. `[GRADO: H para la reserva]` `[RÓTULO: "No sabemos"]`
 > [AF-020b]
 
-Entonces, ¿casi inventó el cálculo? Lo que la evidencia permite decir es más preciso y, quizá, más interesante: Arquímedes usaba el infinito para descubrir, separaba con cuidado descubrir de demostrar, y una página recuperada sugiere, según algunos historiadores, que llegó a razonar con conjuntos infinitos. Lo de los "quinientos años" no está en ninguna fuente académica. Es nuestra frase, no la suya. `[GRADO: H / I / L, en ese orden]`
+Entonces, ¿casi inventó el cálculo? Lo que la evidencia permite decir es más preciso y, quizá, más interesante: Arquímedes usaba el infinito para descubrir, separaba con cuidado descubrir de demostrar, y una página recuperada sugiere, según algunos historiadores, que llegó a razonar con conjuntos infinitos. Lo de los "quinientos años" no está en ninguna fuente académica. Es una frase de la divulgación, no de los historiadores. `[GRADO: H / I / L, en ese orden]`
 > [AF-017, AF-018, AF-021]
 
 ---
@@ -160,8 +156,8 @@ Un sacerdote raspó un libro para escribir oraciones. Lo hizo con varios libros,
 
 | Aporte | Dónde se integró |
 |---|---|
-| — | No hay aportes registrados (comprobado con `python -m estudio aportes PAL-2026-001`) |
+| DIR-PAL-2026-001-01 · decisión: «Acepto el piloto» | Integrado: se mantiene el piloto de ≈ 11 min sin ampliar la investigación (SOL-04 descartada). Recuento y escaleta |
 
 ## Recuento
 
-≈ 1.500 palabras de narración · ≈ 11 min a 140 ppm. El expediente actual no sostiene los 17 min previstos sin relleno; SOL-04 propone el material que permitiría llegar a 14–16 min.
+≈ 1.500 palabras de narración · ≈ 11 min a 140 ppm. Duración aceptada por el Director (DIR-PAL-2026-001-01).

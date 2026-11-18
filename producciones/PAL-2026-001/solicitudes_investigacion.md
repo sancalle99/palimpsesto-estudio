@@ -6,3 +6,12 @@
 | SOL-02 | Fuente para la explicación divulgativa de la **imagen multiespectral** (respuesta distinta de cada tinta) y de la **fluorescencia de rayos X** (señal del hierro de la tinta antigua) | Guion §4 | Se dice solo "permiten separar los textos / leer bajo la pintura" |
 | SOL-03 | Breve ficha de **Hipérides** (orador ateniense, s. IV a. C.) con fuente | Guion §6 | Se mantiene "el orador Hipérides" sin más |
 | SOL-04 | Contexto para llegar a 14–16 min: (a) quién fue Arquímedes y su época, con fecha y lugar de muerte; (b) dónde y para quién se hizo la copia del siglo X; (c) dónde trabajaba Myronas; (d) número de hojas y estado del códice; (e) nombres del equipo de imagen en fuente primaria (pendiente 4 del expediente) | Guion §1–§4 | El episodio queda en ≈ 11 min |
+
+## Resolución (18-nov-2026)
+
+| ID | Estado |
+|---|---|
+| SOL-01 | Cerrada sin investigar: se eliminó la conjetura sobre el motivo |
+| SOL-02 | Cerrada sin investigar: se usa la formulación mínima ("separar el texto antiguo del nuevo", "leer bajo la pintura") |
+| SOL-03 | Cerrada: se mantiene "el orador Hipérides" |
+| SOL-04 | Descartada: el Director acepta el piloto de ≈ 11 min (DIR-PAL-2026-001-01) |

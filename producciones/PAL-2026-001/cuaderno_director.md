@@ -7,3 +7,5 @@ Escriba aquí sus notas libremente; para que queden registradas y trazables use:
 
 ## Aportes registrados
 
+- **DIR-PAL-2026-001-01** · decision · 2026-11-18
+  > Acepto el piloto
