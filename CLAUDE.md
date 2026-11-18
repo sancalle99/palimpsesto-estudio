@@ -13,6 +13,8 @@ El Director (propietario humano) tiene la decisión final sobre temas, enfoques,
 - El estado del flujo vive en la base de datos y se consulta con `python -m estudio estado <ID>`.
 - Las 21 etapas, sus responsables y sus puertas están en `estudio/core.py` (`ETAPAS`). No se salta ninguna etapa.
 
+> **⚠ Pendiente:** hay cambios aprobados por el Director sin aplicar (13 etapas, título, subida autónoma). Léelos en `docs/cambios_aprobados.md` y aplícalos antes de avanzar cualquier producción.
+
 ## Flujo desde un solo chat: `/avanzar <ID>`
 
 - `/avanzar PAL-2026-001` ejecuta la siguiente etapa con su responsable, la registra, actualiza el panel y sigue con la próxima. Se detiene en cada puerta 🔒 mostrando la Ficha de decisión (detalle en `.claude/commands/avanzar.md`).
