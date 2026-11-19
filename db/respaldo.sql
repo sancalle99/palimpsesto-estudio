@@ -91,6 +91,10 @@ INSERT INTO "artefactos" VALUES('PAL-2026-001-A054','PAL-2026-001',16,'ficha_dec
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A055','PAL-2026-001',17,'hora_recomendada','producciones/PAL-2026-001/12-publicacion/hora_recomendada.md',1,'b1a8d66d061f73b7a9cacd0f28adc2d81bf51724df79f3fa5c27ed75a3ed810e','analista','2026-11-18T21:29:45+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A056','PAL-2026-001',17,'ficha_decision','producciones/PAL-2026-001/12-publicacion/ficha_decision.md',3,'d1690f34b33851a918d0550465e1b83b3ae7bd81a892fe21eecade10ca02a739','ceo','2026-11-18T21:29:59+00:00');
 INSERT INTO "artefactos" VALUES('PAL-2026-001-A057','PAL-2026-001',17,'descripcion','producciones/PAL-2026-001/12-publicacion/descripcion.txt',1,'e9a5dca051882ef84fc274df513d6fa5686b50e207238a247c6e43e115d21969','editor','2026-11-18T21:29:59+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A058','PAL-2026-001',17,'publicacion','producciones/PAL-2026-001/12-publicacion/publicacion_manual.md',1,'a72ef710232f9db8dd500d85587151c0f1aba2505e684b85cc36cc7de12420a1','editor','2026-11-19T13:28:33+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A059','PAL-2026-001',19,'informe_financiero','producciones/PAL-2026-001/13-cierre/informe_financiero.md',1,'35ac1d76c8bebc4fb9f936e7b3769424798f3e3a9fc56d14c22751e6eb8dd01b','cfo','2026-11-19T13:29:23+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A060','PAL-2026-001',19,'informe_metricas','producciones/PAL-2026-001/13-cierre/informe_metricas.md',1,'4ae0333796afecb0cadc7bdb91d774783e9e07929eface840d290ed2d66effe4','analista','2026-11-19T13:29:23+00:00');
+INSERT INTO "artefactos" VALUES('PAL-2026-001-A061','PAL-2026-001',19,'lecciones','producciones/PAL-2026-001/13-cierre/lecciones.md',1,'c1ea71ca10242d0a52ce8cd1959de4fcaedcc311c9d7507017a0f0c3e6fa5e99','ceo','2026-11-19T13:29:23+00:00');
 CREATE TABLE canales (
   id                     INTEGER PRIMARY KEY,
   slug                   TEXT NOT NULL UNIQUE,
@@ -663,6 +667,23 @@ INSERT INTO "costos" VALUES(530,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthro
 INSERT INTO "costos" VALUES(531,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,399,1159,237960,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB6dtJPz7BcHFZ3cVnkx','e2adeb7e5120834629593d5f82d45119ad9af6f15649bb3b4c8951e7cf5173f3',NULL,NULL,0,'2026-11-18T21:26:11+00:00');
 INSERT INTO "costos" VALUES(532,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,1474,471,239119,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB6mEyoAV1iQDASrTZpS','26cfc820ecf6d810f5b2fb8d9953d62a4fc7daf39e0fd3417d895df1eb684c40',NULL,NULL,0,'2026-11-18T21:26:11+00:00');
 INSERT INTO "costos" VALUES(533,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,428,1610,239590,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB6n9oWpyYCFAH1gKQow','da4775e354995a7691030b5de989c9a439abe62d8f8b3a384599ac35e5fee9bb',NULL,NULL,0,'2026-11-18T21:26:11+00:00');
+INSERT INTO "costos" VALUES(534,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,441,999,241200,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB6nsiQqmDcWHRWn1DPq','451f794c3240786137dd9aac1b7b2a6ad0d0eff1ef3cc7d797341f3a13e5e78f',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(535,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',1,1091,1264,242199,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB6okug6CwirzKHjdsw8','1723f868acf8d6d45aec7a797492a4081c74fe477baf29899e9ec18620033e65',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(536,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,177,88,244553,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB73FieC4899Uzo18ga2','df4b73cb146d5ca9273e2877f086a00b6e659ee2b4c649ae71c37b5e71953c64',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(537,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,1425,916,244641,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB73Vap7XAdRSesPWau6','790535d96ba952948ce2145bbbcb942b6a68ade4ade9dc83db43c4ed623c728c',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(538,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,1624,1565,245557,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB74W8qZSgjCdF43T8Tg','348e794869b06fef9ed4891c1dd01181e290a7f82f37458a68795fb14fdc668c',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(539,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,415,1859,247122,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB75j6ESTFNJeVXceKLv','75deb172c780e080792eb5090f2ca75d24a35eb5290b16ed5ea7c892d26a5e65',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(540,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,839,1231,248981,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB76xFGzw9NDdiHD7i4A','5e65ab38db98c3ebc95f60b1ad73d053e985e45ca75a0f315f3e3e60e2ecfd3f',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(541,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,788,251,251051,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9rFfTPnZA4htoDX4SL','99febbe5c44b41eaa8e438b9e7e6dc32a3127c2a874d8b0ee6a27da655ae9fbd',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(542,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,194,1754,251302,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9rx4ZpaY1JhMdj3w5W','4bf4da62401dc165d4089d4b948330ec99be34026b408ce3e58dc2f2319cc224',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(543,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,1174,1656,253056,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9sH7nyJ1pfMwweTszq','09e4647d5fecb0ecb3f4bcf2a8d61f7b39fd80a1ca9e635265365bc991387ae6',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(544,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',1,1704,1486,254712,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9tPS5WHNa3jvDFNWBr','1160ca8a56506151da36504f715c9a55a3250e5fa2585cfc62d29441bfcc098a',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(545,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,236,1753,256198,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9v19wc2ohZP648u91R','aafe576b0ab3ca91b9a6efc2f99a751874b997ffe51b3fefc9ce8b0d6a0f0f9c',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(546,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,111,279,257951,0.0,NULL,0.0,'suscripcion','[]','msg_011ChB9vdTVEyboWrLwfbatu','9e31bdd4c4447063a05e0e8579717de15351f7ba4b6b7999eab73b63ee940f90',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(547,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',4,476,20,258341,0.0,NULL,0.0,'suscripcion','[]','msg_011ChBAEwGJkZsmHRrN8nyXd','aa6ac8bc504596cf3e410872f7790d673bc7fb8cefb6a582ba3e0410dabb18c5',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(548,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,565,833,258361,0.0,NULL,0.0,'suscripcion','[]','msg_011ChBAFdGNUcJnvCQzPYFXd','71624408be2e291bf16be91c181f83816b4e2baf1a4990f21a05e0ca7f14e0f7',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(549,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,290,198204,62786,0.0,NULL,0.0,'suscripcion','[]','msg_011ChCN9uWttGsegovu7B4eJ','535ea1b81f37f0d4de8f8b9710170c5e659c33e4b2fceb09cc65956251b214f6',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
+INSERT INTO "costos" VALUES(550,1,'PAL-2026-001',NULL,'claude-code',NULL,'anthropic','claude-opus-5-5',2,1153,1355,260990,0.0,NULL,0.0,'suscripcion','[]','msg_011ChCNAKv6MQpm5wfSiFJUi','66f8a5e1eb9423fe5b28b6050dee548e5b6996d3422b2cd76e7d857c5db7a34b',NULL,NULL,0,'2026-11-19T13:28:36+00:00');
 CREATE TABLE decisiones (
   id            TEXT PRIMARY KEY,                        -- DEC-0001
   canal_id      INTEGER REFERENCES canales(id),
@@ -692,6 +713,7 @@ INSERT INTO "decisiones" VALUES('DEC-0016',1,NULL,'estrategia','Subida autónoma
 INSERT INTO "decisiones" VALUES('DEC-0017',1,'PAL-2026-001','migracion_13_etapas','PAL-2026-001 migrada del flujo de 21 etapas al de 13 (DEC-0014). Etapa actual: 10.','ceo','Aprobado por el Director: «Apruebo las 13 etapas, el título y la subida autónoma».','2026-11-18T20:06:57+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0018',1,'PAL-2026-001','operativa','PAL-2026-001 cerró la edición antes de la fusión con los Shorts y la subida privada (DEC-0014/0016): ambos se hacen dentro de la etapa 10, junto con las correcciones de la auditoría, antes de la Ficha 11.','ceo','La etapa 9 se migró cerrada; no se reabre para no perder su historial.','2026-11-18T20:09:57+00:00');
 INSERT INTO "decisiones" VALUES('DEC-0019',1,'PAL-2026-001','aprobacion_etapa_11','Aprobada etapa 11: Aprobación del vídeo, Shorts y título final','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 11»','2026-11-18T21:29:28+00:00');
+INSERT INTO "decisiones" VALUES('DEC-0020',1,'PAL-2026-001','aprobacion_etapa_12','Aprobada etapa 12: Publicación a la hora recomendada','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 12, incluso ya cargue los videos y los shorts»','2026-11-19T13:28:16+00:00');
 CREATE TABLE historial_tareas (
   id         INTEGER PRIMARY KEY,
   tarea_id   INTEGER NOT NULL REFERENCES tareas(id),
@@ -771,6 +793,11 @@ INSERT INTO "historial_tareas" VALUES(67,16,'aprobado','cerrado','director',NULL
 INSERT INTO "historial_tareas" VALUES(68,17,'pendiente','en_curso','analista',NULL,'2026-11-18T21:29:45+00:00');
 INSERT INTO "historial_tareas" VALUES(69,17,'en_curso','entregado','ceo','Ficha de publicación presentada; publicación manual por falta de API','2026-11-18T21:29:59+00:00');
 INSERT INTO "historial_tareas" VALUES(70,17,'entregado','en_revision','ceo',NULL,'2026-11-18T21:29:59+00:00');
+INSERT INTO "historial_tareas" VALUES(71,17,'en_revision','aprobado','director','Mensaje literal del Director: «APRUEBO PAL-2026-001 12, incluso ya cargue los videos y los shorts»','2026-11-19T13:28:15+00:00');
+INSERT INTO "historial_tareas" VALUES(72,17,'aprobado','cerrado','director',NULL,'2026-11-19T13:28:16+00:00');
+INSERT INTO "historial_tareas" VALUES(73,19,'pendiente','en_curso','analista',NULL,'2026-11-19T13:28:36+00:00');
+INSERT INTO "historial_tareas" VALUES(74,19,'en_curso','entregado','analista','Cierre: informe financiero (0 USD; 84 % de la cuota Pro), métricas pendientes de datos, lecciones','2026-11-19T13:29:23+00:00');
+INSERT INTO "historial_tareas" VALUES(75,19,'entregado','cerrado','analista','cierre automático (sin puerta)','2026-11-19T13:29:23+00:00');
 CREATE TABLE presupuestos (
   canal_id   INTEGER NOT NULL REFERENCES canales(id),
   mes        TEXT NOT NULL,                              -- 'YYYY-MM'
@@ -790,7 +817,7 @@ CREATE TABLE producciones (
   creado           TEXT NOT NULL,
   actualizado      TEXT NOT NULL
 );
-INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',12,50.0,1,NULL,'2026-11-18T00:15:51+00:00','2026-11-18T21:29:59+00:00');
+INSERT INTO "producciones" VALUES('PAL-2026-001',1,'El Palimpsesto de Arquímedes (piloto)','El Palimpsesto de Arquímedes','activa',13,50.0,1,NULL,'2026-11-18T00:15:51+00:00','2026-11-19T13:29:23+00:00');
 CREATE TABLE recursos (
   id            TEXT PRIMARY KEY,                        -- PAL-2026-001-R0042
   produccion_id TEXT NOT NULL REFERENCES producciones(id),
@@ -845,8 +872,8 @@ INSERT INTO "tareas" VALUES(12,'PAL-2026-001',8,'Producción audiovisual','produ
 INSERT INTO "tareas" VALUES(13,'PAL-2026-001',9,'Edición, Shorts y subida privada','editor','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T15:59:17+00:00','2026-11-18T16:13:40+00:00','2026-11-18T16:13:40+00:00',NULL);
 INSERT INTO "tareas" VALUES(14,'PAL-2026-001',10,'Auditoría y correcciones','auditor','auditoria','cerrado','[]','["PAL-2026-001-A041"]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T20:37:30+00:00','2026-11-18T21:08:54+00:00','2026-11-18T21:12:12+00:00',NULL);
 INSERT INTO "tareas" VALUES(16,'PAL-2026-001',11,'Aprobación del vídeo, Shorts y título final','director','humana','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T21:24:11+00:00','2026-11-18T21:26:03+00:00','2026-11-18T21:29:28+00:00',NULL);
-INSERT INTO "tareas" VALUES(17,'PAL-2026-001',12,'Publicación a la hora recomendada','director','humana','en_revision','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T21:29:45+00:00','2026-11-18T21:29:59+00:00',NULL,NULL);
-INSERT INTO "tareas" VALUES(19,'PAL-2026-001',13,'Cierre: métricas, costos y lecciones','analista','ninguna','pendiente','[]','[]',NULL,'2026-11-18T00:15:51+00:00',NULL,NULL,NULL,NULL);
+INSERT INTO "tareas" VALUES(17,'PAL-2026-001',12,'Publicación a la hora recomendada','director','humana','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-18T21:29:45+00:00','2026-11-18T21:29:59+00:00','2026-11-19T13:28:16+00:00',NULL);
+INSERT INTO "tareas" VALUES(19,'PAL-2026-001',13,'Cierre: métricas, costos y lecciones','analista','ninguna','cerrado','[]','[]',NULL,'2026-11-18T00:15:51+00:00','2026-11-19T13:28:36+00:00','2026-11-19T13:29:23+00:00','2026-11-19T13:29:23+00:00',NULL);
 CREATE TABLE tarifas (
   id            INTEGER PRIMARY KEY,
   proveedor     TEXT NOT NULL,
